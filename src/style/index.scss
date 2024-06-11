@@ -1,0 +1,61 @@
+@import "variables.scss";
+@import "mixin.scss";
+@import "default-style.scss";
+
+@font-face {
+    font-family: "DINPro-CondensedLight";
+    src: url("../../public/fonts/DINPro-CondensedLight.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DIN Pro";
+    src: url("../../public/fonts/DINPro.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("../../public/fonts/Gilroy-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../../public/fonts/Inter-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: "DINPro-CondensedLight", "DIN Pro", "Gilroy", "Inter", "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: -webkit-fill-available;
+    position: relative;
+    color: $color_grey;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.App{
+    position: relative;
+}
+
+.Main{
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+}
+
+.Router{
+    overflow: hidden;
+}

@@ -1,0 +1,59 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin.scss";
+.navbar {
+    background-color: $color_grey;
+    position: relative;
+    z-index: 9999;
+    &-item {
+        position: relative;
+        background-color: $color_grey;
+        z-index: 9999;
+        width: 80px;
+        height: 80px;
+        border: 1px solid $color_border;
+        @include flex-all-center;
+    }
+    &:hover {
+        .navbar-titles {
+            transform: translateX(80px);
+        }
+    }
+}
+
+.right-navbar {
+    min-height: 100%;
+    right: 0px;
+    width: 80px;
+    top: 0px;
+    background-color: $color_grey;
+}
+
+.navbar-titles {
+    z-index: 9998;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 160px;
+    height: 800px;
+    background-color: $color_grey;
+    transform: translateX(-160px);
+    transition: transform 0.5s;
+    &-item {
+        padding: 10px;
+        width: 160px;
+        height: 80px;
+        border: 1px solid $color_border;
+        font-weight: 500;
+        font-size: clamp(0.75rem, 1.25rem, 1.25rem);
+        text-transform: uppercase;
+        color: #fff;
+        opacity: 0.6;
+        display: flex;
+        align-items: center;
+        transition: all 0.5s;
+        &:hover {
+            background: $color_grey1;
+            opacity: 1;
+        }
+    }
+}

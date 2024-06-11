@@ -1,0 +1,41 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin.scss";
+.footer{
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    background-color: $color_grey;
+    border: 1px solid $color_border;
+    &-item{
+        border: 1px solid $color_border;
+        width: 80px;
+        @include flex-all-center;
+    }
+    &-info{
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+    &-text{
+        flex-grow: 1;
+        display: flex;
+        gap: 5px;
+        color: $color_white;
+        opacity: 0.6;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 111%;
+        text-transform: uppercase;
+        &-gr{
+            color: $color_white;
+            opacity: 0.2;
+        }
+    }
+    &-inv{
+        font-weight: 400;
+        font-size: 18px;
+        color: $color_white;
+        gap: 5px;
+        display: flex;
+    }
+}
+
