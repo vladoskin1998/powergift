@@ -5,7 +5,7 @@ export const CatalogMain = () => {
     return (
         <div className="catalog-main">
             <img
-                src="/Images/glass_cube_by_gleb.png"
+                src={baseURL +"/Images/glass_cube_by_gleb.png"}
                 className="catalog-main-back"
                 alt=""
             />
