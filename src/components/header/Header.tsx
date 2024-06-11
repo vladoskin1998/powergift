@@ -7,12 +7,13 @@ import {
 } from "../svg/HeaderIcon"
 import "./header.scss"
 import { HeaderSearch } from "./HeaderSearch"
+import { baseURL } from "../../utils/utils"
 
 export const Header = () => {
     return (
         <div className="header">
             <div className="header-item">
-                <img src="/Images/logo.png" alt="" />
+                <img src={baseURL + `/Images/logo.png`} alt="" />
             </div>
             <div className="header-links">
                 <div className="header-links-name">

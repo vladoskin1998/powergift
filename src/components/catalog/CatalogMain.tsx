@@ -1,4 +1,5 @@
 import React from "react"
+import { baseURL } from "../../utils/utils"
 
 export const CatalogMain = () => {
     return (
@@ -13,7 +14,7 @@ export const CatalogMain = () => {
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
-                                src="/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                src={baseURL + "/Images/Speaker_Cube_PowerGifts_130210-V1.png"}
                                 alt=""
                             />
                         </div>
@@ -22,7 +23,7 @@ export const CatalogMain = () => {
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
-                                src="/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                src={baseURL + "/Images/Speaker_Cube_PowerGifts_130210-V1.png"}
                                 alt=""
                             />
                         </div>
@@ -32,7 +33,7 @@ export const CatalogMain = () => {
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
-                                src="/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                src={baseURL + "/Images/Speaker_Cube_PowerGifts_130210-V1.png"}
                                 alt=""
                             />
                         </div>
@@ -43,7 +44,7 @@ export const CatalogMain = () => {
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
-                                src="/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                src={baseURL + "/Images/Speaker_Cube_PowerGifts_130210-V1.png"}
                                 alt=""
                             />
                         </div>
@@ -52,7 +53,7 @@ export const CatalogMain = () => {
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
-                                src="/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                src={baseURL + "/Images/Speaker_Cube_PowerGifts_130210-V1.png"}
                                 alt=""
                             />
                         </div>
@@ -60,7 +61,7 @@ export const CatalogMain = () => {
                     </div>
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-lihgt">
-                            <img src="/Images/lightning.png" alt="" />
+                            <img src={baseURL + "/Images/lightning.png"} alt="" />
                         </div>
                         <p>Cтвори свій унікальній Power gift!</p>
                         <h4>Запросити прорахунок</h4>

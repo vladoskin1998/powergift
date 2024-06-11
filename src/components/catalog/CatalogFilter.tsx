@@ -10,6 +10,7 @@ import { CatalogFilterSlider } from "./CatalogFilterSlider"
 import { CatalogFilterCheckbox } from "./CatalogFilterCheckbox"
 import { CatalogFilterRatio } from "./CatalogFilterRatio"
 import { HeaderIconArrow, HeaderIconBasket, HeaderIconReload } from "../svg/HeaderIcon"
+import { baseURL } from "../../utils/utils"
 
 export const CatalogFilter = () => {
     const [value, setValue] = useState<boolean>(false)
@@ -32,12 +33,12 @@ export const CatalogFilter = () => {
                         </h5>
                         <img
                             className="catalog-filter-header-glass"
-                            src="/Images/glass_cube_by_gleb-2.png"
+                            src={baseURL + "/Images/glass_cube_by_gleb-2.png"}
                             alt=""
                         />
                         <img
                             className="catalog-filter-header-box"
-                            src="/Images/Box-2.png"
+                            src={baseURL + "/Images/Box-2.png"}
                             alt=""
                         />
                     </div>
@@ -176,7 +177,7 @@ export const CatalogFilter = () => {
                         ].map((item) => (
                             <div className="catalog-filter-list-item">
                                 <div className="catalog-filter-list-item-img">
-                                    <img src={item} alt="" />
+                                    <img src={baseURL + item} alt="" />
                                 </div>
                                 <div className="catalog-filter-list-item-foot">
                                     <h6 className="catalog-filter-list-item-foot-price">
@@ -193,7 +194,7 @@ export const CatalogFilter = () => {
                                             <p className="catalog-filter-list-item-foot-order">
                                                 ТОВАР Під замовлення
                                                 <img
-                                                    src="/Images/Basket.png"
+                                                    src={baseURL + "/Images/Basket.png"}
                                                     alt=""
                                                 />
                                             </p>
@@ -218,7 +219,7 @@ export const CatalogFilter = () => {
                         ].map((item) => (
                             <div className="catalog-filter-list-item">
                                 <div className="catalog-filter-list-item-img">
-                                    <img src={item} alt="" />
+                                    <img src={baseURL + item} alt="" />
                                 </div>
                                 <div className="catalog-filter-list-item-foot">
                                     <h6 className="catalog-filter-list-item-foot-price">
@@ -234,8 +235,8 @@ export const CatalogFilter = () => {
                                             </h4>
                                             <p className="catalog-filter-list-item-foot-order">
                                                 ТОВАР Під замовлення
-                                                <img
-                                                    src="/Images/Basket.png"
+                                                 <img
+                                                    src={baseURL + "/Images/Basket.png"}
                                                     alt=""
                                                 />
                                             </p>
