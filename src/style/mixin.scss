@@ -6,3 +6,13 @@
     -webkit-justify-content: center;
     -webkit-align-items: center;
 }
+
+@mixin three-dots($mw:200px) {
+    max-width: $mw;
+    white-space: nowrap;    
+    text-overflow: ellipsis;
+    overflow: hidden; 
+}
+
+
+ 

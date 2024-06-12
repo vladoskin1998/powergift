@@ -1,8 +1,11 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
-import { CatalogMain } from "./CatalogMain"
+import { CatalogDesktop } from "./CatalogDesktop"
 import "./catalog.scss"
-import { CatalogFilter } from "./CatalogFilter"
+import { CatalogFilterMain } from "./CatalogFilterMain"
+import { CatalogProducts } from "./CatalogProducts"
+import { CatalogFilterProducts } from "./CatalogFilterProducts"
+
 export const Catalog = () => {
     return (
         <Routes>
@@ -10,8 +13,10 @@ export const Catalog = () => {
         path="change-password"
         element={< />}
     />*/}
-            <Route path="filter" element={<CatalogFilter />} />
-            <Route path="*" element={<CatalogMain />} />
+            <Route path="filter-products" element={<CatalogFilterProducts />} />
+            <Route path="products" element={<CatalogProducts />} />
+            <Route path="filter-main" element={<CatalogFilterMain />} />
+            <Route path="*" element={<CatalogDesktop />} />
         </Routes>
     )
 }

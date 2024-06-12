@@ -21,7 +21,7 @@ export const Header = () => {
                     <p>GIFTS</p>
                 </div>
                 <div className="header-links-catalog header-links-nav-active ">
-                        <Link to="">Каталог товарів</Link>
+                        <Link to="/catalog/products">Каталог товарів</Link>
                     </div>
                 <div className="header-links-nav">
                     

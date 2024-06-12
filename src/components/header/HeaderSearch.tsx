@@ -1,14 +1,21 @@
 import React, { useState } from "react"
 import { HeaderIconMicrofon, HeaderIconSearch } from "../svg/HeaderIcon"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export const HeaderSearch = () => {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false)
+    const location = useLocation()
     
     const changeSearch = () => {
         setOpen(s => !s)
-        navigate('/catalog/filter')
+        if(location.pathname.includes('products')){
+            navigate('/catalog/filter-products')
+        }
+        else{
+            navigate('/catalog/filter-main')
+        }
+        
     }
     
     return (

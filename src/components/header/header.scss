@@ -6,11 +6,13 @@
     display: grid;
     grid-template-columns: 80px 1fr 320px;
     background-color: $color_grey;
+    border: 1px solid $color_border;
     &-links {
         display: flex;
         padding: 10px;
         text-wrap: nowrap;
         align-items: center;
+        border: 1px solid $color_border;
         &-name {
             width: 160px;
             display: flex;
@@ -50,7 +52,7 @@
     &-item {
         background-color: $color_grey;
         width: 80px;
-        height: 80px;
+
         border: 1px solid $color_border;
         @include flex-all-center;
         &-search{
@@ -62,6 +64,7 @@
     }
     &-buttons {
         display: flex;
+        border: 1px solid $color_border;
     }
 }
 

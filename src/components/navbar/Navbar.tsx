@@ -16,36 +16,36 @@ import "./navbar.scss"
 export const Navbar = () => {
     return (
         <div className="navbar">
-            <div className="navbar-item">
+            <button className="navbar-item">
                 <NavbarIconsElectronics />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsTools />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsCloses />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsBags />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsDishes />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsHome />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsOffice />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsCar />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsSets />
-            </div>
-            <div className="navbar-item">
+            </button>
+            <button className="navbar-item">
                 <NavbarIconsGifts />
-            </div>
+            </button>
             <div className="navbar-titles">
               <button className="navbar-titles-item">Електроніка</button>
               <button className="navbar-titles-item">Інструменти</button>

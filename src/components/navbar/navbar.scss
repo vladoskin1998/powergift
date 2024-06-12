@@ -4,6 +4,7 @@
     background-color: $color_grey;
     position: relative;
     z-index: 9999;
+    border: 1px solid $color_border;
     &-item {
         position: relative;
         background-color: $color_grey;
@@ -26,6 +27,7 @@
     width: 80px;
     top: 0px;
     background-color: $color_grey;
+    border: 1px solid $color_border;
 }
 
 .navbar-titles {

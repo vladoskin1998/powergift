@@ -1,7 +1,7 @@
 import React from "react"
 import { baseURL } from "../../utils/utils"
 
-export const CatalogMain = () => {
+export const CatalogDesktop = () => {
     return (
         <div className="catalog-main">
             <img
@@ -18,7 +18,7 @@ export const CatalogMain = () => {
                                 alt=""
                             />
                         </div>
-                        <h5>Power product$</h5>
+                        <h5>Power product $</h5>
                     </div>
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
@@ -28,7 +28,7 @@ export const CatalogMain = () => {
                             />
                         </div>
 
-                        <h5>Power product$</h5>
+                        <h5>Power product $</h5>
                     </div>
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
@@ -37,7 +37,7 @@ export const CatalogMain = () => {
                                 alt=""
                             />
                         </div>
-                        <h5>Power product$</h5>
+                        <h5>Power product $</h5>
                     </div>
                 </div>
                 <div className="catalog-main-list-item">
@@ -48,7 +48,7 @@ export const CatalogMain = () => {
                                 alt=""
                             />
                         </div>
-                        <h5>Power product$</h5>
+                        <h5>Power product $</h5>
                     </div>
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
@@ -57,7 +57,7 @@ export const CatalogMain = () => {
                                 alt=""
                             />
                         </div>
-                        <h5>Power product$</h5>
+                        <h5>Power product $</h5>
                     </div>
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-lihgt">
