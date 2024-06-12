@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/powergift/static/css/main.96587a70.css",
-    "main.js": "/powergift/static/js/main.1d85a0d4.js",
+    "main.css": "/powergift/static/css/main.80293a06.css",
+    "main.js": "/powergift/static/js/main.f635a00e.js",
     "static/media/Inter-Regular.woff": "/powergift/static/media/Inter-Regular.0d6f7c99e635f1fec4c9.woff",
     "static/media/DINPro.woff": "/powergift/static/media/DINPro.637a0f5db07a169e1404.woff",
     "static/media/DINPro-CondensedLight.woff": "/powergift/static/media/DINPro-CondensedLight.81172e89b99e1eaffb78.woff",
     "static/media/Gilroy-Regular.woff": "/powergift/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
     "index.html": "/powergift/index.html",
-    "main.96587a70.css.map": "/powergift/static/css/main.96587a70.css.map",
-    "main.1d85a0d4.js.map": "/powergift/static/js/main.1d85a0d4.js.map"
+    "main.80293a06.css.map": "/powergift/static/css/main.80293a06.css.map",
+    "main.f635a00e.js.map": "/powergift/static/js/main.f635a00e.js.map"
   },
   "entrypoints": [
-    "static/css/main.96587a70.css",
-    "static/js/main.1d85a0d4.js"
+    "static/css/main.80293a06.css",
+    "static/js/main.f635a00e.js"
   ]
 }
