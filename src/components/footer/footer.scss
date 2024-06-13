@@ -5,6 +5,9 @@
     grid-template-columns: 80px 1fr 80px;
     background-color: $color_grey;
     border: 1px solid $color_border;
+    &-mob{
+        display: none;
+    }
     &-item{
         border: 1px solid $color_border;
         width: 80px;
@@ -39,3 +42,30 @@
     }
 }
 
+
+
+
+@media screen and (max-width: 500px) {
+    .footer{
+      
+        width: 100%;
+        grid-template-columns:1fr;
+        z-index: 2;
+    }
+    .footer-item{
+        display: none;
+    }
+    .footer-info{
+        display: none;
+    }
+    .footer-mob{
+        display: grid;
+        height: 81px;
+       
+        grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        &-item{
+            border-top: 1px solid $color_border;    
+        }
+    }
+}

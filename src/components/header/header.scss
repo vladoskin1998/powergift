@@ -4,29 +4,42 @@
 .header {
     height: 80px;
     display: grid;
-    grid-template-columns: 80px 1fr 320px;
+    grid-template-columns: 80px 140px 1fr 320px;
     background-color: $color_grey;
     border: 1px solid $color_border;
+    position: relative;
+    &-navbar{
+        display: none;
+    }
     &-links {
+        &-mob-flag {
+            display: none;
+        }
         display: flex;
         padding: 10px;
         text-wrap: nowrap;
         align-items: center;
         border: 1px solid $color_border;
+        border-left: 0;
         &-name {
             width: 160px;
             display: flex;
             font-size: 20px;
             gap: 5px;
             color: $color_white;
+            @include flex-all-center;
             h5 {
                 font-weight: 700;
+                display: inline;
             }
             p {
+                display: inline;
                 font-weight: 400;
             }
+            border: 1px solid $color_border;
+            border-right: 0;
         }
-        &-catalog{
+        &-catalog {
             width: 120px;
         }
         &-nav {
@@ -55,9 +68,9 @@
 
         border: 1px solid $color_border;
         @include flex-all-center;
-        &-search{
+        &-search {
             position: relative;
-            &-active{
+            &-active {
                 background: $backgroundgradient1;
             }
         }
@@ -68,7 +81,7 @@
     }
 }
 
-.header-search{
+.header-search {
     position: absolute;
     width: 0;
     top: 0;
@@ -78,23 +91,22 @@
     transition: all 0.5s;
     display: flex;
     align-items: center;
-    &-icon{
+    &-icon {
         width: 100%;
         height: 100%;
         z-index: 2;
         @include flex-all-center;
     }
-    &-active{
+    &-active {
         width: calc(100vw - 50px - 140px - 180px - 320px);
     }
-    &-line{
+    &-line {
         margin: 0 10px 0 20px;
         width: 1px;
         height: 39px;
         background: $backgroundgradient1;
     }
-    &-input{
-       
+    &-input {
         font-weight: 400;
         font-size: 24px;
         color: $color_grey1;
@@ -106,7 +118,108 @@
             opacity: 0.8;
         }
     }
-    &-mic{
+    &-mic {
         padding-right: 30px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header {
+        grid-template-columns: 80px 1fr;
+       
+        width: 100%;
+        z-index: 2;
+    }
+    .header-links {
+        display: none;
+    }
+    .header-buttons {
+        display: none;
+    }
+    .header-links-name {
+        padding: 0px 20px 0 10px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .header-links-mob-flag {
+        display: flex;
+        gap: 50px;
+        font-size: 10px;
+        font-weight: 400;
+        color: $color_white;
+        align-items: center;
+        button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+           
+        }
+        &-svg{
+            height: 32px;
+            width: 42px;
+            @include flex-all-center;
+        }
+    }
+    .header-navbar{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        left: 100%;
+        width: calc(100% - 80px);
+        transition: all 0.5s;
+        background-color: $color_grey1;
+        color: $color_white;
+        z-index: 2;
+        padding: 25px 0 25px 75px;
+        &-active{
+            transform: translateX(-100%);
+        }
+        &-item{
+            opacity: 0.6;
+            color: $color_white;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: -1px;
+            letter-spacing: 0%;
+            padding-bottom: 23px;
+            &-title{
+                padding-top: 25px;
+                padding-bottom: 13px;
+                opacity: 1;
+                font-size: 32px;
+                font-weight: 400;
+                line-height: -1px;
+            }
+        }
+        &-inv{
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 35px;
+        }
+        &-paymant{
+            margin-bottom: 75px;
+            img{
+                
+                height: 40px;
+            }
+        }
+        &-text{
+            position: absolute;
+            bottom: 31px;
+            left: 16px;
+            @include three-dots(300px);
+            font-size: 12px;
+            opacity: 0.6;
+            color: $color_white;
+            b{
+                opacity: 1;
+                font-weight: 700;
+            }
+        }
+   
     }
 }

@@ -13,6 +13,9 @@
         height: 80px;
         border: 1px solid $color_border;
         @include flex-all-center;
+        p{
+            display: none;
+        }
     }
     &:hover {
         .navbar-titles {
@@ -58,4 +61,29 @@
             opacity: 1;
         }
     }
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .right-navbar{
+    display: none;
+  }
+ .navbar-titles{
+    display: none;
+ }
+  .navbar-item{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    svg{
+        width: 32px;
+    }
+    p{
+        color: $color_white;
+        display: block;
+        opacity: 0.6;
+        font-size: 12px;
+    }
+  }
 }

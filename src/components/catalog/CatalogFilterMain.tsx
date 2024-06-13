@@ -57,95 +57,52 @@ export const CatalogFilterMain = () => {
                 <CatalogFilter />
 
                 <div className="catalog-filter-list">
-                    <div className="catalog-filter-list-row">
-                        {[
-                            "/ImagesTmp/IMG_9330.png",
-                            "/ImagesTmp/Indigo Awards (8).png",
-                            "/ImagesTmp/Go-WOG-44.png",
-                            "/ImagesTmp/Gabriel Eich on Behance (7).png",
-                        ].map((item) => (
-                            <div className="catalog-filter-list-item">
-                                <div className="catalog-filter-list-item-img">
-                                    <img src={baseURL + item} alt="" />
-                                </div>
-                                <div className="catalog-filter-list-item-foot">
-                                    <h6 className="catalog-filter-list-item-foot-price">
-                                        $ 20.99
-                                    </h6>
-                                    <p className="catalog-filter-list-item-foot-art">
-                                        Артикул:PG-210252
-                                    </p>
-                                    <div className="catalog-filter-list-bot">
-                                        <div>
-                                            <h4 className="catalog-filter-list-item-foot-name">
-                                                Назва продукції{" "}
-                                            </h4>
-                                            <p className="catalog-filter-list-item-foot-order">
-                                                ТОВАР Під замовлення
-                                                <img
-                                                    src={
-                                                        baseURL +
-                                                        "/Images/Basket.png"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </p>
-                                        </div>
-                                        <button className="catalog-filter-list-item-foot-but">
-                                            <div className="catalog-filter-list-item-foot-but-ico">
-                                                <HeaderIconArrow />
-                                            </div>
-                                        </button>
+                    {[
+                        "/ImagesTmp/IMG_9330.png",
+                        "/ImagesTmp/Indigo Awards (8).png",
+                        "/ImagesTmp/Go-WOG-44.png",
+                        "/ImagesTmp/Gabriel Eich on Behance (7).png",
+                        "/ImagesTmp/IMG_9330.png",
+                        "/ImagesTmp/Indigo Awards (8).png",
+                        "/ImagesTmp/Go-WOG-44.png",
+                        "/ImagesTmp/Gabriel Eich on Behance (7).png",
+                    ].map((item) => (
+                        <div className="catalog-filter-list-item">
+                            <div className="catalog-filter-list-item-img">
+                                <img src={baseURL + item} alt="" />
+                            </div>
+                            <div className="catalog-filter-list-item-foot">
+                                <h6 className="catalog-filter-list-item-foot-price">
+                                    $ 20.99
+                                </h6>
+                                <p className="catalog-filter-list-item-foot-art">
+                                    Артикул:PG-210252
+                                </p>
+                                <div className="catalog-filter-list-bot">
+                                    <div>
+                                        <h4 className="catalog-filter-list-item-foot-name">
+                                            Назва продукції{" "}
+                                        </h4>
+                                        <p className="catalog-filter-list-item-foot-order">
+                                            ТОВАР Під замовлення
+                                            <img
+                                                src={
+                                                    baseURL +
+                                                    "/Images/Basket.png"
+                                                }
+                                                alt=""
+                                            />
+                                        </p>
                                     </div>
+                                    <button className="catalog-filter-list-item-foot-but">
+                                        <div className="catalog-filter-list-item-foot-but-ico">
+                                            <HeaderIconArrow />
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-
-                    <div className="catalog-filter-list-row">
-                        {[
-                            "/ImagesTmp/IMG_9330.png",
-                            "/ImagesTmp/Indigo Awards (8).png",
-                            "/ImagesTmp/Go-WOG-44.png",
-                            "/ImagesTmp/Gabriel Eich on Behance (7).png",
-                        ].map((item) => (
-                            <div className="catalog-filter-list-item">
-                                <div className="catalog-filter-list-item-img">
-                                    <img src={baseURL + item} alt="" />
-                                </div>
-                                <div className="catalog-filter-list-item-foot">
-                                    <h6 className="catalog-filter-list-item-foot-price">
-                                        $ 20.99
-                                    </h6>
-                                    <p className="catalog-filter-list-item-foot-art">
-                                        Артикул:PG-210252
-                                    </p>
-                                    <div className="catalog-filter-list-bot">
-                                        <div>
-                                            <h4 className="catalog-filter-list-item-foot-name">
-                                                Назва продукції{" "}
-                                            </h4>
-                                            <p className="catalog-filter-list-item-foot-order">
-                                                ТОВАР Під замовлення
-                                                <img
-                                                    src={
-                                                        baseURL +
-                                                        "/Images/Basket.png"
-                                                    }
-                                                    alt=""
-                                                />
-                                            </p>
-                                        </div>
-                                        <button className="catalog-filter-list-item-foot-but">
-                                            <div className="catalog-filter-list-item-foot-but-ico">
-                                                <HeaderIconArrow />
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="catalog-filter-footer">
@@ -167,8 +124,12 @@ export const CatalogFilterMain = () => {
             </div>
             <div className="catalog-filter-body ">
                 <div></div>
-                <div className="catalog-filter-list-row">
+                <div className="catalog-filter-list">
                     {[
+                        "/ImagesTmp/IMG_9330.png",
+                        "/ImagesTmp/Indigo Awards (8).png",
+                        "/ImagesTmp/Go-WOG-44.png",
+                        "/ImagesTmp/Gabriel Eich on Behance (7).png",
                         "/ImagesTmp/IMG_9330.png",
                         "/ImagesTmp/Indigo Awards (8).png",
                         "/ImagesTmp/Go-WOG-44.png",
@@ -211,7 +172,7 @@ export const CatalogFilterMain = () => {
                         </div>
                     ))}
                 </div>
-                <div className="catalog-filter-body-black" />   
+                <div className="catalog-filter-body-black" />
             </div>
         </div>
     )

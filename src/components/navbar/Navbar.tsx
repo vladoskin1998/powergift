@@ -1,4 +1,4 @@
-import React from "react"
+
 import {
     NavbarIconsElectronics,
     NavbarIconsBags,
@@ -18,33 +18,43 @@ export const Navbar = () => {
         <div className="navbar">
             <button className="navbar-item">
                 <NavbarIconsElectronics />
+                <p>Електроніка</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsTools />
+                <p>Інструменти</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsCloses />
+                <p>Одяг</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsBags />
+                <p>Сумки</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsDishes />
+                <p>Посуд</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsHome />
+                <p>Дім</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsOffice />
+                <p>Офіс</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsCar />
+                <p>Авто</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsSets />
+                <p>Набори</p>
             </button>
             <button className="navbar-item">
                 <NavbarIconsGifts />
+                <p>Пакування</p>
             </button>
             <div className="navbar-titles">
               <button className="navbar-titles-item">Електроніка</button>

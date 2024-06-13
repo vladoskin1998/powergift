@@ -10,7 +10,7 @@ export const CatalogDesktop = () => {
                 alt=""
             />
             <div className="catalog-main-list">
-                <div className="catalog-main-list-item">
+               
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
@@ -39,8 +39,8 @@ export const CatalogDesktop = () => {
                         </div>
                         <h5>Power product $</h5>
                     </div>
-                </div>
-                <div className="catalog-main-list-item">
+        
+      
                     <div className="catalog-main-product">
                         <div className="catalog-main-product-img">
                             <img
@@ -66,7 +66,7 @@ export const CatalogDesktop = () => {
                         <p>Cтвори свій унікальній Power gift!</p>
                         <h4>Запросити прорахунок</h4>
                     </div>
-                </div>
+        
             </div>
         </div>
     )
