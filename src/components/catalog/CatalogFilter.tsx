@@ -134,7 +134,7 @@ export const CatalogFilter = () => {
                          Скидання
                         <CatalogIconCircle />
                     </button>
-                    <button className="catalog-filter-filt-title">
+                    <button className="catalog-filter-filt-title catalog-filter-filt-title-but">
                         застосувати
                     </button>
                 </div>

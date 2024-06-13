@@ -3,14 +3,31 @@ import {
     CATALOG_PRODUCT_CLIENT,
 } from "../../utils/constant"
 import { baseURL } from "../../utils/utils"
+import { CatalogIconConception } from "../svg/CatalogIcon"
 import { HeaderIconArrow, HeaderIconBasket } from "../svg/HeaderIcon"
 
 export const CatalogProducts = () => {
     return (
         <div className="catalog-product">
             <div className="catalog-product-header">
-                <img src="/Images/glass_cube_by_gleb-2.png" alt="" />
-                <h5>Каталог продукції</h5>
+
+                <div className="catalog-product-header-mob">
+                    <h4>Ukrainian promo gifts b2b company</h4>
+                    <h5>SMART аксесуарИ <br />на кОЖЕН день</h5>
+                </div>
+
+                <img src="/Images/glass_cube_by_gleb-2.png" alt="" className="catalog-product-header-img"/>
+                <h5 className="catalog-product-header-title">Каталог продукції</h5>
+
+                <div className="catalog-product-header-mob">
+                    <div className="catalog-product-header-mob-but">
+                        <div>ПРОРАХУЙ СВОЮ КОНЦЕПЦІЮ</div>
+                        <div className="catalog-product-header-mob-but-svg">
+                            <CatalogIconConception/>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div className="catalog-product-nav">
                 {CATALOG_PRODUCT_TITLE.map((item) => (

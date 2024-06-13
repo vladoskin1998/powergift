@@ -17,6 +17,10 @@ import { useState } from "react"
 export const Header = () => {
     const [open, setOpen] = useState(false)
 
+    const handerClose = () => {
+        setOpen(false)
+    }
+
     return (
         <div className="header">
             <div className="header-item">
@@ -80,18 +84,18 @@ export const Header = () => {
                     <HeaderIconBasket />
                 </button>
             </div>
-            <HeaderNavBar open={open} />
+            <HeaderNavBar open={open} handerClose={handerClose}/>
         </div>
     )
 }
 
-export const HeaderNavBar = ({ open }: { open: boolean }) => {
+export const HeaderNavBar = ({ open, handerClose }: { open: boolean,handerClose: () => void }) => {
     return (
         <div className={`header-navbar ${open && "header-navbar-active"}`}>
             <div>
                 <HeaderIconOpen />
             </div>
-            <div className="header-navbar-item header-navbar-item-title">
+            <div className="header-navbar-item header-navbar-item-title" onClick={handerClose}>
                 <Link to="/catalog/products">Каталог товарів</Link>
             </div>
             <div className="header-navbar-item">

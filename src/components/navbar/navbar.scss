@@ -3,7 +3,7 @@
 .navbar {
     background-color: $color_grey;
     position: relative;
-    z-index: 9999;
+    z-index: 100;
     border: 1px solid $color_border;
     &-item {
         position: relative;

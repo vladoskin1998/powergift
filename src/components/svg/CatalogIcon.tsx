@@ -47,22 +47,212 @@ export const CatalogIconSort = () => {
     )
 }
 
-
-
 export const CatalogIconChevron = () => {
-  return (
-    <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.04143 0.292893L5.74854 3.58579L2.45564 0.292893C2.06512 -0.097631 1.43195 -0.097631 1.04143 0.292893C0.650904 0.683418 0.650904 1.31658 1.04143 1.70711L5.04143 5.70711C5.43195 6.09763 6.06512 6.09763 6.45564 5.70711L10.4556 1.70711C10.8462 1.31658 10.8462 0.683418 10.4556 0.292893C10.0651 -0.097631 9.43195 -0.097631 9.04143 0.292893Z" fill="#1D1D1D" fill-opacity="0.1" />
-  </svg>
-  )
+    return (
+        <svg
+            width="11"
+            height="6"
+            viewBox="0 0 11 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M9.04143 0.292893L5.74854 3.58579L2.45564 0.292893C2.06512 -0.097631 1.43195 -0.097631 1.04143 0.292893C0.650904 0.683418 0.650904 1.31658 1.04143 1.70711L5.04143 5.70711C5.43195 6.09763 6.06512 6.09763 6.45564 5.70711L10.4556 1.70711C10.8462 1.31658 10.8462 0.683418 10.4556 0.292893C10.0651 -0.097631 9.43195 -0.097631 9.04143 0.292893Z"
+                fill="#1D1D1D"
+                fill-opacity="0.1"
+            />
+        </svg>
+    )
 }
 
-
-
 export const CatalogIconCircle = () => {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="12" fill="#D9D9D9" />
-</svg>
-  )
+    return (
+        <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle cx="12" cy="12" r="12" fill="#D9D9D9" />
+        </svg>
+    )
+}
+
+export const CatalogIconConception = () => {
+    return (
+        <svg
+            width="28.000000"
+            height="23.757812"
+            viewBox="0 0 28 23.7578"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <desc>Created with Pixso.</desc>
+            <defs>
+                <clipPath id="clip9_4206">
+                    <rect
+                        id="Swag Automation Easily Send Gifts with our Swag API and Integrati (3)"
+                        width="28.000000"
+                        height="23.757582"
+                        fill="white"
+                        fill-opacity="0"
+                    />
+                </clipPath>
+                <linearGradient
+                    x1="-0.000002"
+                    y1="0.294773"
+                    x2="19.049204"
+                    y2="23.581812"
+                    id="paint_linear_9_4198_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="15.996824"
+                    y1="7.195331"
+                    x2="27.713369"
+                    y2="19.231861"
+                    id="paint_linear_9_4199_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="2.713131"
+                    y1="3.068153"
+                    x2="16.336479"
+                    y2="6.060455"
+                    id="paint_linear_9_4200_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="2.713133"
+                    y1="7.958786"
+                    x2="16.336481"
+                    y2="10.951080"
+                    id="paint_linear_9_4201_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="2.741942"
+                    y1="12.848415"
+                    x2="16.365314"
+                    y2="15.840740"
+                    id="paint_linear_9_4202_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="3.091796"
+                    y1="17.622309"
+                    x2="6.300813"
+                    y2="20.881414"
+                    id="paint_linear_9_4203_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="7.788818"
+                    y1="17.622309"
+                    x2="10.997828"
+                    y2="20.881414"
+                    id="paint_linear_9_4204_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+                <linearGradient
+                    x1="12.777100"
+                    y1="17.622309"
+                    x2="15.431778"
+                    y2="20.881414"
+                    id="paint_linear_9_4205_0"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#4AFF0B" />
+                    <stop offset="1.000000" stop-color="#00E5FF" />
+                </linearGradient>
+            </defs>
+            <rect
+                id="Swag Automation Easily Send Gifts with our Swag API and Integrati (3)"
+                width="28.000000"
+                height="23.757582"
+                fill="#FFFFFF"
+                fill-opacity="0"
+            />
+            <g clip-path="url(#clip9_4206)">
+                <path
+                    id="Vector"
+                    d="M18.52 23.58L0.52 23.58C0.23 23.58 0 23.34 0 23.04L0 0.54C0 0.24 0.23 0 0.52 0L18.52 0C18.81 0 19.04 0.24 19.04 0.54L19.04 11.79C19.04 12.09 18.81 12.33 18.52 12.33C18.23 12.33 17.99 12.09 17.99 11.79L17.99 1.11L1.07 1.11L1.07 22.5L17.99 22.5L17.99 20.79C17.99 20.49 18.23 20.25 18.52 20.25C18.81 20.25 19.04 20.49 19.04 20.79L19.04 23.04C19.04 23.34 18.81 23.58 18.52 23.58Z"
+                    fill="url(#paint_linear_9_4198_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M16.54 19.23C16.39 19.23 16.27 19.17 16.16 19.08C15.98 18.9 15.95 18.66 16.04 18.45L17.21 16.14C17.24 16.08 17.26 16.05 17.29 15.99L25.72 7.2C25.93 6.99 26.25 6.99 26.48 7.2L27.53 8.25C27.65 8.34 27.71 8.49 27.71 8.64C27.71 8.79 27.65 8.94 27.56 9.03L19.1 17.82C19.07 17.85 19.02 17.88 18.99 17.91L16.77 19.17C16.71 19.23 16.62 19.23 16.54 19.23ZM18.11 16.71L17.79 17.34L18.4 16.98L26.4 8.64L26.1 8.34L18.11 16.71Z"
+                    fill="url(#paint_linear_9_4199_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M15.92 6.06L3.12 6.06C2.88 6.06 2.71 5.88 2.71 5.64L2.71 3.45C2.71 3.2 2.88 3.03 3.12 3.03L15.92 3.03C16.16 3.03 16.33 3.2 16.33 3.45L16.33 5.64C16.33 5.88 16.16 6.06 15.92 6.06ZM3.53 5.25L15.51 5.25L15.51 3.87L3.53 3.87L3.53 5.25Z"
+                    fill="url(#paint_linear_9_4200_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M15.92 10.95L3.12 10.95C2.88 10.95 2.71 10.77 2.71 10.53L2.71 8.34C2.71 8.1 2.88 7.92 3.12 7.92L15.92 7.92C16.16 7.92 16.33 8.1 16.33 8.34L16.33 10.53C16.33 10.77 16.16 10.95 15.92 10.95ZM3.53 10.14L15.51 10.14L15.51 8.76L3.53 8.76L3.53 10.14Z"
+                    fill="url(#paint_linear_9_4201_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M15.95 15.84L3.15 15.84C2.91 15.84 2.74 15.66 2.74 15.42L2.74 13.23C2.74 12.99 2.91 12.81 3.15 12.81L15.95 12.81C16.19 12.81 16.36 12.99 16.36 13.23L16.36 15.42C16.36 15.66 16.16 15.84 15.95 15.84ZM3.55 15.03L15.54 15.03L15.54 13.65L3.55 13.65L3.55 15.03Z"
+                    fill="url(#paint_linear_9_4202_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M5.89 20.88L3.5 20.88C3.26 20.88 3.09 20.7 3.09 20.46L3.09 18C3.09 17.76 3.26 17.58 3.5 17.58L5.89 17.58C6.12 17.58 6.3 17.76 6.3 18L6.3 20.46C6.27 20.7 6.09 20.88 5.89 20.88ZM3.87 20.07L5.48 20.07L5.48 18.42L3.87 18.42L3.87 20.07Z"
+                    fill="url(#paint_linear_9_4203_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M10.58 20.88L8.19 20.88C7.96 20.88 7.78 20.7 7.78 20.46L7.78 18C7.78 17.76 7.96 17.58 8.19 17.58L10.58 17.58C10.82 17.58 10.99 17.76 10.99 18L10.99 20.46C10.99 20.7 10.79 20.88 10.58 20.88ZM8.57 20.07L10.18 20.07L10.18 18.42L8.57 18.42L8.57 20.07Z"
+                    fill="url(#paint_linear_9_4204_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+                <path
+                    id="Vector"
+                    d="M15.02 20.88L13.18 20.88C12.95 20.88 12.77 20.7 12.77 20.46L12.77 18C12.77 17.76 12.95 17.58 13.18 17.58L14.99 17.58C15.22 17.58 15.4 17.76 15.4 18C15.4 18.24 15.22 18.42 14.99 18.42L13.56 18.42L13.56 20.07L15.02 20.07C15.25 20.07 15.43 20.25 15.43 20.49C15.43 20.73 15.22 20.88 15.02 20.88Z"
+                    fill="url(#paint_linear_9_4205_0)"
+                    fill-opacity="1.000000"
+                    fill-rule="nonzero"
+                />
+            </g>
+        </svg>
+    )
 }

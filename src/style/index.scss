@@ -60,9 +60,9 @@ code {
     grid-template-columns: 80px 1fr 80px;
 }
 
-.Router{
-    overflow: hidden;
-}
+// .Router{
+//     overflow-x: hidden;
+// }
 
 
 @media screen and (max-width: 500px) {
@@ -70,9 +70,12 @@ code {
         position: absolute;
         top: 0px;
         left: 80px;
+        max-width: calc(100% - 80px);
+        min-height: calc(100vh - 160px);
         width: 100%;
         height: 100%;
-        min-height: calc(100vh - 160px);
+        z-index: 101;
+        overflow-x: hidden;
     }
     .Main{
         position: relative;
