@@ -16,7 +16,7 @@ export const CatalogDesktop = () => {
     return (
         <div className="catalog-main">
             <img
-                src={baseURL + "/Images/glass_cube_by_gleb.png"}
+                src={baseURL + "/Images/glass_cube_by_gleb-2.png"}
                 className="catalog-main-back"
                 alt=""
             />

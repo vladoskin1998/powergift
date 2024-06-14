@@ -11,10 +11,13 @@
     &-back {
         position: absolute;
         top: 50%;
-        right: -120px;
+        right: 100px;
         transform: translateY(-50%);
         z-index: 1;
+        height: 600px;
+        width: auto;
         img {
+           
             z-index: 1;
         }
     }
@@ -711,6 +714,13 @@
                 fill: $color_grey2;
             }
         }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .catalog-main-list {
+        margin: 0px;
+   
     }
 }
 
