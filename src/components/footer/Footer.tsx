@@ -29,7 +29,6 @@ export const Footer = () => {
                 <FooterIconShare />
             </div>
             <div className="footer-mob">
-               
                 <button className="footer-mob-item">
                     <HeaderIconSearch />
                 </button>

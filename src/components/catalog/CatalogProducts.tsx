@@ -4,47 +4,64 @@ import {
 } from "../../utils/constant"
 import { baseURL } from "../../utils/utils"
 import { CatalogIconConception } from "../svg/CatalogIcon"
-import { HeaderIconArrow, HeaderIconBasket } from "../svg/HeaderIcon"
+import {
+    HeaderIconArrow,
+    HeaderIconBasket,
+    HeaderIconReload,
+} from "../svg/HeaderIcon"
 
 export const CatalogProducts = () => {
     return (
         <div className="catalog-product">
             <div className="catalog-product-header">
-
                 <div className="catalog-product-header-mob">
                     <h4>Ukrainian promo gifts b2b company</h4>
-                    <h5>SMART аксесуарИ <br />на кОЖЕН день</h5>
+                    <h5>
+                        SMART аксесуарИ <br />
+                        на кОЖЕН день
+                    </h5>
                 </div>
 
-                <img src="/Images/glass_cube_by_gleb-2.png" alt="" className="catalog-product-header-img"/>
-                <h5 className="catalog-product-header-title">Каталог продукції</h5>
+                <img
+                    src="/Images/glass_cube_by_gleb-2.png"
+                    alt=""
+                    className="catalog-product-header-img"
+                />
+                <h5 className="catalog-product-header-title">
+                    Каталог продукції
+                </h5>
 
                 <div className="catalog-product-header-mob">
                     <div className="catalog-product-header-mob-but">
                         <div>ПРОРАХУЙ СВОЮ КОНЦЕПЦІЮ</div>
                         <div className="catalog-product-header-mob-but-svg">
-                            <CatalogIconConception/>
+                            <CatalogIconConception />
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div className="catalog-product-nav">
-                {CATALOG_PRODUCT_TITLE.map((item) => (
-                    <div className="catalog-product-nav-item">
-                        <img src={baseURL + `/Images/${item.label}`} alt="" />
-                        <h5>{item.h5}</h5>
-                        <p>{item.p1}</p>
-                        <p>{item.p2}</p>
-                        <p>{item.p3}</p>
-                        <p>{item.p4}</p>
-                        <p>{item.p5}</p>
+            <div className="catalog-product-reverse">
+                <div className="catalog-product-nav">
+                    <div className="catalog-product-nav-mob-img">
+                        <img src={baseURL + "/Images/helloworld.png"} alt="" />
                     </div>
-                ))}
-            </div>
-            <div className="catalog-filter-body catalog-product-body">
-                <div className="catalog-filter-list">
-                
+                    {CATALOG_PRODUCT_TITLE.map((item) => (
+                        <div className="catalog-product-nav-item">
+                            <img
+                                src={baseURL + `/Images/${item.label}`}
+                                alt=""
+                            />
+                            <h5>{item.h5}</h5>
+                            <p>{item.p1}</p>
+                            <p>{item.p2}</p>
+                            <p>{item.p3}</p>
+                            <p>{item.p4}</p>
+                            <p>{item.p5}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className="catalog-filter-body catalog-product-body">
+                    <div className="catalog-filter-list">
                         {[
                             "/ImagesTmp/botl1.png",
                             "/ImagesTmp/botl2.png",
@@ -123,9 +140,13 @@ export const CatalogProducts = () => {
                                 </div>
                             </div>
                         ))}
-                 
 
-                 
+                        <div className="catalog-filter-body-black catalog-filter-body-black-mob" />
+                        <button className="catalog-product-mob-reload">
+                            <HeaderIconReload />
+                            Показати ще 20 товарів
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="catalog-product-client">
@@ -185,6 +206,88 @@ export const CatalogProducts = () => {
                             Factory
                         </span>
                     </h4>
+                </div>
+            </div>
+
+            <div className="catalog-product-promo">
+                <div className="catalog-product-promo-img1">
+                    <img src={baseURL + "/Images/createyourself.png"} alt="" />
+                </div>
+                <div className="catalog-product-promo-text">Promo Gifts</div>
+                <div className="catalog-product-promo-img2">
+                    <img
+                        src={baseURL + "/Images/glass_cube_by_gleb-2.png"}
+                        alt=""
+                    />
+                </div>
+
+                <img
+                    src={baseURL + "/Images/bus.png"}
+                    alt=""
+                    className="catalog-product-promo-img3"
+                />
+                <div className="catalog-product-promo-flag">
+                    <img src={baseURL + "/Images/flagua.png"} alt="" />
+                    <div>
+                        <span>УКРАЇНСЬКА</span> <br />
+                        КОМПАНІЯ
+                    </div>
+                </div>
+                <div className="catalog-product-promo-foot">
+                    УКРАЇНСЬКА КОМПАНІЯ, b2b <br />
+                    <span>
+                        ПОСТАЧАЛЬНИК ПРОМО ПОДАРУкції ДЛЯ РЕКЛАМНИХ АГЕНТСТВ &
+                        дилерів
+                    </span>
+                </div>
+            </div>
+
+            <div className="catalog-product-navigation">
+                <div className="catalog-product-navigation-title">
+                    Навігація проекту
+                </div>
+                <div className="catalog-product-navigation-list">
+                    <div className="catalog-product-navigation-row">
+                        <div className="catalog-product-navigation-item">
+                            Дилерам
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Партнерство
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Бренди
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Каталог товарів PDF
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Контакти
+                        </div>
+                    </div>
+                    <div className="catalog-product-navigation-row">
+                        <div className="catalog-product-navigation-item">
+                            Про компанію
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Карьера
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            FAQ
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Контакти
+                        </div>
+                        <div className="catalog-product-navigation-item">
+                            Новини
+                        </div>
+                    </div>
+                </div>
+                <div className="catalog-product-navigation-paymant">
+                    <img src={baseURL + "/Images/Paymant.png"} alt="" />
+                </div>
+                <div className="catalog-product-navigation-foot">
+                    © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
+                    Rights Reserved. Let’s create.
                 </div>
             </div>
         </div>

@@ -4,7 +4,15 @@ import { HeaderIconClose, HeaderIconSearch } from "../svg/HeaderIcon"
 import { CatalogFilter } from "./CatalogFilter"
 
 export const CatalogDesktop = () => {
+
     const [openFilter, setOpenFilter] = useState(false)
+
+
+    const handleOpenFilter = () => {
+        setOpenFilter(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    
     return (
         <div className="catalog-main">
             <img
@@ -82,20 +90,24 @@ export const CatalogDesktop = () => {
                     <p>Cтвори свій унікальній Power gift!</p>
                     <h4>Запросити прорахунок</h4>
                 </div>
-                <div className="catalog-main-product catalog-main-mob-product">
+                <div className="catalog-main-product catalog-main-mob-product  catalog-main-product-mobitem">
                     <div className="catalog-main-product-img">
                         <img src={baseURL + "/Images/ShopCat.png"} alt="" />
                     </div>
                 </div>
                 <div
-                    className="catalog-main-product"
-                    onClick={() => setOpenFilter(true)}
+                    className="catalog-main-product catalog-main-product-mobitem"
+                    onClick={handleOpenFilter}
                 >
-                    <div className="catalog-main-product-img catalog-main-mob-product-search">
+                    <div className="catalog-main-product-img catalog-main-mob-product-search  ">
                         <HeaderIconSearch />
                     </div>
                 </div>
             </div>
+            <div className="catalog-product-navigation-foot">
+                    © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
+                    Rights Reserved. Let’s create.
+                </div>
             {openFilter && (
                 <div className="catalog-modal">
                     <button className="catalog-modal-close" onClick={() => setOpenFilter(false)}>

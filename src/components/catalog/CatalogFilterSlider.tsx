@@ -31,7 +31,7 @@ export const  CatalogFilterSlider = () => {
       };
 
     return (
-        <div style={{ width: 180, margin: '0 auto', padding: '15px 0 33px 0' }}>
+        <div style={{ width: '100%', margin: '0 auto', padding: '15px 0 33px 0' }}>
             <CustomSlider
                 value={value}
                 onChange={handleChange}
