@@ -1,5 +1,6 @@
 @import "../../style/variables.scss";
 @import "../../style/mixin.scss";
+@import "../../style/default-style.scss";
 .footer{
     display: grid;
     grid-template-columns: 80px 1fr 80px;
@@ -9,9 +10,15 @@
         display: none;
     }
     &-item{
-        border: 1px solid $color_border;
-        width: 80px;
+        
+        width: 79px;
         @include flex-all-center;
+        &-l{
+            border-left: 1px solid $color_border;
+        }
+        &-r{
+            border-right: 1px solid $color_border;
+        }
     }
     &-info{
         padding: 15px;

@@ -1,17 +1,21 @@
 @import "../../style/variables.scss";
 @import "../../style/mixin.scss";
+@import "../../style/default-style.scss";
 .navbar {
     background-color: $color_grey;
     position: relative;
     z-index: 100;
-    border: 1px solid $color_border;
+    border-left: 1px solid $color_border;
+    border-right: 1px solid $color_border;
     &-item {
         position: relative;
         background-color: $color_grey;
+    
         z-index: 9999;
-        width: 80px;
+        width: 78px;
         height: 80px;
-        border: 1px solid $color_border;
+        border-bottom: 1px solid $color_border;
+        
         @include flex-all-center;
         p{
             display: none;
@@ -26,22 +30,22 @@
 
 .right-navbar {
     min-height: 100%;
-    right: 0px;
-    width: 80px;
-    top: 0px;
+
+    width: 81px;
     background-color: $color_grey;
-    border: 1px solid $color_border;
+    border-left: 1px solid $color_border;
+    border-right: 1px solid $color_border;
 }
 
 .navbar-titles {
     z-index: 9998;
     position: absolute;
     top: 0px;
-    left: 0;
+    left: -2px;
     width: 160px;
     height: 800px;
     background-color: $color_grey;
-    transform: translateX(-160px);
+    transform: translateX(-158px);
     transition: transform 0.5s;
     &-item {
         padding: 10px;

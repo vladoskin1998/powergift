@@ -57,7 +57,7 @@ export const Navbar = () => {
                 <p>Пакування</p>
             </button>
             <div className="navbar-titles">
-              <button className="navbar-titles-item">Електроніка</button>
+              <button className="navbar-titles-item" style={{borderTop:0}}>Електроніка</button>
               <button className="navbar-titles-item">Інструменти</button>
               <button className="navbar-titles-item">Одяг</button>
               <button className="navbar-titles-item">Сумки</button>

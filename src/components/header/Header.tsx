@@ -12,19 +12,42 @@ import "./header.scss"
 import { HeaderSearch } from "./HeaderSearch"
 import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const Header = () => {
     const [open, setOpen] = useState(false)
-
+    const videoRef = useRef<HTMLVideoElement>(null)
     const handerClose = () => {
         setOpen(false)
     }
 
+    const video = videoRef.current
+    useEffect(() => {
+    if (video) {
+        video.play().catch((error) => {
+            // Обработка ошибок, если автоигра не сработала
+            console.error("Auto-play was prevented:", error)
+        })
+    }
+
+}, [])
+
     return (
         <div className="header">
-            <div className="header-item">
-                <img src={baseURL + `/Images/logo.png`} alt="" />
+            <div className="header-logo">
+            
+                <video
+                    className="header-logo-video"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    ref={videoRef}
+                    preload="metadata"
+                    
+                >
+                    <source src={baseURL + `/Images/Power Gifts logo animate.gif.mp4`}   type="video/mp4" />
+                </video>
             </div>
             <div className="header-links-name">
                 <div>
