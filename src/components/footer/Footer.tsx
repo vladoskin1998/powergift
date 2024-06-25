@@ -22,7 +22,10 @@ export const Footer = () => {
                 </div>
                 
                 <div className="footer-inv">
-                    <FooterIconBag />
+                    <div className="footer-inv-bag">
+                       <img src={baseURL + "/Images/Bag.png"} alt="" style={{width: '20px'}}/>
+                    </div>
+                    
                     <div>Інвестування</div>
                 </div>
             </div>

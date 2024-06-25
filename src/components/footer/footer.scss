@@ -6,9 +6,7 @@
     grid-template-columns: 80px 1fr 80px;
     background-color: $color_grey;
     border: 1px solid $color_border;
-    &-mob{
-        display: none;
-    }
+  
     &-item{
         
         width: 79px;
@@ -46,6 +44,9 @@
         color: $color_white;
         gap: 5px;
         display: flex;
+    }
+    &-mob{
+        display: none;
     }
 }
 

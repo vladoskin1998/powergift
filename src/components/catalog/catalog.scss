@@ -278,10 +278,20 @@
             justify-content: space-between;
         }
         &-item {
+            cursor: pointer;
             max-width: 316px;
             width: 100%;
             height: 430px;
             position: relative;
+            transition: all 0.4s;
+            &:hover{
+                transition: all 1s;
+                .catalog-filter-list-item-foot{
+                    transition: all 0.4s;
+                    box-shadow: 0 80px 40px rgba(0, 0, 0, 0.2);
+                }
+                
+            }
             &-img {
                 position: relative;
                 z-index: 2;
@@ -303,6 +313,7 @@
                 justify-content: flex-end;
                 padding: 30px;
                 background: $color_white;
+                transition: all 0.4s;
                 &-black {
                     background: $color_black3;
                 }
