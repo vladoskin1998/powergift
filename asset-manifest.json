@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/powergift/static/css/main.bb7cf685.css",
-    "main.js": "/powergift/static/js/main.95385972.js",
-    "static/media/Inter-Regular.woff": "/powergift/static/media/Inter-Regular.0d6f7c99e635f1fec4c9.woff",
-    "static/media/DINPro.woff": "/powergift/static/media/DINPro.637a0f5db07a169e1404.woff",
-    "static/media/DINPro-CondensedLight.woff": "/powergift/static/media/DINPro-CondensedLight.81172e89b99e1eaffb78.woff",
-    "static/media/Gilroy-Regular.woff": "/powergift/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
-    "index.html": "/powergift/index.html",
-    "main.bb7cf685.css.map": "/powergift/static/css/main.bb7cf685.css.map",
-    "main.95385972.js.map": "/powergift/static/js/main.95385972.js.map"
+    "main.css": "/static/css/main.0e0543b4.css",
+    "main.js": "/static/js/main.52b77a60.js",
+    "static/media/Inter-Regular.woff": "/static/media/Inter-Regular.0d6f7c99e635f1fec4c9.woff",
+    "static/media/DINPro.woff": "/static/media/DINPro.637a0f5db07a169e1404.woff",
+    "static/media/DINPro-CondensedLight.woff": "/static/media/DINPro-CondensedLight.81172e89b99e1eaffb78.woff",
+    "static/media/Gilroy-Regular.woff": "/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
+    "index.html": "/index.html",
+    "main.0e0543b4.css.map": "/static/css/main.0e0543b4.css.map",
+    "main.52b77a60.js.map": "/static/js/main.52b77a60.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb7cf685.css",
-    "static/js/main.95385972.js"
+    "static/css/main.0e0543b4.css",
+    "static/js/main.52b77a60.js"
   ]
 }
