@@ -20,7 +20,7 @@ export const CatalogDesktop = () => {
                 className="catalog-main-back"
                 alt=""
             />
-            <div className="catalog-main-list">
+            <div className="catalog-main-list catalog-main-list-none">
                 <div className="catalog-main-product">
                     <div className="catalog-main-product-img">
                         <img
@@ -99,7 +99,7 @@ export const CatalogDesktop = () => {
                     className="catalog-main-product catalog-main-product-mobitem"
                     onClick={handleOpenFilter}
                 >
-                    <div className="catalog-main-product-img catalog-main-mob-product-search  ">
+                    <div className="catalog-main-product-img catalog-main-mob-product-search">
                         <HeaderIconSearch />
                     </div>
                 </div>
@@ -107,7 +107,7 @@ export const CatalogDesktop = () => {
             <div className="catalog-product-navigation-foot">
                     © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
                     Rights Reserved. Let’s create.
-                </div>
+            </div>
             {openFilter && (
                 <div className="catalog-modal">
                     <button className="catalog-modal-close" onClick={() => setOpenFilter(false)}>

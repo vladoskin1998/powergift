@@ -25,11 +25,15 @@
     &-list {
         position: relative;
         z-index: 2;
-        margin-left: 170px;
         display: flex;
         flex-wrap: wrap;
         max-width: 1200px;
+       
+        &-none{
+            display: none;
+        }
     }
+
     &-product {
         background: $color_grey1;
         height: 400px;
@@ -735,7 +739,10 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
+    .catalog-main-list-none{
+        display: flex;
+    }
     .catalog-main {
         padding-bottom: 20px;
     }
@@ -1029,7 +1036,6 @@
             }
         }
     }
-    //
 }
 
 

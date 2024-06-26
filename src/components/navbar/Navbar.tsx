@@ -1,4 +1,5 @@
-
+import { baseURL } from "../../utils/utils"
+import { HeaderIconSearch } from "../svg/HeaderIcon"
 import {
     NavbarIconsElectronics,
     NavbarIconsBags,
@@ -57,16 +58,115 @@ export const Navbar = () => {
                 <p>Пакування</p>
             </button>
             <div className="navbar-titles">
-              <button className="navbar-titles-item" style={{borderTop:0}}>Електроніка</button>
-              <button className="navbar-titles-item">Інструменти</button>
-              <button className="navbar-titles-item">Одяг</button>
-              <button className="navbar-titles-item">Сумки</button>
-              <button className="navbar-titles-item">Посуд</button>
-              <button className="navbar-titles-item">Дім</button>
-              <button className="navbar-titles-item">Офіс</button>
-              <button className="navbar-titles-item">Авто</button>
-              <button className="navbar-titles-item">Набори</button>
-              <button className="navbar-titles-item">Пакування</button>
+                <div>
+                    <button
+                        className="navbar-titles-item"
+                        style={{ borderTop: 0 }}
+                    >
+                        Електроніка
+                    </button>
+                    <button className="navbar-titles-item">Інструменти</button>
+                    <button className="navbar-titles-item">Одяг</button>
+                    <button className="navbar-titles-item">Сумки</button>
+                    <button className="navbar-titles-item">Посуд</button>
+                    <button className="navbar-titles-item">Дім</button>
+                    <button className="navbar-titles-item">Офіс</button>
+                    <button className="navbar-titles-item">Авто</button>
+                    <button className="navbar-titles-item">Набори</button>
+                    <button className="navbar-titles-item">Пакування</button>
+                </div>
+                <div className="navbar_products">
+                    <div className="catalog-main-list">
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={
+                                        baseURL +
+                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                    }
+                                    alt=""
+                                />
+                            </div>
+                            <h5>Power product $</h5>
+                        </div>
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={
+                                        baseURL +
+                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                    }
+                                    alt=""
+                                />
+                            </div>
+
+                            <h5>Power product $</h5>
+                        </div>
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={
+                                        baseURL +
+                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                    }
+                                    alt=""
+                                />
+                            </div>
+                            <h5>Power product $</h5>
+                        </div>
+
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={
+                                        baseURL +
+                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                    }
+                                    alt=""
+                                />
+                            </div>
+                            <h5>Power product $</h5>
+                        </div>
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={
+                                        baseURL +
+                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                    }
+                                    alt=""
+                                />
+                            </div>
+                            <h5>Power product $</h5>
+                        </div>
+                        <div className="catalog-main-product">
+                            <div className="catalog-main-product-lihgt">
+                                <img
+                                    src={baseURL + "/Images/lightning.png"}
+                                    alt=""
+                                />
+                            </div>
+                            <p>Cтвори свій унікальній Power gift!</p>
+                            <h4>Запросити прорахунок</h4>
+                        </div>
+                        <div className="catalog-main-product catalog-main-mob-product  catalog-main-product-mobitem">
+                            <div className="catalog-main-product-img">
+                                <img
+                                    src={baseURL + "/Images/ShopCat.png"}
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <div
+                            className="catalog-main-product catalog-main-product-mobitem"
+                            // onClick={handleOpenFilter}
+                        >
+                            <div className="catalog-main-product-img catalog-main-mob-product-search">
+                                <HeaderIconSearch />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

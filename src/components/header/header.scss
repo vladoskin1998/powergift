@@ -83,6 +83,7 @@
             position: relative;
             &-active {
                 background: $backgroundgradient1;
+                border: 0;
             }
         }
     }
@@ -96,10 +97,10 @@
 .header-search {
     position: absolute;
     width: 0;
-    top: 0;
-    right: 80px;
+    top: 0px;
+    right: 79px;
     background-color: $color_white;
-    height: 80px;
+    height: 78px;
     transition: all 0.5s;
     display: flex;
     align-items: center;

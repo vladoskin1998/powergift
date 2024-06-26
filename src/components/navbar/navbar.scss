@@ -1,6 +1,7 @@
 @import "../../style/variables.scss";
 @import "../../style/mixin.scss";
 @import "../../style/default-style.scss";
+@import "../catalog//catalog.scss";
 .navbar {
     background-color: $color_grey;
     position: relative;
@@ -10,7 +11,6 @@
     &-item {
         position: relative;
         background-color: $color_grey;
-    
         z-index: 9999;
         width: 78px;
         height: 80px;
@@ -25,16 +25,36 @@
         .navbar-titles {
             transform: translateX(80px);
         }
+        .navbar_products{
+            transition-delay: 0.5s;
+            opacity: 1;
+        }
     }
 }
 
 .right-navbar {
     min-height: 100%;
-
     width: 81px;
     background-color: $color_grey;
     border-left: 1px solid $color_border;
     border-right: 1px solid $color_border;
+}
+
+.navbar_products::-webkit-scrollbar {
+    width: 0px; 
+}
+
+/* Для Firefox */
+.navbar_products {
+    scrollbar-width: none; 
+}
+
+.navbar_products{
+    transition: opacity 0.2s ease-in-out;
+    width: calc(100vw - 300px);
+    opacity: 0;
+    max-height: 800px;
+    overflow-y: scroll;
 }
 
 .navbar-titles {
@@ -47,6 +67,9 @@
     background-color: $color_grey;
     transform: translateX(-158px);
     transition: transform 0.5s;
+    display: grid;
+    grid-template-columns: 159px 1fr;
+    
     &-item {
         padding: 10px;
         width: 160px;
@@ -63,13 +86,15 @@
         &:hover {
             background: $color_grey1;
             opacity: 1;
+           
         }
     }
 }
 
 
 
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 700px) {
   .right-navbar{
     display: none;
   }
