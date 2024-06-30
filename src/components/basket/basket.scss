@@ -1,0 +1,183 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin.scss";
+@import "../../style/default-style.scss";
+
+.basket {
+    position: fixed;
+    right: -400px;
+    top: 81px;
+    border: 1px solid $color_grey5;
+    border-top: 0 ;
+    border-right: 0 ;
+    background: $color_black4;
+    width: 400px;
+    z-index: 9999;
+    transition: all 1s;
+    &-open{
+        transform: translateX(-481px);
+    }
+    &-item {
+        height: 120px;
+        border-bottom: 1px solid $color_grey6;
+    }
+    &-title {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        text-align: center;
+        text-transform: uppercase;
+        color: $color_white2;
+        @include flex-all-center;
+    }
+    &-paymant{
+        display: flex;
+        flex-direction: column;
+        justify-content:center ;
+        padding-left: 27px;
+        border-bottom: 0;
+        p{
+            font-size: 17.11px;
+            font-weight: 300;
+            line-height: -1px;
+            letter-spacing: 0%;
+            color: $color_grey2;
+        }
+        h5{
+            font-size: 40px;
+            font-weight: 500;
+            line-height: -1px;
+            letter-spacing: 0%;
+            color: $color_white1;
+            span{
+                font-size: 14px;
+                opacity: 0.4;
+            }
+        }
+    }
+}
+
+.basket-list {
+    &-item {
+        display: grid;
+        padding: 14px 11px;
+        grid-template-columns: 100px 1fr;
+    
+    }
+    &-right{
+        display: flex;
+        gap: 4px;
+        flex-direction: column;
+    }
+    &-art {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_white1;
+        text-transform: uppercase;
+        span {
+            @include gradient-text($bgr: $backgroundgradient1);
+        }
+    }
+    &-text {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0px;
+        color: $color_white;
+        flex-grow: 1;
+    }
+    &-undertitle {
+        font-size: 10px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_grey5;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+    }
+    &-foot {
+        display: flex;
+        justify-content: space-between;
+        &-item{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+    }
+    &-price{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0px;
+        color: $color_white;
+        span{
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 12px;
+            letter-spacing: 0px;
+            opacity: 0.4;
+        }
+    }
+    &-num{
+        min-width: 88px;
+        height: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 11px;
+        border: 1px solid $color_grey7;
+        color: $color_white;
+        font-size: 20px;
+        button{
+            font-size: 24px;
+        }
+    }
+}
+
+
+.basket-button{
+    display: flex;
+    width: 100%;
+    height: 80px;
+    background-color: $color_grey1;
+    text-align: center;
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: -1px;
+    letter-spacing: 0%;
+    align-items: center;
+    &-text{
+        flex-grow: 1;
+        @include gradient-text($bgr: $backgroundgradient1);
+    }
+    &-icon{
+        height: 100%;
+        width: 80px;
+        @include flex-all-center;
+        background: $backgroundgradient1;
+        position: relative;
+        svg{
+            path{
+                fill: $color_grey;
+            }
+        }
+        &-num{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 0.5px solid $color_white1;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            background: $color_grey;
+            color: $color_white1;
+            @include flex-all-center;
+            font-size: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+    }
+}

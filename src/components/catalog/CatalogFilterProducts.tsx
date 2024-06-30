@@ -1,6 +1,6 @@
 import { baseURL } from "../../utils/utils"
 import { CatalogIconFilter, CatalogIconSort } from "../svg/CatalogIcon"
-import { HeaderIconArrow, HeaderIconBasket, HeaderIconReload } from "../svg/HeaderIcon"
+import {  HeaderIconBasket, HeaderIconReload } from "../svg/HeaderIcon"
 import { CatalogFilter } from "./CatalogFilter"
 
 export const CatalogFilterProducts = () => {

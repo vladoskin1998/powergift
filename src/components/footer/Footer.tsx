@@ -1,5 +1,5 @@
 import { baseURL } from "../../utils/utils"
-import { FooterIconShare, FooterIconBag } from "../svg/FooterIcon"
+import { FooterIconShare } from "../svg/FooterIcon"
 import {
     HeaderIconSearch,
     HeaderIconLike,

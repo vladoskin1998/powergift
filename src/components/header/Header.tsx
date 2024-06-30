@@ -5,7 +5,6 @@ import {
     HeaderIconClose,
     HeaderIconLike,
     HeaderIconOpen,
-    HeaderIconSearch,
     HeaderIconUser,
 } from "../svg/HeaderIcon"
 import "./header.scss"
@@ -13,29 +12,35 @@ import { HeaderSearch } from "./HeaderSearch"
 import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
 import { useEffect, useRef, useState } from "react"
+import { Basket } from "../basket/Basket"
 
 export const Header = () => {
     const [open, setOpen] = useState(false)
+    const [openBasket, setOpenBasket] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(null)
     const handerClose = () => {
         setOpen(false)
     }
 
     const video = videoRef.current
-    useEffect(() => {
-    if (video) {
-        video.play().catch((error) => {
-            // Обработка ошибок, если автоигра не сработала
-            console.error("Auto-play was prevented:", error)
-        })
-    }
 
-}, [])
+    useEffect(() => {
+        if (video) {
+            video.play().catch((error) => {
+                console.error("Auto-play was prevented:", error)
+            })
+        }
+    }, [])
+
+    const handlerOpenBasket = () => {
+        setOpenBasket(s => !s)
+    }
+    console.log(openBasket);
+    
 
     return (
         <div className="header">
             <div className="header-logo">
-            
                 <video
                     className="header-logo-video"
                     autoPlay
@@ -44,9 +49,13 @@ export const Header = () => {
                     playsInline
                     ref={videoRef}
                     preload="metadata"
-                    
                 >
-                    <source src={baseURL + `/Images/Power Gifts logo animate.gif.mp4`}   type="video/mp4" />
+                    <source
+                        src={
+                            baseURL + `/Images/Power Gifts logo animate.gif.mp4`
+                        }
+                        type="video/mp4"
+                    />
                 </video>
             </div>
             <div className="header-links-name">
@@ -103,22 +112,32 @@ export const Header = () => {
                 <button className="header-item">
                     <HeaderIconUser />
                 </button>
-                <button className="header-item">
+                <button className="header-item" onClick={handlerOpenBasket}>
                     <HeaderIconBasket />
                 </button>
             </div>
-            <HeaderNavBar open={open} handerClose={handerClose}/>
+            <HeaderNavBar open={open} handerClose={handerClose} />
+            <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
         </div>
     )
 }
 
-export const HeaderNavBar = ({ open, handerClose }: { open: boolean,handerClose: () => void }) => {
+export const HeaderNavBar = ({
+    open,
+    handerClose,
+}: {
+    open: boolean
+    handerClose: () => void
+}) => {
     return (
         <div className={`header-navbar ${open && "header-navbar-active"}`}>
             <div>
                 <HeaderIconOpen />
             </div>
-            <div className="header-navbar-item header-navbar-item-title" onClick={handerClose}>
+            <div
+                className="header-navbar-item header-navbar-item-title"
+                onClick={handerClose}
+            >
                 <Link to="/catalog/products">Каталог товарів</Link>
             </div>
             <div className="header-navbar-item">
@@ -158,8 +177,8 @@ export const HeaderNavBar = ({ open, handerClose }: { open: boolean,handerClose:
                 <img src={baseURL + "/Images/Paymant.png"} alt="" />
             </div>
             <div className="header-navbar-text">
-                © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All Rights
-                Reserved. Let’s create.
+                © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
+                Rights Reserved. Let’s create.
             </div>
         </div>
     )

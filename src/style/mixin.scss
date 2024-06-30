@@ -1,3 +1,6 @@
+
+@import "variables.scss";
+
 @mixin flex-all-center {
     display: flex;
     justify-content: center;
@@ -15,15 +18,9 @@
 }
 
 
-@mixin gradient-text($fs:32px ) {
-
+@mixin gradient-text($bgr: $backgroundgradient2) {
     text-align: center;
-    background: linear-gradient(
-        90deg,
-        #ffb90b 0%,
-        #e040fb 50%,
-        #00e5ff 100%
-    );
+    background: $bgr;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

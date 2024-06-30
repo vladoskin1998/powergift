@@ -104,7 +104,7 @@ export const CatalogDesktop = () => {
                     </div>
                 </div>
             </div>
-            <div className="catalog-product-navigation-foot">
+            <div className="catalog-product-navigation-foot catalog-main-list-none">
                     © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
                     Rights Reserved. Let’s create.
             </div>

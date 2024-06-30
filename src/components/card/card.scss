@@ -1,0 +1,283 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin.scss";
+@import "../../style/default-style.scss";
+.card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.card-slider {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    &-route {
+        padding-top: 32px;
+        padding-left: 29px;
+        display: flex;
+        gap: 14px;
+        color: $color_grey2;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+    }
+    &-slick {
+        flex-grow: 1;
+        .slick-list,
+        .slick-track {
+            height: 100% !important;
+        }
+        .slick-slide {
+            & > div {
+                height: 100% !important;
+            }
+        }
+        &-lib {
+            height: 100%;
+        }
+        &-item {
+            width: 100%;
+            height: 100%;
+            display: flex !important;
+            @include flex-all-center;
+            img {
+                width: 80%;
+                height: auto;
+            }
+        }
+    }
+    &-dots {
+        display: flex;
+        height: 130px;
+        &-button {
+            width: 100%;
+            border-top: 1px solid $color_border;
+            border-right: 1px solid $color_border;
+            img {
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+}
+
+.card-desc {
+    flex-grow: 1;
+    background-color: $color_grey;
+    padding: 40px 40px 40px 70px;
+}
+
+.card-desc-info {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 60px;
+    &-title{
+        font-size: 20px;
+        font-weight: 500;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_white1;
+        text-transform: uppercase;
+        padding-bottom: 13px;
+    }
+    &-body1 {
+        display: flex;
+        gap: 40px;
+        &-1 {
+            margin-bottom: 40px;
+        }
+        &-2 {
+            margin-bottom: 28px;
+        }
+    }
+    &-undertitle {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: -1px;
+        letter-spacing: 0%;
+        text-align: left;
+        text-transform: uppercase;
+        color: $color_grey2;
+        padding-bottom: 8px;
+    }
+    &-text {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_white1;
+    }
+    &-circles {
+        display: flex;
+        gap: 8px;
+    }
+    &-circle {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        border: 1px solid $color_white1;
+        border-radius: 50%;
+        &-1 {
+            background: $color_black4;
+        }
+        &-2 {
+            background: $color_grey5;
+        }
+        &-3 {
+            background: $color_white1;
+        }
+    }
+}
+
+.card-desc-info-price {
+    display: flex;
+    gap: 43px;
+    &-body1 {
+        max-width: fit-content;
+        display: flex;
+        flex-direction: column;
+    }
+    &-body2 {
+        display: flex;
+        gap: 10px;
+        padding-top: 5px;
+    }
+    &-val {
+        b {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: -1px;
+            letter-spacing: 0%;
+            color: $color_white1;
+        }
+        span {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: -1px;
+            letter-spacing: 0%;
+            color: $color_white1;
+        }
+    }
+    &-undertitle {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_grey5;
+        text-align: center;
+        padding-bottom: 8px;
+    }
+    &-num {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: -1px;
+        color: $color_white1;
+        display: flex;
+        gap: 10px;
+    }
+    &-button {
+        width: 24px;
+        height: 24px;
+        border: $color_grey5;
+        background: $color_black;
+        font-size: 24px;
+        color: $color_white1;
+        @include flex-all-center;
+    }
+}
+
+.card-desc-info-order {
+    margin: 30px 0;
+    display: flex;
+    gap: 10px;
+    &-ord {
+        width: 226px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        background: $backgroundgradient1;
+        &-b1 {
+            @include flex-all-center;
+            font-size: 21.6px;
+            font-weight: 700;
+            line-height: -1px;
+            letter-spacing: 0%;
+            color: $color_black;
+            border: 1px solid $color_grey;
+            border-right: 0;
+            flex-grow: 1;
+            height: 48px;
+        }
+        &-b2 {
+            width: 46px;
+            height: 46px;
+            @include flex-all-center;
+            background-color: $color_grey;
+            margin-right: 1px;
+            position: relative;
+        }
+        &-circle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            box-sizing: border-box;
+            border: 0.45px solid $color_white1;
+            box-shadow: 0px 3.6px 3.6px 0px rgba(0, 0, 0, 0.25);
+            background: $backgroundgradient1;
+            width: 10.8px;
+            height: 10.8px;
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 9px;
+            letter-spacing: 0%;
+            color: $color_black;
+            border-radius: 50%;
+            @include flex-all-center;
+        }
+    }
+    &-but {
+        outline: 1px solid rgb(68, 68, 68);
+        height: 48px;
+        width: 48px;
+        position: relative;
+        transition: all 1s;
+        & > div {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            height: 46px;
+            width: 46px;
+            background-color: $color_grey;
+            @include flex-all-center;
+        }
+        &:hover {
+            background: $backgroundgradient1;
+            border: 0;
+     
+        }
+    }
+}
+
+.card-desc-info-desc {
+    &-underline {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: -1px;
+        letter-spacing: 0%;
+        text-align: left;
+        color: $color_grey5;
+        padding-bottom: 12px;
+    }
+    &-text{
+        font-size: 20px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_white1;
+    }
+}
+
+.card-desc-info-kp{
+    margin: 70px 0;
+}

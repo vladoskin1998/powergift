@@ -1,28 +1,16 @@
-import { Slider } from "@mui/material"
 import {
-    CatalogIconChevron,
-    CatalogIconCircle,
     CatalogIconFilter,
     CatalogIconSort,
 } from "../svg/CatalogIcon"
-import { useState } from "react"
-import { CatalogFilterSlider } from "./CatalogFilterSlider"
-import { CatalogFilterCheckbox } from "./CatalogFilterCheckbox"
-import { CatalogFilterRatio } from "./CatalogFilterRatio"
 import {
     HeaderIconArrow,
-    HeaderIconBasket,
     HeaderIconReload,
 } from "../svg/HeaderIcon"
 import { baseURL } from "../../utils/utils"
 import { CatalogFilter } from "./CatalogFilter"
 
 export const CatalogFilterMain = () => {
-    const [value, setValue] = useState<boolean>(false)
-
-    const handlerValue = () => {
-        setValue((s) => !s)
-    }
+  
     return (
         <div className="catalog-filter">
             <div className="catalog-filter-header">

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { baseURL } from "../../utils/utils"
 import { HeaderIconSearch } from "../svg/HeaderIcon"
 import {
@@ -15,6 +16,12 @@ import {
 import "./navbar.scss"
 
 export const Navbar = () => {
+
+    const navigate = useNavigate()
+
+    const toCard = () => {
+        navigate('/card')
+    }
     return (
         <div className="navbar">
             <button className="navbar-item">
@@ -76,7 +83,7 @@ export const Navbar = () => {
                     <button className="navbar-titles-item">Пакування</button>
                 </div>
                 <div className="navbar_products">
-                    <div className="catalog-main-list">
+                    <div className="catalog-main-list" onClick={toCard}>
                         <div className="catalog-main-product">
                             <div className="catalog-main-product-img">
                                 <img

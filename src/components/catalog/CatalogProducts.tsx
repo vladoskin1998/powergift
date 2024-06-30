@@ -5,7 +5,6 @@ import {
 import { baseURL } from "../../utils/utils"
 import { CatalogIconConception } from "../svg/CatalogIcon"
 import {
-    HeaderIconArrow,
     HeaderIconBasket,
     HeaderIconReload,
 } from "../svg/HeaderIcon"

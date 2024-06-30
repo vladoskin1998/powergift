@@ -28,6 +28,8 @@
         .navbar_products{
             transition-delay: 0.5s;
             opacity: 1;
+            width: calc(100vw - 300px);
+            
         }
     }
 }
@@ -44,15 +46,17 @@
     width: 0px; 
 }
 
-/* Для Firefox */
+
 .navbar_products {
     scrollbar-width: none; 
 }
 
 .navbar_products{
     transition: opacity 0.2s ease-in-out;
-    width: calc(100vw - 300px);
+
+    transition-delay: 0.5s;
     opacity: 0;
+    width: 0;
     max-height: 800px;
     overflow-y: scroll;
 }

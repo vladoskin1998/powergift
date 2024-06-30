@@ -10,20 +10,29 @@ $color_grey2: #808080;
 $color_grey3: #9b9b9b;
 $color_grey4:rgba(29, 30, 24, 0.16);
 $color_grey5:#444444;
+$color_grey6:#2d2d2d;
 
+$color_grey7:#ffffff1f;
 
 $color_black1: #1d1e18;
 $color_black2: rgba(29, 29, 29, 0.1);
 $color_black3: #222222;
 $color_black3: #3d3d3d;
-
+$color_black4: #1D1D1D;
 
 $color_blue:#0056B8;
 $color_yellow:#FFD800;
 
 $color_white1: #f1f1f1;
-
+$color_white2: #fafafa;
 
 $backgroundgradient1: linear-gradient(135deg, #4aff0b 0%, #00e5ff 100%);
+
+$backgroundgradient2:linear-gradient(
+        90deg,
+        #ffb90b 0%,
+        #e040fb 50%,
+        #00e5ff 100%
+    );
 $boxshadow1: 0 12px 37px 0 rgba(0, 0, 0, 0.3);
 
