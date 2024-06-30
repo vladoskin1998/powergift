@@ -1,4 +1,5 @@
 import { baseURL } from "../../utils/utils"
+import { CardIconDelete } from "../svg/CardIcon"
 import { HeaderIconBasket } from "../svg/HeaderIcon"
 import "./basket.scss"
 
@@ -12,8 +13,9 @@ export const Basket = ({
     return (
         <div className={`basket ${openBasket && "basket-open"}`}>
             <h5 className="basket-item basket-title">Ваше замовлення</h5>
+            <div className="basket-list">
             {
-                [1,2,3].map(item =>   <div className="basket-item basket-list-item">
+                [1,2,3,4,5,6,7].map(item =>   <div className="basket-item basket-list-item">
                     <div>
                         <img
                             src={
@@ -25,7 +27,10 @@ export const Basket = ({
                     </div>
                     <div className="basket-list-right">
                         <div className="basket-list-art">
-                            Артикул: <span>PG-240143</span>
+                            Артикул: <div>PG-240143</div>
+                            <button>
+                                <CardIconDelete />
+                            </button>
                         </div>
                         <div className="basket-list-text">Bloototh BoomBox Mini. Black. </div>
                         <div className="basket-list-foot">
@@ -53,6 +58,7 @@ export const Basket = ({
                     </div>
                 </div>)
             }
+            </div>
             <div className="basket-item basket-paymant">
                 <p>РАЗОМ ДО СПЛАТИ</p>
                 <h5>350 000 <span>грн</span></h5>

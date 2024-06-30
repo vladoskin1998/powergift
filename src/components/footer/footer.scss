@@ -55,10 +55,17 @@
 
 @media screen and (max-width: 700px) {
     .footer{
-      
         width: 100%;
         grid-template-columns:1fr;
-        z-index: 2;
+        z-index: 103;
+        .basket {
+            width: calc(100vw - 80px);
+            right: calc(-100vw - 80px);
+            &-open{
+                transform: translateX(calc(-100vw - 81px));
+            }
+     
+        }
     }
     .footer-item{
         display: none;

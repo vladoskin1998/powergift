@@ -58,6 +58,12 @@
 }
 
 .basket-list {
+    max-height: calc(100vh - 480px);
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0px; 
+    }
+    scrollbar-width: none; 
     &-item {
         display: grid;
         padding: 14px 11px;
@@ -76,8 +82,14 @@
         letter-spacing: 0%;
         color: $color_white1;
         text-transform: uppercase;
-        span {
+        display: flex;
+        div {
+            text-align: start !important;
+            flex-grow: 1;
             @include gradient-text($bgr: $backgroundgradient1);
+        }
+        button{
+            margin-right: auto;
         }
     }
     &-text {
@@ -144,7 +156,6 @@
     height: 80px;
     background-color: $color_grey1;
     text-align: center;
-
     font-size: 24px;
     font-weight: 500;
     line-height: -1px;

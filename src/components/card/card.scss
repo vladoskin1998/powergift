@@ -7,10 +7,21 @@
     height: 100%;
 }
 
+.card-desc-mob{
+    display: none;
+}
+
 .card-slider {
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 920px;
     display: flex;
     flex-direction: column;
+    background-color: $color_white;
+    @media screen and (max-width: 1200px) {
+        max-width: 600px;
+        max-height: 720px;
+    }
     &-route {
         padding-top: 32px;
         padding-left: 29px;
@@ -37,6 +48,7 @@
             height: 100%;
         }
         &-item {
+         
             width: 100%;
             height: 100%;
             display: flex !important;
@@ -49,11 +61,21 @@
     }
     &-dots {
         display: flex;
-        height: 130px;
+    
+       
+      
         &-button {
+            height: 130px;
+            min-width: 130px;
             width: 100%;
             border-top: 1px solid $color_border;
             border-right: 1px solid $color_border;
+            border-bottom: 1px solid $color_border;
+            background-color: $color_white;
+            @media screen and (max-width: 1200px) {
+                height: 90px;
+                min-width: 90px;
+            }
             img {
                 height: 100%;
                 width: auto;
@@ -66,12 +88,37 @@
     flex-grow: 1;
     background-color: $color_grey;
     padding: 40px 40px 40px 70px;
+    &-art{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: -1px;
+        letter-spacing: 0%;
+        color: $color_white1;
+        display: flex;
+        p{
+            opacity: 0.4;
+        }
+        span{
+           @include gradient-text($bgr: $backgroundgradient1);
+        }
+    }
+    &-name{
+        margin-top: 15px;
+        margin-bottom: 54px;
+        font-size: 32px;
+        font-weight: 300;
+        line-height: -1px;
+        color: $color_white1;
+    }
 }
 
 .card-desc-info {
     display: grid;
-    grid-template-columns: 1fr 0.7fr;
+    grid-template-columns: 1fr 0.8fr;
     gap: 60px;
+    @media screen and (max-width: 1600px) {
+        grid-template-columns: 1fr ;
+    }
     &-title{
         font-size: 20px;
         font-weight: 500;
@@ -190,6 +237,7 @@
 .card-desc-info-order {
     margin: 30px 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     &-ord {
         width: 226px;
@@ -280,4 +328,10 @@
 
 .card-desc-info-kp{
     margin: 70px 0;
+}
+
+
+
+@media screen and (max-width: 900px) {
+
 }

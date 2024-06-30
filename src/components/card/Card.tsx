@@ -1,4 +1,5 @@
 import { CardDesc } from './CardDesc'
+import { CardDescMobile } from './CardDesc.mobile'
 import { CardSlick } from './CardSlick'
 import './card.scss'
 
@@ -7,6 +8,9 @@ export const Card = () => {
     <div className='card'>
         <CardSlick />
         <CardDesc/>
+        <div className='card-desc-mob'>
+          <CardDescMobile/>
+        </div>
     </div>
   )
 }

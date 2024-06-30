@@ -5,10 +5,10 @@ import { HeaderIconBasket } from "../svg/HeaderIcon"
 export const CardDesc = () => {
     return (
         <div className="card-desc">
-            <div>
-                Артикул: <span>PG-240143</span>
+            <div className="card-desc-art">
+               <p>Артикул:</p> <span>PG-240143</span>
             </div>
-            <h5> Пляшка для води “Yummy” 600 мл</h5>
+            <h5 className="card-desc-name"> Пляшка для води <b>“Yummy”</b> 600 мл</h5>
             <div className="card-desc-info">
                 <div>
                     <div className="card-desc-info-body1 card-desc-info-body1-1">

@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { baseURL } from "../../utils/utils"
+import { Basket } from "../basket/Basket"
 import { FooterIconShare } from "../svg/FooterIcon"
 import {
     HeaderIconSearch,
@@ -9,6 +11,13 @@ import {
 import "./footer.scss"
 
 export const Footer = () => {
+    const [openBasket, setOpenBasket] = useState(false)
+    const handlerOpenBasket = () => {
+        setOpenBasket(s => !s)
+    }
+
+    console.log(openBasket);
+    
     return (
         <div className="footer">
             <div className="footer-item footer-item-r">
@@ -42,13 +51,14 @@ export const Footer = () => {
                 <button className="footer-mob-item">
                     <HeaderIconUser />
                 </button>
-                <button className="footer-mob-item">
+                <button className="footer-mob-item" onClick={handlerOpenBasket}>
                     <HeaderIconBasket />
                 </button>
                 <button className="footer-mob-item">
                     <HeaderIconSearch />
                 </button>
             </div>
+            <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
         </div>
     )
 }
