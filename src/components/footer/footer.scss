@@ -60,13 +60,10 @@
         z-index: 103;
         .basket {
             display: flex;
-            width: calc(100vw - 80px);
-            right: calc(-100vw - 80px);
-            transform: translateY(-100%);
-            &-open {
-            
-                transform: translate(calc(-100vw - 81px),-100%);
-            }
+            position: fixed;
+            height: calc(100vh - 80px) !important;
+             width: calc(100vw - 80px);
+        
         }
     }
     .footer-item {
