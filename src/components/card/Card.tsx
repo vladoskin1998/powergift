@@ -8,9 +8,9 @@ export const Card = () => {
     <div className='card'>
         <CardSlick />
         <CardDesc/>
-        <div className='card-desc-mob'>
+  
           <CardDescMobile/>
-        </div>
+  
     </div>
   )
 }

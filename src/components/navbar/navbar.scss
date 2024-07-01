@@ -51,13 +51,13 @@
 }
 
 .navbar_products{
-    transition: opacity 0.2s ease-in-out;
-
-    transition-delay: 0.5s;
+    transition: opacity 0.3s ease-in;
+    transition-delay: 0.3s;
     opacity: 0;
     width: 0;
     max-height: 800px;
     overflow-y: scroll;
+    max-width: 1220px;
 }
 
 .navbar-titles {

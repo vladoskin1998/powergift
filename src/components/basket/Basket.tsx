@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { baseURL } from "../../utils/utils"
 import { CardIconDelete } from "../svg/CardIcon"
 import { HeaderIconBasket } from "../svg/HeaderIcon"
@@ -10,8 +11,24 @@ export const Basket = ({
     openBasket: boolean
     setOpenBasket: () => void
 }) => {
+
+    const [pageHeight, setPageHeight] = useState(0);
+
+    useEffect(() => {
+      const setHeight = () => {
+        setPageHeight(document.documentElement.scrollHeight - 80);
+      };
+  
+      setHeight();
+      window.addEventListener('resize', setHeight);
+  
+      return () => {
+        window.removeEventListener('resize', setHeight);
+      };
+    }, []);
+    
     return (
-        <div className={`basket ${openBasket && "basket-open"}`}>
+        <div className={`basket ${openBasket && "basket-open"}`} style={{ height:  pageHeight  }}>
             <h5 className="basket-item basket-title">Ваше замовлення</h5>
             <div className="basket-list">
             {
@@ -63,7 +80,7 @@ export const Basket = ({
                 <p>РАЗОМ ДО СПЛАТИ</p>
                 <h5>350 000 <span>грн</span></h5>
             </div>
-            <button className="basket-button">
+            <button className="basket-button" onClick={setOpenBasket}>
                 <div className="basket-button-text">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</div>
                 <div className="basket-button-icon">
                     <HeaderIconBasket/>

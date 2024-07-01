@@ -3,7 +3,7 @@
 @import "../../style/default-style.scss";
 
 .basket {
-    position: fixed;
+    position: absolute;
     right: -400px;
     top: 81px;
     border: 1px solid $color_grey5;
@@ -13,8 +13,11 @@
     width: 400px;
     z-index: 9999;
     transition: all 1s;
+    height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
     &-open{
-        transform: translateX(-481px);
+        transform: translateX(-401px);
     }
     &-item {
         height: 120px;
@@ -58,8 +61,9 @@
 }
 
 .basket-list {
-    max-height: calc(100vh - 480px);
+
     overflow-y: scroll;
+    flex-grow: 1;
     &::-webkit-scrollbar {
         width: 0px; 
     }
@@ -153,7 +157,7 @@
 .basket-button{
     display: flex;
     width: 100%;
-    height: 80px;
+    min-height: 80px;
     background-color: $color_grey1;
     text-align: center;
     font-size: 24px;

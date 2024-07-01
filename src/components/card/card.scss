@@ -333,5 +333,55 @@
 
 
 @media screen and (max-width: 900px) {
-
+    .card-desc{
+        display: none;
+    }
+    .card {
+        flex-direction: column;
+        
+    }
+    .card-slider {
+        min-width: 300px;
+    }
+    .card-slider-dots-button{
+        height: 50px;
+        min-width: 50px;
+    }
+    .card-slider-route{
+        gap: 4px;
+        span{
+            display: none;
+        }
+    }
+    .card-desc-mob{
+        display: flex;
+        flex-direction: column;
+        padding: 22px;
+    }
+    .card-desc-name{
+        font-size: 36px;
+        font-weight: 300;
+        line-height: -1px;
+        margin-bottom: 33px;
+        margin-bottom: 16px;
+    }
+    .card-desc-mob-r1{
+        display: flex;
+        column-gap: 40px;
+        row-gap: 30px;
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+    .card-desc-info-order{
+        margin: 0;
+    }
+    .card-desc-info-body1-1{
+        margin: 0;
+    }
+    .card-desc-info-body1-2{
+        margin: 0;
+    }
+    .card-desc-info-undertitle{
+        padding-bottom: 4px;
+    }
 }

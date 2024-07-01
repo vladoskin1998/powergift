@@ -1,29 +1,32 @@
 @import "../../style/variables.scss";
 @import "../../style/mixin.scss";
 @import "../../style/default-style.scss";
-.footer{
+.footer {
     display: grid;
     grid-template-columns: 80px 1fr 80px;
     background-color: $color_grey;
     border: 1px solid $color_border;
-  
-    &-item{
-        
+    height: 80px;
+    position: relative;
+    .basket {
+        display: none;
+    }
+    &-item {
         width: 79px;
         @include flex-all-center;
-        &-l{
+        &-l {
             border-left: 1px solid $color_border;
         }
-        &-r{
+        &-r {
             border-right: 1px solid $color_border;
         }
     }
-    &-info{
+    &-info {
         padding: 15px;
         display: flex;
         align-items: center;
     }
-    &-text{
+    &-text {
         flex-grow: 1;
         display: flex;
         gap: 5px;
@@ -33,54 +36,53 @@
         font-size: 18px;
         line-height: 111%;
         text-transform: uppercase;
-        &-gr{
+        &-gr {
             color: $color_white;
             opacity: 0.2;
         }
     }
-    &-inv{
+    &-inv {
         font-weight: 400;
         font-size: 18px;
         color: $color_white;
         gap: 5px;
         display: flex;
     }
-    &-mob{
+    &-mob {
         display: none;
     }
 }
 
-
-
-
 @media screen and (max-width: 700px) {
-    .footer{
+    .footer {
         width: 100%;
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
         z-index: 103;
         .basket {
+            display: flex;
             width: calc(100vw - 80px);
             right: calc(-100vw - 80px);
-            &-open{
-                transform: translateX(calc(-100vw - 81px));
+            transform: translateY(-100%);
+            &-open {
+            
+                transform: translate(calc(-100vw - 81px),-100%);
             }
-     
         }
     }
-    .footer-item{
+    .footer-item {
         display: none;
     }
-    .footer-info{
+    .footer-info {
         display: none;
     }
-    .footer-mob{
+    .footer-mob {
         display: grid;
         height: 81px;
-       
+
         grid-template-columns: repeat(5, 1fr);
         width: 100%;
-        &-item{
-            border-top: 1px solid $color_border;    
+        &-item {
+            border-top: 1px solid $color_border;
         }
     }
 }

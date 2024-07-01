@@ -28,9 +28,9 @@ export const CardSlick = () => {
             <div>
                 <div className="card-slider-route">
                     <CardHome />
-                    <div>{">"}</div>
+                    <span>{">"}</span>
                     <div>Категорія</div>
-                    <div>{">"}</div>
+                    <span>{">"}</span>
                     <div>Назва продукції “Yummy” 600 мл</div>
                 </div>
             </div>

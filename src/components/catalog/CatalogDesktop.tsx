@@ -1,26 +1,47 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { baseURL } from "../../utils/utils"
 import { HeaderIconClose, HeaderIconSearch } from "../svg/HeaderIcon"
 import { CatalogFilter } from "./CatalogFilter"
+import { useNavigate } from "react-router-dom"
 
 export const CatalogDesktop = () => {
-
     const [openFilter, setOpenFilter] = useState(false)
-
-
+    const videoRef = useRef<HTMLVideoElement>(null)
     const handleOpenFilter = () => {
-        setOpenFilter(true);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-    
+        setOpenFilter(true)
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    const video = videoRef.current
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (video) {
+            video.play().catch((error) => {
+                console.error("Auto-play was prevented:", error)
+            })
+        }
+    }, [])
+
+    const toCard = () => {
+        navigate('/card')
+    }
     return (
         <div className="catalog-main">
-            <img
-                src={baseURL + "/Images/glass_cube_by_gleb-2.png"}
-                className="catalog-main-back"
-                alt=""
-            />
-            <div className="catalog-main-list catalog-main-list-none">
+            <video
+             className="catalog-main-back"
+                autoPlay
+                loop
+                muted
+                playsInline
+                ref={videoRef}
+                preload="metadata"
+            >
+                <source
+                    src={baseURL + `/Images/Coub.mp4`}
+                    type="video/mp4"
+                />
+            </video>
+            <div className="catalog-main-list catalog-main-list-none" onClick={toCard}>
                 <div className="catalog-main-product">
                     <div className="catalog-main-product-img">
                         <img
@@ -105,16 +126,22 @@ export const CatalogDesktop = () => {
                 </div>
             </div>
             <div className="catalog-product-navigation-foot catalog-main-list-none">
-                    © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
-                    Rights Reserved. Let’s create.
+                © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
+                Rights Reserved. Let’s create.
             </div>
             {openFilter && (
                 <div className="catalog-modal">
-                    <button className="catalog-modal-close" onClick={() => setOpenFilter(false)}>
-                        <HeaderIconClose/>
+                    <button
+                        className="catalog-modal-close"
+                        onClick={() => setOpenFilter(false)}
+                    >
+                        <HeaderIconClose />
                     </button>
                     <CatalogFilter />
-                    <button className="catalog-modal-go" onClick={() => setOpenFilter(false)}>
+                    <button
+                        className="catalog-modal-go"
+                        onClick={() => setOpenFilter(false)}
+                    >
                         Застосувати
                     </button>
                 </div>

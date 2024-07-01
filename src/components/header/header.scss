@@ -7,6 +7,12 @@
     grid-template-columns: 79px 140px 1fr 320px;
     background-color: $color_grey;
     position: relative;
+    @media screen and (max-width: 700px) {
+        .basket{
+            display: none;
+        }
+
+    }
     &-logo{
         width: 80px;
         border: 1px solid $color_border;
