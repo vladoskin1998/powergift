@@ -14,6 +14,7 @@ export const Footer = () => {
     const [openBasket, setOpenBasket] = useState(false)
     const handlerOpenBasket = () => {
         setOpenBasket(s => !s)
+        window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     console.log(openBasket);

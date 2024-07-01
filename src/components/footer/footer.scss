@@ -59,10 +59,11 @@
         grid-template-columns: 1fr;
         z-index: 103;
         .basket {
+            top: 79px;
             display: flex;
             position: fixed;
-            height: calc(100vh - 80px) !important;
-             width: calc(100vw - 80px);
+            height: calc(100% - 80px) !important;
+            width: calc(100vw - 80px);
         
         }
     }
