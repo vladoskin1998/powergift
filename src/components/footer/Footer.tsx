@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { baseURL } from "../../utils/utils"
 import { Basket } from "../basket/Basket"
 import { FooterIconShare } from "../svg/FooterIcon"
@@ -16,6 +16,15 @@ export const Footer = () => {
         setOpenBasket(s => !s)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
+
+
+    useEffect(() => {
+        if (openBasket) {
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
+    }, [openBasket]);
 
     console.log(openBasket);
     
