@@ -2,16 +2,18 @@
   // "homepage": "https://vladoskin1998.github.io/powergift/",
 
 
-  // // отримання підкатегорій всіх
+  // отримання підкатегорій 
 
+  //Get()
   // id
   // name
   // categoriesName
   // categoriesId
-  // fileLink
+  // fileName
 
-  // // отримання підкатегорії
+  // // отримання товарів 
 
+  // Get()
   // id
   // files: [
   //   {
@@ -39,4 +41,7 @@
   // ]
   // description
 
-//отриму
+//отримування фільтрів для підкатегорій
+
+//Get(subcategorieId)
+//{"key": "value"}

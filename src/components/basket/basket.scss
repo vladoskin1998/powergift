@@ -3,6 +3,7 @@
 @import "../../style/default-style.scss";
 
 .basket {
+    overflow: hidden;
     position: absolute;
     right: -400px;
     top: 81px;
@@ -68,6 +69,12 @@
         width: 0px; 
     }
     scrollbar-width: none; 
+    &-delete{
+        svg{
+            width: 20px;
+            height: 17px;
+        }
+    }
     &-item {
         display: grid;
         padding: 14px 11px;
@@ -80,7 +87,7 @@
         flex-direction: column;
     }
     &-art {
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 400;
         line-height: -1px;
         letter-spacing: 0%;
@@ -97,7 +104,7 @@
         }
     }
     &-text {
-        font-size: 14px;
+        font-size: 17px;
         font-weight: 400;
         line-height: 20px;
         letter-spacing: 0px;

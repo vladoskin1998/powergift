@@ -14,13 +14,15 @@ export const CardDescMobile = () => {
             </h5>
             <div className="card-desc-mob-r1">
                 <div className="card-desc-info-price-body1">
-                    <p className="card-desc-info-price-undertitle">ціна:</p>
+                    {/* <p className="card-desc-info-price-undertitle">:</p> */}
+                    <p className="card-desc-info-undertitle">ціна:</p>
                     <p className="card-desc-info-price-val">
                         <b>350</b> <span>грн.</span>
                     </p>
                 </div>
                 <div className="card-desc-info-price-body1 card-desc-info-price-num">
-                    <p className="card-desc-info-price-undertitle">ціна:</p>
+                    {/* <p className="card-desc-info-price-undertitle"></p> */}
+                    <p className="card-desc-info-undertitle">кількість:</p>
                     <div className="card-desc-info-price-body2">
                         <button className="card-desc-info-price-button">
                             -
@@ -31,11 +33,11 @@ export const CardDescMobile = () => {
                         </button>
                     </div>
                 </div>
-                <div>
+                <div className="card-desc-mob-newtitle">
                     <p className="card-desc-info-undertitle">На складі:</p>
                     <p className="card-desc-info-text">654</p>
                 </div>
-                <div>
+                <div className="card-desc-mob-newtitle">
                     <p className="card-desc-info-undertitle">Залишок:</p>
                     <p className="card-desc-info-text">654</p>
                 </div>
@@ -53,7 +55,7 @@ export const CardDescMobile = () => {
                     </button>
                     <button className="card-desc-info-order-but">
                         <div>
-                            <CardIconLike />
+                            <img src={baseURL + "/Images/like.png"} alt="" />
                         </div>
                     </button>
                     <button className="card-desc-info-order-but">
@@ -118,25 +120,38 @@ export const CardDescMobile = () => {
                         падінь чи подряпин.Надійна автоматична кришка з замком
                         поверх кнопки, яка ззахищає від самовільного відкриття
                         та розливання.Міцний та стильний ремінець, який додає
-                        зручності та функціональності.
+                        зручності та функціональності. Пляшка виготовлена   з
+                        екологічно чистого матеріалу Tritan Eastman™ і може
+                        підтримувати температурні навантаження від -10 до
+                        +96Оптимальний розмір та об'єм пляшки максимально
+                        підходить для повсякденного використання.У комплекті є
+                        ситечко, яке дозволяє додавати у воду фрукти або
+                        заварювати чай.Стильна, якісна та практична.
                     </p>
                 </div>
                 <img src={baseURL + "/Images/KP.png"} alt="" />
                 <div>
-                        <img src={baseURL + "/Images/Box.png"} alt="" />
-                        <p className="card-desc-info-title">Доставка</p>
-                        <p className="card-desc-info-desc-text">Самовивіз з нашого магазину — безкоштовно. «Новою поштою» по Україні — по тарифам перевізника.</p>
-                    </div>
-                    <div>
-                        <img src={baseURL + "/Images/Box.png"} alt="" />
-                        <p  className="card-desc-info-title">Оплата</p>
-                        <p className="card-desc-info-desc-text">Оплата по рахунку.</p>
-                    </div>
-                    <div>
-                        <img src={baseURL + "/Images/Box.png"} alt="" />
-                        <p  className="card-desc-info-title">Гарантія</p>
-                        <p className="card-desc-info-desc-text">Гарантія від виробника до 3 місяців</p>
-                    </div>
+                    <img src={baseURL + "/Images/Box.png"} alt="" />
+                    <p className="card-desc-info-title">Доставка</p>
+                    <p className="card-desc-info-desc-text">
+                        Самовивіз з нашого магазину — безкоштовно. «Новою
+                        поштою» по Україні — по тарифам перевізника.
+                    </p>
+                </div>
+                <div>
+                    <img src={baseURL + "/Images/Box.png"} alt="" />
+                    <p className="card-desc-info-title">Оплата</p>
+                    <p className="card-desc-info-desc-text">
+                        Оплата по рахунку.
+                    </p>
+                </div>
+                <div>
+                    <img src={baseURL + "/Images/Box.png"} alt="" />
+                    <p className="card-desc-info-title">Гарантія</p>
+                    <p className="card-desc-info-desc-text">
+                        Гарантія від виробника до 3 місяців
+                    </p>
+                </div>
             </div>
         </div>
     )

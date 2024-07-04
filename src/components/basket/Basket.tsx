@@ -54,7 +54,7 @@ export const Basket = ({
                         <div className="basket-list-right">
                             <div className="basket-list-art">
                                 Артикул: <div>PG-240143</div>
-                                <button>
+                                <button className="basket-list-delete">
                                     <CardIconDelete />
                                 </button>
                             </div>

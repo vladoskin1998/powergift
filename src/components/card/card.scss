@@ -116,7 +116,7 @@
 .card-desc-info {
     display: grid;
     grid-template-columns: 1fr 0.8fr;
-    gap: 60px;
+    column-gap: 60px;
     @media screen and (max-width: 1600px) {
         grid-template-columns: 1fr ;
     }
@@ -358,6 +358,12 @@
         display: flex;
         flex-direction: column;
         padding: 22px;
+    }
+    .card-desc-mob-newtitle{
+        display: flex;
+        flex-direction: column;
+        height: 61px;
+        justify-content: space-between;
     }
     .card-desc-name{
         font-size: 36px;
