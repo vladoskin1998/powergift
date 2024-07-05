@@ -94,17 +94,13 @@ export const CardDesc = () => {
                     </div>
                     <div className="card-desc-info-price">
                         <div className="card-desc-info-price-body1">
-                            <p className="card-desc-info-price-undertitle">
-                                ціна:
-                            </p>
+                        <p className="card-desc-info-undertitle">ціна:</p>
                             <p className="card-desc-info-price-val">
                                 <b>350</b> <span>грн.</span>
                             </p>
                         </div>
                         <div className="card-desc-info-price-body1 card-desc-info-price-num">
-                            <p className="card-desc-info-price-undertitle">
-                                ціна:
-                            </p>
+                        <p className="card-desc-info-undertitle">кількість:</p>
                             <div className="card-desc-info-price-body2">
                                 <button className="card-desc-info-price-button">
                                     -
