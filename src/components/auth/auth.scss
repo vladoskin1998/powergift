@@ -1,6 +1,5 @@
 @import "../../style/variables.scss";
 @import "../../style/mixin.scss";
-@import "../../style/default-style.scss";
 
 .auth {
     .basket-title {
@@ -13,7 +12,7 @@
         flex-grow: 1;
         scrollbar-width: none;
         padding: 0px 30px;
-        margin:  28px 0;
+        margin: 28px 0;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -57,10 +56,10 @@
         border: 1px solid $color_grey1;
         background: rgba(255, 255, 255, 0.8);
         height: 40px;
-        font-family: 'DIN Pro';
+        font-family: "DIN Pro";
         color: $color_black;
         padding: 12px;
-        &::placeholder{
+        &::placeholder {
             font-size: 16px;
             font-weight: 400;
             line-height: 19px;
@@ -68,7 +67,7 @@
             color: $color_black;
         }
     }
-    &-paymant{
+    &-paymant {
         display: flex;
 
         padding: 0 15px;
@@ -81,32 +80,30 @@
         flex-grow: 2;
         @media screen and (max-width: 900px) {
             font-size: 16px;
-     
         }
-        &-ratio{
+        &-ratio {
             display: flex;
             padding-left: 20px;
             height: 20px;
             gap: 8px;
         }
-        &-text{
-   
+        &-text {
             padding-left: 40px;
         }
-        .catalog-ratio{
+        .catalog-ratio {
             border: 1px solid $color_white;
         }
     }
-    &-policy{
+    &-policy {
         display: flex;
         gap: 12px;
-        padding: 0px 0px  34px 46px;
+        padding: 0px 0px 34px 46px;
         font-size: 16px;
         font-weight: 400;
         line-height: 19px;
         letter-spacing: 0%;
         color: $color_white;
-        span{
+        span {
             text-decoration: underline;
         }
     }

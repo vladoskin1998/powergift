@@ -113,6 +113,7 @@ export const Auth = ({
                     <CatalogFilterRatio
                         open={value}
                         hendlerOpen={handlerValue}
+                        key={Date.now()}
                     />
                     <div>
                          <span>Так</span>
