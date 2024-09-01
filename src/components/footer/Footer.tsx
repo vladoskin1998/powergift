@@ -27,14 +27,17 @@ export const Footer = () => {
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
     useEffect(() => {
-        if (openBasket || openAuth) {
-      
-            document.body.style.overflow = 'hidden';
-        } else {
-
-            document.body.style.overflow = 'auto';
+        const routerElement = document.querySelector<HTMLElement>('.Router'); 
+    
+        if (routerElement) {
+            if (openBasket || openAuth) {
+                routerElement.style.overflow = 'hidden';
+            } else {
+                routerElement.style.overflow = 'scroll';
+            }
         }
     }, [openBasket, openAuth]);
+    
 
     console.log(openBasket);
     
