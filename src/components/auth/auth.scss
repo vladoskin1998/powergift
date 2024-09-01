@@ -1,0 +1,113 @@
+@import "../../style/variables.scss";
+@import "../../style/mixin.scss";
+@import "../../style/default-style.scss";
+
+.auth {
+    .basket-title {
+        text-decoration: none;
+        height: 120px;
+    }
+
+    &-body {
+        overflow-y: scroll;
+        flex-grow: 1;
+        scrollbar-width: none;
+        padding: 0px 30px;
+        margin:  28px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &-header {
+        &-login {
+            padding: 0px 0 45px 37px;
+            color: $color_grey2;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0%;
+
+            button {
+                text-decoration: underline;
+                color: $color_white;
+            }
+            @media screen and (max-width: 900px) {
+                font-size: 16px;
+                padding: 0px 0 37px 37px;
+            }
+        }
+        &-fop {
+            color: $color_white;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0%;
+            display: grid;
+            text-align: center;
+            grid-template-columns: auto 1fr 70px;
+            padding: 0px 30px;
+            @media screen and (max-width: 900px) {
+                font-size: 16px;
+                grid-template-columns: auto 1fr auto;
+                padding: 0 50px;
+            }
+        }
+    }
+    &-input {
+        border: 1px solid $color_grey1;
+        background: rgba(255, 255, 255, 0.8);
+        height: 40px;
+        font-family: 'DIN Pro';
+        color: $color_black;
+        padding: 12px;
+        &::placeholder{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19px;
+            letter-spacing: 0%;
+            color: $color_black;
+        }
+    }
+    &-paymant{
+        display: flex;
+
+        padding: 0 15px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 23px;
+        letter-spacing: 0%;
+        color: $color_white;
+        padding-bottom: 30px;
+        flex-grow: 2;
+        @media screen and (max-width: 900px) {
+            font-size: 16px;
+     
+        }
+        &-ratio{
+            display: flex;
+            padding-left: 20px;
+            height: 20px;
+            gap: 8px;
+        }
+        &-text{
+   
+            padding-left: 40px;
+        }
+        .catalog-ratio{
+            border: 1px solid $color_white;
+        }
+    }
+    &-policy{
+        display: flex;
+        gap: 12px;
+        padding: 0px 0px  34px 46px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0%;
+        color: $color_white;
+        span{
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
     HeaderIconBasket,
     HeaderIconBurger,
@@ -13,34 +13,47 @@ import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
 import { useEffect, useRef, useState } from "react"
 import { Basket } from "../basket/Basket"
+import { Auth } from "../auth/Auth"
 
 export const Header = () => {
+    const navigate = useNavigate()
     const [open, setOpen] = useState(false)
     const [openBasket, setOpenBasket] = useState(false)
-    const videoRef = useRef<HTMLVideoElement>(null)
+    const [openAuth, setOpenAuth] = useState(false)
+    let videoRef = useRef<HTMLVideoElement | null>(null)
     const handerClose = () => {
         setOpen(false)
     }
 
-    const video = videoRef.current
 
     useEffect(() => {
-        if (video) {
-            video.play().catch((error) => {
+        if (videoRef.current) {
+            videoRef.current.play().catch((error) => {
                 console.error("Auto-play was prevented:", error)
             })
+        }
+        return () => {
+            videoRef.current = null
         }
     }, [])
 
     const handlerOpenBasket = () => {
         setOpenBasket(s => !s)
+        setOpenAuth(false)
     }
-    console.log(openBasket);
-    
+  
+    const handlerOpenAuth = () => {
+        setOpenAuth(s => !s)
+        setOpenBasket(false)
+    }
+
+    const navToHome = () => {
+        navigate('/')
+    }
 
     return (
         <div className="header">
-            <div className="header-logo">
+            <button className="header-logo" onClick={navToHome} >
                 <video
                     className="header-logo-video"
                     autoPlay
@@ -57,7 +70,7 @@ export const Header = () => {
                         type="video/mp4"
                     />
                 </video>
-            </div>
+            </button>
             <div className="header-links-name">
                 <div>
                     <h5>POWER </h5>
@@ -109,7 +122,7 @@ export const Header = () => {
                 <button className="header-item">
                     <HeaderIconLike />
                 </button>
-                <button className="header-item">
+                <button className="header-item"  onClick={handlerOpenAuth}>
                     <HeaderIconUser />
                 </button>
                 <button className="header-item" onClick={handlerOpenBasket}>
@@ -118,6 +131,7 @@ export const Header = () => {
             </div>
             <HeaderNavBar open={open} handerClose={handerClose} />
             <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
+            <Auth openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
         </div>
     )
 }

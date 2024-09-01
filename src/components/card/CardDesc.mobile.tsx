@@ -1,5 +1,5 @@
 import React from "react"
-import { CardIconLike, CardIconDownload } from "../svg/CardIcon"
+import {  CardIconDownload } from "../svg/CardIcon"
 import { HeaderIconBasket } from "../svg/HeaderIcon"
 import { baseURL } from "../../utils/utils"
 

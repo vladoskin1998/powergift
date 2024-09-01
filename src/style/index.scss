@@ -3,6 +3,14 @@
 @import "default-style.scss";
 
 @font-face {
+    font-family: "DINPro-CondensedRegular";
+    src: url("../../public/fonts/dinpro_condensedregular.otf") format("otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
     font-family: "DINPro-CondensedLight";
     src: url("../../public/fonts/DINPro-CondensedLight.woff") format("woff");
     font-weight: normal;

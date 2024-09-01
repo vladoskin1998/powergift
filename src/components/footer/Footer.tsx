@@ -9,15 +9,23 @@ import {
     HeaderIconBasket,
 } from "../svg/HeaderIcon"
 import "./footer.scss"
+import { Auth } from "../auth/Auth"
 
 export const Footer = () => {
     const [openBasket, setOpenBasket] = useState(false)
+    const [openAuth, setOpenAuth] = useState(false)
     const handlerOpenBasket = () => {
         setOpenBasket(s => !s)
+        setOpenAuth(false)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
-
+  
+    const handlerOpenAuth = () => {
+        setOpenAuth(s => !s)
+        setOpenBasket(false)
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
     useEffect(() => {
         if (openBasket) {
             document.body.classList.add("no-scroll");
@@ -58,7 +66,7 @@ export const Footer = () => {
                 <button className="footer-mob-item">
                     <HeaderIconLike />
                 </button>
-                <button className="footer-mob-item">
+                <button className="footer-mob-item" onClick={handlerOpenAuth}>
                     <HeaderIconUser />
                 </button>
                 <button className="footer-mob-item" onClick={handlerOpenBasket}>
@@ -69,6 +77,7 @@ export const Footer = () => {
                 </button>
             </div>
             <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
+            <Auth openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
         </div>
     )
 }

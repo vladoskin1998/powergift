@@ -17,22 +17,7 @@ export function CatalogFilterRatio({
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <rect
-                        x="0.5"
-                        y="0.5"
-                        width="23"
-                        height="23"
-                        rx="11.5"
-                        stroke="url(#paint0_linear_18_4386)"
-                    />
-                    <rect
-                        x="6"
-                        y="6"
-                        width="12"
-                        height="12"
-                        rx="6"
-                        fill="url(#paint1_linear_18_4386)"
-                    />
+                    <g>
                     <defs>
                         <linearGradient
                             id="paint0_linear_18_4386"
@@ -57,6 +42,26 @@ export function CatalogFilterRatio({
                             <stop offset="1" stop-color="#0CCE6B" />
                         </linearGradient>
                     </defs>
+                    <rect
+                        x="0.5"
+                        y="0.5"
+                        width="23"
+                        height="23"
+                        rx="11.5"
+                        stroke="url(#paint0_linear_18_4386)"
+                        style={{ width: "100%", height: "100%" }} 
+                    />
+                    <rect
+                        x="6"
+                        y="6"
+                        width="12"
+                        height="12"
+                        rx="6"
+                        fill="url(#paint1_linear_18_4386)"
+                        style={{ width: "100%", height: "100%" }} 
+                    />
+                    
+                    </g>
                 </svg>
             ) : (
                 <div className="catalog-ratio" />

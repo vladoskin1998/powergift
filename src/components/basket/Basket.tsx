@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { baseURL } from "../../utils/utils"
 import { CardIconDelete } from "../svg/CardIcon"
-import { HeaderIconBasket } from "../svg/HeaderIcon"
+import { HeaderIconBasket, HeaderIconClose } from "../svg/HeaderIcon"
 import "./basket.scss"
 
 export const Basket = ({
@@ -38,6 +38,9 @@ export const Basket = ({
             className={`basket ${openBasket && "basket-open"}`}
             style={{ height: pageHeight }}
         >
+            <div className="basket-close-button" onClick={setOpenBasket}>
+                <HeaderIconClose/>
+            </div>
             <h5 className="basket-item basket-title">Ваше замовлення</h5>
             <div className="basket-list">
                 {[1, 2, 3, 4, 5, 6, 7].map((item) => (

@@ -13,3 +13,4 @@ root.render(
         <App />
     </BrowserRouter>
 )
+//  "homepage": "https://vladoskin1998.github.io/powergift/",

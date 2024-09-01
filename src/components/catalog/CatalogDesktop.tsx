@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import  { useEffect, useRef, useState } from "react"
 import { baseURL } from "../../utils/utils"
 import { HeaderIconClose, HeaderIconSearch } from "../svg/HeaderIcon"
 import { CatalogFilter } from "./CatalogFilter"
@@ -6,19 +6,22 @@ import { useNavigate } from "react-router-dom"
 
 export const CatalogDesktop = () => {
     const [openFilter, setOpenFilter] = useState(false)
-    const videoRef = useRef<HTMLVideoElement>(null)
+    let videoRef = useRef<HTMLVideoElement | null>(null)
     const handleOpenFilter = () => {
         setOpenFilter(true)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
-    const video = videoRef.current
+
     const navigate = useNavigate()
     useEffect(() => {
-        if (video) {
-            video.play().catch((error) => {
+        if (videoRef.current) {
+            videoRef.current.play().catch((error) => {
                 console.error("Auto-play was prevented:", error)
             })
+        }
+        return () => {
+            videoRef.current = null
         }
     }, [])
 
