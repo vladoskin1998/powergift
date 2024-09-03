@@ -17,6 +17,7 @@
     height: calc(100% - 80px);
     display: flex;
     flex-direction: column;
+    max-height: 1000px;
     &-close-button{
         display: none;
         @media screen and (max-width: 900px) {

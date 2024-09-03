@@ -10,7 +10,7 @@ import { CatalogFilterRatio } from "./CatalogFilterRatio"
 
 export const CatalogFilter = () => {
     const [value, setValue] = useState<boolean>(false)
-
+    const [check, setCheck] = useState<boolean>(false)
     const handlerValue = () => {
         setValue((s) => !s)
     }
@@ -50,7 +50,7 @@ export const CatalogFilter = () => {
 
                 <div className="catalog-filter-filt-type-item">
                     <div>
-                        <CatalogFilterCheckbox />
+                        <CatalogFilterCheckbox  value={check} setValue={setCheck}/>
                     </div>
                     <p>Product name</p>
                     <p>+51</p>

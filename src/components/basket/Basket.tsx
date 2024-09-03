@@ -31,7 +31,7 @@ export const Basket = ({
         return () => {
           window.removeEventListener('resize', setHeight);
         };
-      }, []);
+      }, [window.location]);
 
     return (
         <div

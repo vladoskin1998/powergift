@@ -5,6 +5,7 @@ import { AuthIconTougch } from "../svg/AuthIcon"
 import { CatalogFilterRatio } from "../catalog/CatalogFilterRatio"
 import { CatalogFilterCheckbox } from "../catalog/CatalogFilterCheckbox"
 import { HeaderIconClose } from "../svg/HeaderIcon"
+import { useNavigate } from "react-router-dom"
 
 export const Auth = ({
     openAuth,
@@ -15,10 +16,12 @@ export const Auth = ({
 }) => {
     const [pageHeight, setPageHeight] = useState(0)
     const [value, setValue] = useState<boolean>(true)
-
+    const [check, setCheck] = useState<boolean>(true)
     const handlerValue = () => {
         setValue((s) => !s)
     }
+
+    
 
     useEffect(() => {
         const setHeight = () => {
@@ -38,7 +41,9 @@ export const Auth = ({
         return () => {
             window.removeEventListener("resize", setHeight)
         }
-    }, [])
+    }, [window.location])
+
+    const navigate = useNavigate()
 
     return (
         <div
@@ -133,11 +138,14 @@ export const Auth = ({
             </div>
             <div className="auth-policy">
                 <button>
-                    <CatalogFilterCheckbox/>
+                    <CatalogFilterCheckbox value={check} setValue={setCheck}/>
                 </button>
                 <div>Я ознайомлений та погоджуюсь з <span>умовами надання послуги</span></div>
             </div>
-            <button className="basket-button" onClick={setOpenAuth}>
+            <button className="basket-button" onClick={()=>{
+                setOpenAuth()
+                navigate('/customer')
+                }}>
                 <div className="basket-button-text">
                     ЗАРЕЄСТРУВАТИСЬ НА САЙТІ
                 </div>
