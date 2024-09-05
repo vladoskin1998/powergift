@@ -37,7 +37,7 @@ export const RowRight = () => {
                     <CustomerIconCube />
                     <p>Мої замовлення</p>
                 </h6>
-                <div></div>
+                <div className="customer-right-order-table custom--scroll">
                 <table>
                     <tr>
                         <th>ID</th>
@@ -74,6 +74,7 @@ export const RowRight = () => {
                         </td>
                     </tr>
                 </table>
+                </div>
             </div>
             <CustomerSwiper />
             <div className="customer-right-desire">

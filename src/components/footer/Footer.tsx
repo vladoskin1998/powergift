@@ -14,6 +14,7 @@ import { Auth } from "../auth/Auth"
 export const Footer = () => {
     const [openBasket, setOpenBasket] = useState(false)
     const [openAuth, setOpenAuth] = useState(false)
+    
     const handlerOpenBasket = () => {
         setOpenBasket(s => !s)
         setOpenAuth(false)
@@ -26,19 +27,6 @@ export const Footer = () => {
         setOpenBasket(false)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
-    useEffect(() => {
-        
-    
-        if (document) {
-            if (openBasket || openAuth) {
-                document.body.style.overflowY = 'hidden';
-            } else {
-                document.body.style.overflowY = 'scroll';
-            }
-        }
-    }, [openBasket, openAuth]);
-    
-
 
     
     return (
