@@ -33,11 +33,13 @@ export const BasketCheckModal = ({
                             <br />
                             <b>№01052024</b>
                         </div>
-                   
-                        <div className="basket-modal-close-button" onClick={setIsOpenModalCheck}>
-                    <HeaderIconClose />
-                </div>
-                     
+
+                        <div
+                            className="basket-modal-close-button"
+                            onClick={setIsOpenModalCheck}
+                        >
+                            <HeaderIconClose />
+                        </div>
                     </div>
 
                     <h6 className="basket-modal-deliv">Доставка</h6>
@@ -88,11 +90,35 @@ export const BasketCheckModal = ({
                         <p>Додаткові коментарі від Клієнта. Бронювання.</p>
                         <p>Додаткові коментарі від Клієнта. Бронювання.</p>.
                     </div>
+                    <div className="basket-modal-deliv-mob">
+                        <h6 className="basket-modal-deliv-mob-title">Доставка</h6>
+                        <div className="basket-modal-deliv-mob-body">
+                            <p >
+                                Імя Побатькові
+                                <br />
+                                Email
+                                <br />
+                                +38 (095) 115 10 00
+                                <br />
+                            </p>
+                            <p >
+                                Київ
+                                <br />
+                                Україна
+                                <br />
+                                MOW
+                                <br />
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className=" basket-list basket-modal-list " style={{overflow:'hidden'}}>
+                <div
+                    className=" basket-list basket-modal-list "
+                    style={{ overflow: "hidden" }}
+                >
                     {[1, 2].map((item) => (
                         <div className="basket-item basket-list-item">
-                            <div>
+                            <div className="basket-list-item-img">
                                 <img
                                     src={
                                         baseURL +
@@ -102,7 +128,7 @@ export const BasketCheckModal = ({
                                 />
                             </div>
                             <div className="basket-list-right">
-                                <div>
+                                <div className="basket-list-right-title">
                                     <div className="basket-list-text">
                                         Bloototh BoomBox Mini. Black.
                                     </div>

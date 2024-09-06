@@ -330,6 +330,11 @@
             .catalog-filter-list-item{
                 cursor: grab !important;
             }
+            .catalog-filter-list-item-foot{
+                @media screen and (max-width: 825px) {
+                    max-width: calc(100vh - 80px - 22px);
+                }
+            }
             &-filt{
                 display: none;
                 position: absolute;
