@@ -1,4 +1,5 @@
 import { baseURL } from "../../utils/utils"
+import { CatalogIconFilter, CatalogIconSort } from "../svg/CatalogIcon"
 import {
     CustomerIconCube,
     CustomerIconLike,
@@ -38,42 +39,42 @@ export const RowRight = () => {
                     <p>Мої замовлення</p>
                 </h6>
                 <div className="customer-right-order-table custom--scroll">
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Статус</th>
-                        <th>Покупець</th>
-                        <th>Дата заявки</th>
-                        <th>Разом</th>
-                        <th>Коментарі</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>№123456</td>
-                        <td>В обробці</td>
-                        <td>Ім’я Прізвище</td>
-                        <td>25 квітня 2024. 14:45</td>
-                        <td>12 500,00 грн</td>
-                        <td>Прошу виставити рахунок на ТОВ Хелоу Про</td>
-                        <td className="customer-right-order-watch">
-                            {" "}
-                            <button>Дивитися</button>
-                            <CustomerIconSee />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>№123456</td>
-                        <td>В обробці</td>
-                        <td>Ім’я Прізвище</td>
-                        <td>25 квітня 2024. 14:45</td>
-                        <td>12 500,00 грн</td>
-                        <td>Прошу виставити рахунок на ТОВ Хелоу Про</td>
-                        <td className="customer-right-order-watch">
-                            <button>Дивитися</button>
-                            <CustomerIconSee />
-                        </td>
-                    </tr>
-                </table>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Статус</th>
+                            <th>Покупець</th>
+                            <th>Дата заявки</th>
+                            <th>Разом</th>
+                            <th>Коментарі</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>№123456</td>
+                            <td>В обробці</td>
+                            <td>Ім’я Прізвище</td>
+                            <td>25 квітня 2024. 14:45</td>
+                            <td>12 500,00 грн</td>
+                            <td>Прошу виставити рахунок на ТОВ Хелоу Про</td>
+                            <td className="customer-right-order-watch">
+                                {" "}
+                                <button>Дивитися</button>
+                                <CustomerIconSee />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>№123456</td>
+                            <td>В обробці</td>
+                            <td>Ім’я Прізвище</td>
+                            <td>25 квітня 2024. 14:45</td>
+                            <td>12 500,00 грн</td>
+                            <td>Прошу виставити рахунок на ТОВ Хелоу Про</td>
+                            <td className="customer-right-order-watch">
+                                <button>Дивитися</button>
+                                <CustomerIconSee />
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <CustomerSwiper />
@@ -85,7 +86,18 @@ export const RowRight = () => {
                     <span>Найчастіше додають в лист бажань</span>
                 </h6>
                 <div className="customer-right-desire-list">
-                    <RowRightList/>
+                    <div className="customer-right-desire-list-filt">
+                        <button>
+                            <CatalogIconFilter />
+                            Фільтрація
+                        </button>
+                        <button>
+                            Сортування
+                            <CatalogIconSort />
+                        </button>
+                    </div>
+
+                    <RowRightList />
                 </div>
             </div>
         </div>

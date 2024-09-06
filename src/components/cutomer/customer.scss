@@ -295,6 +295,9 @@
     &-desire{
        
         margin-top: 132px;
+        @media screen and (max-width: 825px) {
+            margin-top: 25px;
+        }
         &-title{
             padding-left: 36px;
             display: flex;
@@ -302,6 +305,7 @@
             gap: 20px;
             font-size: 24px;
             letter-spacing: 0px;
+           
             &-like{
                 font-weight: 600;
                 line-height: 53px;
@@ -316,11 +320,46 @@
                 font-weight: 400;
                 color: $color_grey5;
             }
+            @media screen and (max-width: 825px) {
+                display: none;
+            }
         }
         &-list{
             cursor: grab !important;
+            position: relative;
             .catalog-filter-list-item{
                 cursor: grab !important;
+            }
+            &-filt{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                justify-content: space-between;
+                padding: 11px;
+                color: $color_black;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 19px;
+                letter-spacing: 0%;
+                align-items: center;
+                svg{
+                    width: 22px;
+                    height: 22px;
+                }
+                button{
+                    display: flex;
+                    align-items: center;
+                    gap: 9px;
+                }
+                @media screen and (max-width: 825px) {
+                    display: flex;
+                }
+            }
+            @media screen and (max-width: 825px) {
+                height: 920px;
+                overflow: hidden;
             }
         }
     }
@@ -412,8 +451,12 @@
             letter-spacing: 0%;
             color: $color_black3;
             width: calc(100vw - 80px );
+            button{
+                margin-right: 18px;
+            }
             @media screen and (max-width: 825px) {
                display: flex;
+           
             }
         }
     }

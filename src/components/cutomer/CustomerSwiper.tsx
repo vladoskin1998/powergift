@@ -15,18 +15,18 @@ export const CustomerSwiper = () => {
     }
 
     useEffect(() => {
-        handleResize() // Проверяем при первом рендере
-        window.addEventListener("resize", handleResize) // Добавляем обработчик события изменения размера окна
+        handleResize()
+        window.addEventListener("resize", handleResize)
 
         return () => {
-            window.removeEventListener("resize", handleResize) // Убираем обработчик при размонтировании компонента
+            window.removeEventListener("resize", handleResize) 
         }
     }, [])
 
     return (
         <div className="customer-right-swiper">
             <Swiper
-                height={isVertical ? 300 : null}
+              
                 spaceBetween={isVertical ? 94 : 34}
                 slidesPerView={"auto"}
                 direction={isVertical ? "vertical" : "horizontal"}
