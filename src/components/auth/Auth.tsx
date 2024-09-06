@@ -65,7 +65,7 @@ export const Auth = ({
                 <div>Тов</div>
                 <div>Фоп</div>
             </div>
-            <div className="auth-body">
+            <div className="auth-body custom--scroll">
                 <input
                     type="text"
                     className="auth-input"

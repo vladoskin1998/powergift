@@ -773,11 +773,13 @@
         }
     }
     .catalog-main-product-img {
-        height: 70%;
-        
+      
+        width: 86px;
+      
         img {
-            width: 86px;
-            height: 86px;
+            object-fit: contain;
+            width: 100%;
+            height: auto;
         }
     }
     .catalog-main-product-lihgt {
