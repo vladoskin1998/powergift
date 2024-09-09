@@ -4,7 +4,7 @@
 .customer-row {
     display: grid;
     grid-template-columns: 320px minmax(0, calc(100% - 320px ));
-    @media screen and (max-width: 825px) {
+    @media screen and (max-width: 900px) {
         grid-template-columns: 1fr;
         width: calc(100vw - 80px);
     }
@@ -15,7 +15,7 @@
     // width: 320px;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 825px) {
+    @media screen and (max-width: 900px) {
         width: calc(100vw - 80px);
     }
    
@@ -180,12 +180,12 @@
     margin-bottom: 2px;
     background: $color_grey9;
     flex-grow: 1;
-    @media screen and (max-width: 825px) {
+    @media screen and (max-width: 900px) {
         width: calc(100vw - 80px);
     }
     &-hello {
         padding: 96px 0 0 36px;
-        @media screen and (max-width: 825px) {
+        @media screen and (max-width: 900px) {
             padding: 47px 18px 0 12px;
         }
         &-img {
@@ -241,7 +241,7 @@
             letter-spacing: 0px;
             align-items: center;
         }
-        @media screen and (max-width: 825px) {
+        @media screen and (max-width: 900px) {
             margin: 11px 0 0 18px;
         }
         &-table{
@@ -250,7 +250,7 @@
                 overflow-x: scroll;
                 padding-right: 20px;
             }
-            @media screen and (max-width: 825px) {
+            @media screen and (max-width: 900px) {
                 display: none;
             }
         }
@@ -295,7 +295,7 @@
     &-desire{
        
         margin-top: 132px;
-        @media screen and (max-width: 825px) {
+        @media screen and (max-width: 900px) {
             margin-top: 25px;
         }
         &-title{
@@ -320,7 +320,7 @@
                 font-weight: 400;
                 color: $color_grey5;
             }
-            @media screen and (max-width: 825px) {
+            @media screen and (max-width: 900px) {
                 display: none;
             }
         }
@@ -331,7 +331,7 @@
                 cursor: grab !important;
             }
             .catalog-filter-list-item-foot{
-                @media screen and (max-width: 825px) {
+                @media screen and (max-width: 900px) {
                     max-width: calc(100vh - 80px - 22px);
                 }
             }
@@ -358,7 +358,7 @@
                     align-items: center;
                     gap: 9px;
                 }
-                @media screen and (max-width: 825px) {
+                @media screen and (max-width: 900px) {
                     display: flex;
                 }
             }
@@ -377,14 +377,66 @@
             font-weight: 400;
         }
     }
-    &-footer{
-        
-        @media screen and (max-width: 900px) {
-           display: none;
-        }
-
-    }
+ 
    
+}
+
+.customer-footer{
+    background-color: $color_black;
+    padding: 80px 180px 67px 180px ;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: $color_white1;
+    &-list{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    h6{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 10%;
+        text-align: left;
+        text-transform: uppercase;
+        color: $color_grey5;
+    }
+    ul{
+        list-style-type: disc;
+        padding-left: 40px;
+        li{
+            text-decoration-line: underline;
+        }
+    }
+    &-work{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100% - 25px);
+    }
+    h5{
+        color: $color_grey5;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0px;
+    }
+    @media screen and (max-width:1400px) {
+        padding: 80px 90px 67px 90px ;
+     } 
+     @media screen and (max-width:1100px) {
+        padding: 80px 40px 67px 40px ;
+     }
+    @media screen and (max-width: 900px) {
+       display: none;
+    }
+
 }
 
 .customer-right-swiper {
@@ -392,7 +444,7 @@
     margin: 64px 0 0 36px;
     display: flex;
     width: calc(100% - 36px);
-    @media screen and (max-width: 825px) {
+    @media screen and (max-width: 900px) {
         margin: 11px 0 0 7px;
         height: 600px; 
         overflow: hidden; 
@@ -414,7 +466,7 @@
         letter-spacing: 0%;
       
         background: $color_white;
-        @media screen and (max-width: 825px) {
+        @media screen and (max-width: 900px) {
             width: calc(100vw - 80px );
             padding: 10px;
             gap: 10px;
@@ -478,7 +530,7 @@
             button{
                 margin-right: 18px;
             }
-            @media screen and (max-width: 825px) {
+            @media screen and (max-width:900px) {
                display: flex;
            
             }

@@ -1,4 +1,5 @@
 import './customer.scss'
+import { CustomerFooter } from './CustomerFooter'
 import { RowLeft } from "./RowLeft"
 import { RowRight } from "./RowRight"
 
@@ -13,9 +14,7 @@ export const Customer = () => {
                 <RowRight />
          
             </div>
-            <div className="customer-footer">
-
-            </div>
+            <CustomerFooter/>
         </div>
     )
 }
