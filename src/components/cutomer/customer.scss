@@ -365,6 +365,25 @@
         
         }
     }
+    &-reload{
+        display: none;
+        @media screen and (max-width: 900px) {
+            display: flex;
+            padding: 40px 20px;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            color: $color_black;
+            font-weight: 400;
+        }
+    }
+    &-footer{
+        
+        @media screen and (max-width: 900px) {
+           display: none;
+        }
+
+    }
    
 }
 
@@ -397,6 +416,8 @@
         background: $color_white;
         @media screen and (max-width: 825px) {
             width: calc(100vw - 80px );
+            padding: 10px;
+            gap: 10px;
         }
         &-1 {
             font-size: 32px;
@@ -417,7 +438,7 @@
             font-size: 16px;
             font-weight: 600;
             line-height: 19px;
-      
+            padding-right: 10px;
         }
         &-4 {
             font-size: 20px;
@@ -436,6 +457,7 @@
             font-size: 20px;
             font-weight: 500;
             line-height: 23px;
+            padding-right: 10px;
 
         }
         &-see{

@@ -83,7 +83,13 @@
         background-color: $color_grey;
         width: 79px;
         border-right: 1px solid $color_border;
-   
+        &:hover{
+            svg{
+                path{
+                    fill: #4aff0b;
+                }
+            }
+        }
         @include flex-all-center;
         &-search {
             position: relative;

@@ -14,7 +14,7 @@ interface CatalogListItemProps {
 
 export const CatalogListItem: React.FC<CatalogListItemProps> = ({ imageSrc }) => {
     return (
-        <div className="catalog-filter-list-item" style={{ width: "320px", maxHeight: "450px", marginBottom: "20px" }}>
+        <div className="catalog-filter-list-item" style={{ maxHeight: "450px", marginBottom: "20px" }}>
             <div className="catalog-filter-list-item-img">
                 <img src={baseURL + imageSrc} alt="" />
             </div>

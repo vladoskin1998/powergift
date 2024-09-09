@@ -5,6 +5,7 @@ import {
     CustomerIconLike,
     CustomerIconSee,
 } from "../svg/CustomerIcon"
+import { HeaderIconReload } from "../svg/HeaderIcon"
 
 import { CustomerSwiper } from "./CustomerSwiper"
 import { RowRightList } from "./RowRightList"
@@ -98,6 +99,10 @@ export const RowRight = () => {
                     </div>
 
                     <RowRightList />
+                    <button className="customer-right-reload">
+                    <HeaderIconReload />
+                    Показати ще 20 товарів
+                </button>
                 </div>
             </div>
         </div>

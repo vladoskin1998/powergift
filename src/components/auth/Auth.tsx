@@ -47,7 +47,7 @@ export const Auth = ({
 
     return (
         <div
-            className={`basket ${openAuth && "basket-open"} auth `}
+            className={`basket custom--scroll ${openAuth && "basket-open"} auth `}
             style={{ height: pageHeight }}
         >
                <div className="basket-close-button" onClick={setOpenAuth}>
@@ -56,7 +56,7 @@ export const Auth = ({
             <h5 className=" basket-title">РЕЄСТРАЦІЯ КОМПАНІЇ</h5>
             <div className="auth-header-login">
                 <p>
-                    Якщо вже зареєстровані на сайті{" "}
+                    Якщо вже зареєстровані на сайті{"  "}
                     <button>Увійдіть зараз</button>
                 </p>
             </div>
@@ -65,7 +65,7 @@ export const Auth = ({
                 <div>Тов</div>
                 <div>Фоп</div>
             </div>
-            <div className="auth-body custom--scroll">
+            <div className="auth-body ">
                 <input
                     type="text"
                     className="auth-input"

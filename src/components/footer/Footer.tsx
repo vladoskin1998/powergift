@@ -10,11 +10,12 @@ import {
 } from "../svg/HeaderIcon"
 import "./footer.scss"
 import { Auth } from "../auth/Auth"
+import { useAppContext } from "../../context/AppContext"
 
 export const Footer = () => {
     const [openBasket, setOpenBasket] = useState(false)
     const [openAuth, setOpenAuth] = useState(false)
-    
+    const {handlerHiddenScroll} = useAppContext()
     const handlerOpenBasket = () => {
         setOpenBasket(s => !s)
         setOpenAuth(false)
@@ -27,6 +28,15 @@ export const Footer = () => {
         setOpenBasket(false)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
+
+    useEffect(() => {
+        if(openAuth || openBasket){
+            handlerHiddenScroll('hidden')
+        }
+        else{
+            handlerHiddenScroll('auto')
+        }
+    }, [openAuth , openBasket])
 
     
     return (

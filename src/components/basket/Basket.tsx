@@ -46,14 +46,14 @@ export const Basket = ({
     return (
         <>
             <div
-                className={`basket ${openBasket && "basket-open"}`}
+                className={`basket custom--scroll ${openBasket && "basket-open"}`}
                 style={{ height: pageHeight }}
             >
                 <div className="basket-close-button" onClick={setOpenBasket}>
                     <HeaderIconClose />
                 </div>
                 <h5 className="basket-item basket-title">Ваше замовлення</h5>
-                <div className="basket-list custom--scroll">
+                <div className="basket-list ">
                     {[1, 2, 3, 4, 5, 6, 7].map((item) => (
                         <div className="basket-item basket-list-item">
                             <div>
@@ -153,7 +153,7 @@ export const Basket = ({
                         </button>
                     </div>
                 </div>
-                <div className="basket-form-input custom--scroll ">
+                <div className="basket-form-input  ">
                     <input
                         className="basket-form-input-item"
                         placeholder="Ім'я"
