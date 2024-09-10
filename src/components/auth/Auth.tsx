@@ -56,116 +56,119 @@ export const Auth = ({
 
     return (
         <div
-            className={`basket custom--scroll ${
-                openAuth && "basket-open"
-            } auth `}
+            className={`basket  ${openAuth && "basket-open"} auth `}
             style={{ height: pageHeight }}
         >
-            <div className="basket-close-button" onClick={setOpenAuth}>
-                <HeaderIconClose />
-            </div>
-            <h5 className=" basket-title">РЕЄСТРАЦІЯ КОМПАНІЇ</h5>
-            <div className="auth-header-login">
-                <p>
-                    Якщо вже зареєстровані на сайті{"  "}
-                    <button>Увійдіть зараз</button>
-                </p>
-            </div>
-            <div className="auth-header-fop">
-                <div>Організаційно-правова форма *</div>
-                <div className="auth-header-fop-item">
-                    {" "}
-                    <CatalogFilterRatio
-                        open={!valueRadio}
-                        hendlerOpen={handlerValueRadio}
-                    />
-                    Тов
+            <div className="basket--scroll custom--scroll">
+                <div className="basket-close-button" onClick={setOpenAuth}>
+                    <HeaderIconClose />
                 </div>
-                <div className="auth-header-fop-item">
-                    {" "}
-                    <CatalogFilterRatio
-                        open={valueRadio}
-                        hendlerOpen={handlerValueRadio}
-                    />
-                    Фоп
+                <h5 className=" basket-title">РЕЄСТРАЦІЯ КОМПАНІЇ</h5>
+                <div className="auth-header-login">
+                    <p>
+                        Якщо вже зареєстровані на сайті{"  "}
+                        <button>Увійдіть зараз</button>
+                    </p>
                 </div>
-            </div>
-            <div className="auth-body ">
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Ваше ім'я*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Прізвище*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Місто*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Назва організації *"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Адреса*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="ЄДРПО*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="+38 095 115 1000"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="E-Mail*"
-                />
-                <input
-                    type="text"
-                    className="auth-input"
-                    placeholder="Пароль*"
-                />
-            </div>
-            <div className="auth-paymant">
-                <div className="auth-paymant-text">Платник ПДВ*</div>
-                <div className="auth-paymant-ratio">
-                    <CatalogFilterRatio
-                        open={value}
-                        hendlerOpen={handlerValue}
-                        key={Date.now()}
-                    />
-                    <div>
-                        <span>Так</span>
+                <div className="auth-header-fop">
+                    <div>Організаційно-правова форма *</div>
+                    <div className="auth-header-fop-item">
+                        {" "}
+                        <CatalogFilterRatio
+                            open={!valueRadio}
+                            hendlerOpen={handlerValueRadio}
+                        />
+                        Тов
+                    </div>
+                    <div className="auth-header-fop-item">
+                        {" "}
+                        <CatalogFilterRatio
+                            open={valueRadio}
+                            hendlerOpen={handlerValueRadio}
+                        />
+                        Фоп
                     </div>
                 </div>
-                <div className="auth-paymant-ratio">
-                    <CatalogFilterRatio
-                        open={!value}
-                        hendlerOpen={handlerValue}
+                <div className="auth-body ">
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Ваше ім'я*"
                     />
-                    <div>
-                        <span>Ні</span>
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Прізвище*"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Місто*"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Назва організації *"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Адреса*"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="ЄДРПО*"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="+38 095 115 1000"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="E-Mail*"
+                    />
+                    <input
+                        type="text"
+                        className="auth-input"
+                        placeholder="Пароль*"
+                    />
+                </div>
+                <div className="auth-paymant">
+                    <div className="auth-paymant-text">Платник ПДВ*</div>
+                    <div className="auth-paymant-ratio">
+                        <CatalogFilterRatio
+                            open={value}
+                            hendlerOpen={handlerValue}
+                            key={Date.now()}
+                        />
+                        <div>
+                            <span>Так</span>
+                        </div>
+                    </div>
+                    <div className="auth-paymant-ratio">
+                        <CatalogFilterRatio
+                            open={!value}
+                            hendlerOpen={handlerValue}
+                        />
+                        <div>
+                            <span>Ні</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="auth-policy">
-                <button>
-                    <CatalogFilterCheckbox value={check} setValue={setCheck} />
-                </button>
-                <div>
-                    Я ознайомлений та погоджуюсь з{" "}
-                    <span>умовами надання послуги</span>
+                <div className="auth-policy">
+                    <button>
+                        <CatalogFilterCheckbox
+                            value={check}
+                            setValue={setCheck}
+                        />
+                    </button>
+                    <div>
+                        Я ознайомлений та погоджуюсь з{" "}
+                        <span>умовами надання послуги</span>
+                    </div>
                 </div>
             </div>
             <button

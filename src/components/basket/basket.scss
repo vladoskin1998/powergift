@@ -96,7 +96,9 @@
         }
     }
 }
-
+.basket--scroll{
+    overflow-x: hidden !important;
+}
 .basket-list {
 
     height: fit-content;

@@ -21,7 +21,7 @@ export const Basket = ({
     const location = useLocation()
     useEffect(() => {
         const setHeight = () => {
-            if(openBasket){
+        
                 const windowHeight = window.innerHeight
                 const documentHeight = document.documentElement.scrollHeight
     
@@ -30,10 +30,8 @@ export const Basket = ({
                 } else {
                     setPageHeight(documentHeight - 80)
                 }
-            }
-            else{
-                setTimeout(() => {  setPageHeight(0)}, 1111)
-            }
+      
+          
          
         }
 
@@ -62,9 +60,12 @@ export const Basket = ({
     return (
         <>
             <div
-                className={`basket custom--scroll ${openBasket && "basket-open"}`}
+                className={`basket  ${openBasket && "basket-open"}`}
                 style={{ height: pageHeight }}
             >
+                <div className="basket--scroll custom--scroll">
+
+                
                 <div className="basket-close-button" onClick={setOpenBasket}>
                     <HeaderIconClose />
                 </div>
@@ -198,6 +199,7 @@ export const Basket = ({
                         className="basket-form-input-item"
                         placeholder="Область/район"
                     />
+                </div>
                 </div>
                 <button className="basket-button" onClick={() =>{
                     handlerOpenModal()
