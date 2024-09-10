@@ -16,52 +16,61 @@ import {
 import "./navbar.scss"
 
 export const Navbar = () => {
-
     const navigate = useNavigate()
 
     const toCard = () => {
-        navigate('/card')
+        navigate("/card")
     }
     return (
         <div className="navbar">
             <button className="navbar-item">
-                <NavbarIconsElectronics />
+                <button className="navbar-item-ico">   <NavbarIconsElectronics /></button>
+             
                 <p>Електроніка</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsTools />
+                <button className="navbar-item-ico">  <NavbarIconsTools /></button>
+              
                 <p>Інструменти</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsCloses />
+                <button className="navbar-item-ico"> <NavbarIconsCloses /></button>
+               
                 <p>Одяг</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsBags />
+                <button className="navbar-item-ico"> <NavbarIconsBags /></button>
+               
                 <p>Сумки</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsDishes />
+                <button className="navbar-item-ico">   <NavbarIconsDishes /></button>
+             
                 <p>Посуд</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsHome />
+                <button className="navbar-item-ico"> <NavbarIconsHome /></button>
+               
                 <p>Дім</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsOffice />
+                <button className="navbar-item-ico"> <NavbarIconsOffice /></button>
+               
                 <p>Офіс</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsCar />
+                <button className="navbar-item-ico"><NavbarIconsCar /></button>
+                
                 <p>Авто</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsSets />
+                <button className="navbar-item-ico"> <NavbarIconsSets /></button>
+               
                 <p>Набори</p>
             </button>
             <button className="navbar-item">
-                <NavbarIconsGifts />
+                <button className="navbar-item-ico">  <NavbarIconsGifts /></button>
+              
                 <p>Пакування</p>
             </button>
             <div className="navbar-titles">

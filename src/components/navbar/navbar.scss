@@ -49,7 +49,15 @@
 .navbar_products {
     scrollbar-width: none; 
 }
-
+.navbar-item-ico{
+    transition: stroke 0.3 ease;
+    &:hover{
+        path{
+            stroke: #e040fb;
+            transition: stroke 0.3 ease;
+        }
+    }
+}
 .navbar_products{
     transition: opacity 0.3s ease-in;
     transition-delay: 0.3s;
