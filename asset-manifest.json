@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.d5a1c938.css",
-    "main.js": "/static/js/main.153a8683.js",
-    "static/media/Inter-Regular.woff": "/static/media/Inter-Regular.0d6f7c99e635f1fec4c9.woff",
-    "static/media/dinpro_condensedregular.otf": "/static/media/dinpro_condensedregular.affc69de68c78ac81608.otf",
-    "static/media/DINPro.woff": "/static/media/DINPro.637a0f5db07a169e1404.woff",
-    "static/media/DINPro-CondensedLight.woff": "/static/media/DINPro-CondensedLight.81172e89b99e1eaffb78.woff",
-    "static/media/Gilroy-Regular.woff": "/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
-    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "index.html": "/index.html",
-    "main.d5a1c938.css.map": "/static/css/main.d5a1c938.css.map",
-    "main.153a8683.js.map": "/static/js/main.153a8683.js.map"
+    "main.css": "/powergift/static/css/main.f65f027a.css",
+    "main.js": "/powergift/static/js/main.153a8683.js",
+    "static/media/Inter-Regular.woff": "/powergift/static/media/Inter-Regular.0d6f7c99e635f1fec4c9.woff",
+    "static/media/dinpro_condensedregular.otf": "/powergift/static/media/dinpro_condensedregular.affc69de68c78ac81608.otf",
+    "static/media/DINPro.woff": "/powergift/static/media/DINPro.637a0f5db07a169e1404.woff",
+    "static/media/DINPro-CondensedLight.woff": "/powergift/static/media/DINPro-CondensedLight.81172e89b99e1eaffb78.woff",
+    "static/media/Gilroy-Regular.woff": "/powergift/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
+    "static/media/slick.svg": "/powergift/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/powergift/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/powergift/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/powergift/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/powergift/index.html",
+    "main.f65f027a.css.map": "/powergift/static/css/main.f65f027a.css.map",
+    "main.153a8683.js.map": "/powergift/static/js/main.153a8683.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5a1c938.css",
+    "static/css/main.f65f027a.css",
     "static/js/main.153a8683.js"
   ]
 }
