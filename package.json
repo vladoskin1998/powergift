@@ -1,6 +1,7 @@
 {
   "name": "powergifts",
   "version": "0.1.0",
+  "homepage": "https://vladoskin1998.github.io/powergift/",
   "private": true, 
   "dependencies": {
     "@emotion/react": "^11.11.4",
