@@ -20,6 +20,8 @@ export const Header = () => {
     const [open, setOpen] = useState(false)
     const [openBasket, setOpenBasket] = useState(false)
     const [openAuth, setOpenAuth] = useState(false)
+
+
     let videoRef = useRef<HTMLVideoElement | null>(null)
     const handerClose = () => {
         setOpen(false)
@@ -48,12 +50,12 @@ export const Header = () => {
     }
 
     const navToHome = () => {
-        navigate('/')
+  //      navigate('/')
     }
 
     return (
         <div className="header">
-            <button className="header-logo" onClick={navToHome} >
+            <a className="header-logo" onClick={navToHome} href="/">
                 <video
                     className="header-logo-video"
                     autoPlay
@@ -70,7 +72,7 @@ export const Header = () => {
                         type="video/mp4"
                     />
                 </video>
-            </button>
+            </a>
             <div className="header-links-name">
                 <div>
                     <h5>POWER </h5>

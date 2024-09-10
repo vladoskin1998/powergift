@@ -83,10 +83,12 @@
         background-color: $color_grey;
         width: 79px;
         border-right: 1px solid $color_border;
+        transition: all 0.3 ease;
         &:hover{
-            svg{
+            svg:first-child{
                 path{
                     fill: #4aff0b;
+                    transition: fill 0.3s ease; 
                 }
             }
         }

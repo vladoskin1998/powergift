@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from "react"
+import React, { createContext, useState, useContext, ReactNode, useEffect } from "react"
 
 export type TypeOverflow = "hidden" | "scroll" | "auto"
 
@@ -13,6 +13,8 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+
+    const [key,setKey] = useState(Date.now())
     const handlerHiddenScroll = (s: TypeOverflow) => {
         if (document) {
             if (document.body.style.overflowY === s) {
@@ -22,9 +24,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             }
         }
     }
+
+    useEffect(() => {
+        setKey(Date.now())
+    }, [window.location])
     return (
         <AppContext.Provider value={{ handlerHiddenScroll }}>
+            <div key={key}>
+
+         
             {children}
+            </div>
         </AppContext.Provider>
     )
 }

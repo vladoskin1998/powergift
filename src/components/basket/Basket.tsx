@@ -5,6 +5,7 @@ import { HeaderIconBasket, HeaderIconClose } from "../svg/HeaderIcon"
 import "./basket.scss"
 import { BasketSelect } from "./BasketSelect"
 import { BasketCheckModal } from "./BasketCheckModal"
+import { useLocation } from "react-router-dom"
 
 export const Basket = ({
     openBasket,
@@ -17,17 +18,23 @@ export const Basket = ({
     const [activeDeliver, setActiveDeliver] = useState(1)
 
     const [isOpenModalCheck, setIsOpenModalCheck] = useState(false)
-
+    const location = useLocation()
     useEffect(() => {
         const setHeight = () => {
-            const windowHeight = window.innerHeight
-            const documentHeight = document.documentElement.scrollHeight
-
-            if (window.innerWidth < 700) {
-                setPageHeight(windowHeight - 80)
-            } else {
-                setPageHeight(documentHeight - 80)
+            if(openBasket){
+                const windowHeight = window.innerHeight
+                const documentHeight = document.documentElement.scrollHeight
+    
+                if (window.innerWidth < 700) {
+                    setPageHeight(windowHeight - 80)
+                } else {
+                    setPageHeight(documentHeight - 80)
+                }
             }
+            else{
+                setTimeout(() => {  setPageHeight(0)}, 1111)
+            }
+         
         }
 
         setHeight()
@@ -36,12 +43,21 @@ export const Basket = ({
         return () => {
             window.removeEventListener("resize", setHeight)
         }
-    }, [window.location])
+    }, [   window.location, location, openBasket])
 
     const handlerOpenModal = () => {
         setIsOpenModalCheck(s => !s)
    
     }
+
+    useEffect(() => {
+        if(openBasket){
+            setOpenBasket()
+        }
+   
+    }, [
+        window.location, location
+    ])
 
     return (
         <>
@@ -54,7 +70,7 @@ export const Basket = ({
                 </div>
                 <h5 className="basket-item basket-title">Ваше замовлення</h5>
                 <div className="basket-list ">
-                    {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+                    {[1, 2, 3, ].map((item) => (
                         <div className="basket-item basket-list-item">
                             <div>
                                 <img

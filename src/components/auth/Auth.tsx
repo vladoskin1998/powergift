@@ -5,7 +5,7 @@ import { AuthIconTougch } from "../svg/AuthIcon"
 import { CatalogFilterRatio } from "../catalog/CatalogFilterRatio"
 import { CatalogFilterCheckbox } from "../catalog/CatalogFilterCheckbox"
 import { HeaderIconClose } from "../svg/HeaderIcon"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export const Auth = ({
     openAuth,
@@ -16,12 +16,15 @@ export const Auth = ({
 }) => {
     const [pageHeight, setPageHeight] = useState(0)
     const [value, setValue] = useState<boolean>(true)
+    const [valueRadio, setValueradio] = useState<boolean>(true)
     const [check, setCheck] = useState<boolean>(true)
     const handlerValue = () => {
         setValue((s) => !s)
     }
-
-    
+    const handlerValueRadio = () => {
+        setValueradio((s) => !s)
+    }
+    const location = useLocation()
 
     useEffect(() => {
         const setHeight = () => {
@@ -41,17 +44,25 @@ export const Auth = ({
         return () => {
             window.removeEventListener("resize", setHeight)
         }
-    }, [window.location])
+    }, [window.location, openAuth, location])
+
+    // useEffect(() => {
+    //     if (!openAuth) {
+    //         setOpenAuth()
+    //     }
+    // }, [window.location, location])
 
     const navigate = useNavigate()
 
     return (
         <div
-            className={`basket custom--scroll ${openAuth && "basket-open"} auth `}
+            className={`basket custom--scroll ${
+                openAuth && "basket-open"
+            } auth `}
             style={{ height: pageHeight }}
         >
-               <div className="basket-close-button" onClick={setOpenAuth}>
-                <HeaderIconClose/>
+            <div className="basket-close-button" onClick={setOpenAuth}>
+                <HeaderIconClose />
             </div>
             <h5 className=" basket-title">РЕЄСТРАЦІЯ КОМПАНІЇ</h5>
             <div className="auth-header-login">
@@ -62,8 +73,22 @@ export const Auth = ({
             </div>
             <div className="auth-header-fop">
                 <div>Організаційно-правова форма *</div>
-                <div>Тов</div>
-                <div>Фоп</div>
+                <div className="auth-header-fop-item">
+                    {" "}
+                    <CatalogFilterRatio
+                        open={!valueRadio}
+                        hendlerOpen={handlerValueRadio}
+                    />
+                    Тов
+                </div>
+                <div className="auth-header-fop-item">
+                    {" "}
+                    <CatalogFilterRatio
+                        open={valueRadio}
+                        hendlerOpen={handlerValueRadio}
+                    />
+                    Фоп
+                </div>
             </div>
             <div className="auth-body ">
                 <input
@@ -113,7 +138,7 @@ export const Auth = ({
                 />
             </div>
             <div className="auth-paymant">
-                <div  className="auth-paymant-text">Платник ПДВ*</div>
+                <div className="auth-paymant-text">Платник ПДВ*</div>
                 <div className="auth-paymant-ratio">
                     <CatalogFilterRatio
                         open={value}
@@ -121,9 +146,8 @@ export const Auth = ({
                         key={Date.now()}
                     />
                     <div>
-                         <span>Так</span>
+                        <span>Так</span>
                     </div>
-                   
                 </div>
                 <div className="auth-paymant-ratio">
                     <CatalogFilterRatio
@@ -131,21 +155,26 @@ export const Auth = ({
                         hendlerOpen={handlerValue}
                     />
                     <div>
-                    <span>Ні</span>
+                        <span>Ні</span>
                     </div>
-                  
                 </div>
             </div>
             <div className="auth-policy">
                 <button>
-                    <CatalogFilterCheckbox value={check} setValue={setCheck}/>
+                    <CatalogFilterCheckbox value={check} setValue={setCheck} />
                 </button>
-                <div>Я ознайомлений та погоджуюсь з <span>умовами надання послуги</span></div>
+                <div>
+                    Я ознайомлений та погоджуюсь з{" "}
+                    <span>умовами надання послуги</span>
+                </div>
             </div>
-            <button className="basket-button" onClick={()=>{
-                setOpenAuth()
-                navigate('/customer')
-                }}>
+            <button
+                className="basket-button"
+                onClick={() => {
+                    setOpenAuth()
+                    navigate("/customer")
+                }}
+            >
                 <div className="basket-button-text">
                     ЗАРЕЄСТРУВАТИСЬ НА САЙТІ
                 </div>

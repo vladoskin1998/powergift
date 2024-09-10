@@ -27,9 +27,12 @@ export const HeaderSearch = () => {
             <div className={`header-search ${open && 'header-search-active'}`}>
                 <div className="header-search-line"/>
                 <input type="text" className="header-search-input" placeholder="Швидкий пошук на сайті."/>
-                <button className="header-search-mic">
+                {
+                    open && <button className="header-search-mic">
                     <HeaderIconMicrofon/>
                 </button>
+                }
+                
             </div>
         </button>
     )
