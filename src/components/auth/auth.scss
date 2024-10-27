@@ -212,6 +212,7 @@
         margin: 0 65px;
         background: linear-gradient(135deg, #4aff0b 0%, #00e5ff 100%);
         @media screen and (max-width: 900px) {
+            width: calc(100% - 50px);
             margin: 0 25px;
         }
         h5{
