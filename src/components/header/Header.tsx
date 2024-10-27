@@ -13,7 +13,7 @@ import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
 import { useEffect, useRef, useState } from "react"
 import { Basket } from "../basket/Basket"
-import { Auth } from "../auth/Auth"
+import { AuthRouter } from "../auth/AuthRouter"
 
 export const Header = () => {
     const navigate = useNavigate()
@@ -133,7 +133,7 @@ export const Header = () => {
             </div>
             <HeaderNavBar open={open} handerClose={handerClose} />
             <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
-            <Auth openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
+            <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
         </div>
     )
 }

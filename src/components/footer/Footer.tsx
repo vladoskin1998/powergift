@@ -9,7 +9,7 @@ import {
     HeaderIconBasket,
 } from "../svg/HeaderIcon"
 import "./footer.scss"
-import { Auth } from "../auth/Auth"
+import { AuthRouter } from "../auth/AuthRouter"
 import { useAppContext } from "../../context/AppContext"
 
 export const Footer = () => {
@@ -80,7 +80,7 @@ export const Footer = () => {
                 </button>
             </div>
             <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
-            <Auth openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
+            <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
         </div>
     )
 }

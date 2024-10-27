@@ -4,9 +4,10 @@ export type TypeOverflow = "hidden" | "scroll" | "auto"
 
 interface AppContextType {
     handlerHiddenScroll: (s: TypeOverflow) => void
+    isAuth: boolean
 }
 
-const AppContext = createContext<AppContextType | undefined>(undefined)
+export const AppContext = createContext<AppContextType | undefined>(undefined)
 
 interface AppProviderProps {
     children: ReactNode
@@ -15,6 +16,8 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const [key,setKey] = useState(Date.now())
+    const [isAuth, setIsAuth] = useState(false)
+
     const handlerHiddenScroll = (s: TypeOverflow) => {
         if (document) {
             if (document.body.style.overflowY === s) {
@@ -26,10 +29,18 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
 
     useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(token){
+            setIsAuth(true)
+        }
+    },[])
+
+    useEffect(() => {
+
         setKey(Date.now())
     }, [window.location])
     return (
-        <AppContext.Provider value={{ handlerHiddenScroll }}>
+        <AppContext.Provider value={{ handlerHiddenScroll,isAuth }}>
             <div key={key}>
 
          

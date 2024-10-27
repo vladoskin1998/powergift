@@ -2,9 +2,35 @@
 @import "../../style/mixin.scss";
 
 .auth {
+    max-height: inherit;
+    &-route{
+        height:auto;
+        overflow: hidden; 
+    }
+    &-scroll{
+        max-height: inherit;
+        padding-bottom: 80px;
+    }
+    &-submit{
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+    }
+    &-close{
+        display: flex;
+        justify-content: flex-end;
+        button{
+            width: 80px;
+            height: 80px;
+            @include flex-all-center;
+        }
+    }
     .basket-title {
         text-decoration: none;
-        height: 120px;
+        height: 80px;
+        padding: 0;
+        align-items: flex-start;
         @media screen and (max-width: 900px) {
             padding: 0;
         }
@@ -70,12 +96,28 @@
         font-family: "DIN Pro";
         color: $color_black;
         padding: 12px;
+        width: 100%;
         &::placeholder {
             font-size: 16px;
             font-weight: 400;
             line-height: 19px;
             letter-spacing: 0%;
             color: $color_black;
+        }
+        &-body{
+            display: flex;
+            width: 100%;
+            position: relative;
+        }
+        &-error{
+            position: absolute;
+            top: 47px;
+            left: 13px;
+            color: red;
+            font-size: 13px;
+            font-size: 700;
+            letter-spacing: 1px; 
+
         }
     }
     &-paymant {
@@ -114,6 +156,72 @@
         color: $color_white;
         span {
             text-decoration: underline;
+        }
+    }
+}
+
+.login{
+    .auth-header-login{
+        padding-bottom: 10px !important; 
+    }
+}
+.login-forget-pass{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 54px;
+    &-ratio{
+        display: flex;
+        align-items: center;
+        gap:10px;
+    }
+}
+
+.forget-pass{
+    .auth-header-login{
+        p{
+            text-align: center;
+        }
+    }
+    .auth-input-body{
+        padding-bottom: 100px;
+    }
+}
+
+.dev-fg-pass{
+    .auth-scroll{
+        padding-bottom: 38px !important;
+    }
+    &-img{
+        width: 205px;
+        height: 237px;
+        margin:  39px auto;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &-buttom{
+        height: 60px;
+        width: calc(100% - 130px);
+        display: grid;
+        grid-template-columns: 1fr 60px;
+        grid-template-rows: 60px;
+        margin: 0 65px;
+        background: linear-gradient(135deg, #4aff0b 0%, #00e5ff 100%);
+    
+        h5{
+            font-size: 19px;
+            font-weight: 800;
+            @include flex-all-center;
+            height: 60px;
+            border-right: 1px solid $color_grey5;
+        }
+        h6{
+            height: 60px;
+            @include flex-all-center;
         }
     }
 }

@@ -1,0 +1,267 @@
+ отримання підкатегорій в сайтбар
+ 
+Get(/all-subcategories) 
+ subcategoriesid
+ name
+ categoriesName
+ categoriesId
+ fileName
+
+
+ отримання товарів категорії
+
+ Get(/all-products?categoriesId={})
+ [
+    {
+        productsId
+   categoriesid
+   subcategorieId
+   files: [
+     {
+       fileName,
+       colors,
+       idColors
+     }
+   ]
+   article
+   brand
+    company
+    
+   name
+   price
+   numbersOfProducy
+   avaliableOfProducts
+   country
+   categorie
+   size
+   materials: [
+     idMaterials
+     valueMaterials
+   ]
+   characteristics: [
+     {"key": "value"} - особливості
+   ]
+   description
+    }
+ ]
+
+
+//отримування фільтрів для категорій
+
+Get(/get-filters?categoriesId)
+{"key": "value"}
+
+
+
+
+
+реєстрація 
+Post(/registration) 
+body:{
+    firstname
+    lastname
+    city
+    company
+    address
+    erdpo
+    phone
+    email
+    password
+    pdv true | false
+    foptov: "fop" | "tov"
+}
+res.data:{
+    token
+}
+
+
+
+логін
+Post(/login)
+body:{
+    email
+    password
+}
+res.data:{
+    token
+}
+
+
+відновлення паролю це як буде сторінка
+
+особистий кабінет
+Get(/user-data) +  auth:token
+firstname
+lastname
+phone
+email
+copmanies[
+    {
+        namecompany
+        erdpo
+        pdv : true | false
+        companyaddress
+    },{
+        namecompany
+        erdpo
+        pdv : true | false
+        companyaddress
+    },
+    myorders[
+        {
+            id
+            status
+            paymant
+            dataorder
+            price
+            comment
+
+        }, {
+            id
+            status
+            paymant
+            dataorder
+            price
+            comment
+
+        },
+    ]
+    додати заголовок "Мої бронювання"
+    додати кнопку "дивитися "
+    booking[
+        {
+            id
+            dateCreate
+            status
+            bill
+            price
+        }
+    ],
+    popular[
+        список товарів що вище
+    ]
+]
+
+деталі засовлення які ми можемо переглянути коли натискаємо кнопку  "дивитися"
+"повторити замовлення" - замість картинки hello в модальному вікні замовлень
+Get(/myorder) +  auth:token
+id
+dateCreate
+bill
+status
+meneger
+paymant
+deliver
+clientDataDeliver{
+    firstname
+    lastname
+    email
+    phone
+    city
+    deliveryAddress
+}
+coments
+products[
+    id
+    img
+    name
+    article
+    price
+    count
+    sumPrice
+    sell
+]
+
+деталі бронювання які ми можемо переглянути коли натискаємо кнопку  "дивитися"
+"підтвердити замовлення" - замість картинки hello в модальному вікні замовлень
+Get(/mybooking) +  auth:token
+id
+dateCreate
+bill?
+status
+meneger
+paymant
+deliver
+clientDataDeliver{
+    firstname
+    lastname
+    email
+    phone
+    city
+    deliveryAddress
+}
+coments
+products[
+    id
+    img
+    name
+    article
+    price
+    count
+    sumPrice
+    sell
+]
+
+підтвердити замовлення
+в корзині замінити адреса на "номер відділення"
+Post(/order) +  auth:token
+body:{
+    idProducts[
+        {id}
+        firstname
+        lastname
+        phone
+        email
+        deliveryAddress
+        city
+        country
+        state -> регіон
+    ]
+}
+res.data:{
+    status
+}
+
+
+
+[
+    {
+        categorieName:
+        categorieLogo:
+        subcategories:[
+            {
+                subCategoriesName
+                subCategorieLogo
+                products: [
+                    files: [
+                        {
+                        fileName,
+                        colors,
+                        idColors
+                        }
+                    ]
+                article
+                brand
+                company
+                name
+                price
+                numbersOfProducy
+                avaliableOfProducts
+                country
+                categorie
+                size
+                materials: [
+                    idMaterials
+                    valueMaterials
+                ]
+                characteristics: [
+                    {"key": "value"} - особливості
+                ]
+                description
+                }
+                ]
+            },
+           
+        ]
+    },
+]
