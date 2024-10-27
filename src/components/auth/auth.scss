@@ -211,7 +211,9 @@
         grid-template-rows: 60px;
         margin: 0 65px;
         background: linear-gradient(135deg, #4aff0b 0%, #00e5ff 100%);
-    
+        @media screen and (max-width: 900px) {
+            margin: 0 25px;
+        }
         h5{
             font-size: 19px;
             font-weight: 800;
