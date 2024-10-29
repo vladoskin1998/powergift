@@ -69,7 +69,10 @@ export const Footer = () => {
                 <button className="footer-mob-item">
                     <HeaderIconLike />
                 </button>
-                <button className="footer-mob-item" onClick={handlerOpenAuth}>
+                <button className="footer-mob-item" onClick={() => {
+                    handlerOpenAuth()
+                    alert("auth open")
+                    }}>
                     <HeaderIconUser />
                 </button>
                 <button className="footer-mob-item" onClick={handlerOpenBasket}>
