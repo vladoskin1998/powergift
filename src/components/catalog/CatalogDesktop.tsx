@@ -115,7 +115,7 @@ export const CatalogDesktop = () => {
                     <h4>Запросити прорахунок</h4>
                 </div>
                 <div className="catalog-main-product catalog-main-mob-product  catalog-main-product-mobitem">
-                    <div className="catalog-main-product-img">
+                    <div className="catalog-main-product-img catalog-main-product-img-shopcard">
                         <img src={baseURL + "/Images/ShopCat.png"} alt="" />
                     </div>
                 </div>

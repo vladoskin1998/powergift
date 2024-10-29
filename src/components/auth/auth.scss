@@ -3,6 +3,7 @@
 
 .auth {
     max-height: inherit;
+    z-index: 9999;
     &-route{
         height:auto;
         overflow: hidden; 
@@ -10,7 +11,11 @@
     &-scroll{
         max-height: inherit;
         padding-bottom: 80px;
+        @media screen and (max-width: 900px) {
+            padding-bottom: 140px;
+        }
     }
+
     &-submit{
         position: absolute;
         bottom: -1px;
