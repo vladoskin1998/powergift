@@ -74,10 +74,10 @@ export const Header = () => {
                 </video>
             </a>
             <div className="header-links-name">
-                <div>
+                <Link to={'/'}>
                     <h5>POWER </h5>
                     <p>GIFTS</p>
-                </div>
+                </Link>
                 <div className="header-links-mob-flag">
                     <button>
                         <img src={baseURL + "/Images/flagua.png"} alt="" />

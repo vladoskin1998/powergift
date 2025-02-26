@@ -15,30 +15,27 @@ import { useAppContext } from "../../context/AppContext"
 export const Footer = () => {
     const [openBasket, setOpenBasket] = useState(false)
     const [openAuth, setOpenAuth] = useState(false)
-    const {handlerHiddenScroll} = useAppContext()
+    const { handlerHiddenScroll } = useAppContext()
     const handlerOpenBasket = () => {
-        setOpenBasket(s => !s)
+        setOpenBasket((s) => !s)
         setOpenAuth(false)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
-  
     const handlerOpenAuth = () => {
-        setOpenAuth(s => !s)
+        setOpenAuth((s) => !s)
         setOpenBasket(false)
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     useEffect(() => {
-        if(openAuth || openBasket){
-            handlerHiddenScroll('hidden')
+        if (openAuth || openBasket) {
+            handlerHiddenScroll("hidden")
+        } else {
+            handlerHiddenScroll("auto")
         }
-        else{
-            handlerHiddenScroll('auto')
-        }
-    }, [openAuth , openBasket])
+    }, [openAuth, openBasket])
 
-    
     return (
         <div className="footer">
             <div className="footer-item footer-item-r">
@@ -50,12 +47,16 @@ export const Footer = () => {
                     <div className="footer-text-gr">©</div>
                     <div className="footer-text-gr">All right reserved.</div>
                 </div>
-                
+
                 <div className="footer-inv">
                     <div className="footer-inv-bag">
-                       <img src={baseURL + "/Images/Bag.png"} alt="" style={{width: '20px'}}/>
+                        <img
+                            src={baseURL + "/Images/Bag.png"}
+                            alt=""
+                            style={{ width: "20px" }}
+                        />
                     </div>
-                    
+
                     <div>Інвестування</div>
                 </div>
             </div>
@@ -69,10 +70,10 @@ export const Footer = () => {
                 <button className="footer-mob-item">
                     <HeaderIconLike />
                 </button>
-                <button className="footer-mob-item" onClick={() => {
-                    handlerOpenAuth()
-                    alert("auth open")
-                    }}>
+                <button
+                    className="footer-mob-item"
+                    onClick={() => handlerOpenAuth()}
+                >
                     <HeaderIconUser />
                 </button>
                 <button className="footer-mob-item" onClick={handlerOpenBasket}>
@@ -83,7 +84,7 @@ export const Footer = () => {
                 </button>
             </div>
             <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
-            <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
+            <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth} />
         </div>
     )
 }

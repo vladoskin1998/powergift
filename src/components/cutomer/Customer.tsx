@@ -4,13 +4,12 @@ import { RowLeft } from "./RowLeft"
 import { RowRight } from "./RowRight"
 
 
-export const Customer = () => {
+export default function Customer ()  {
     return (
         <div className="customer">
             <div className="customer-row">
               
                 <RowLeft />
-          
                 <RowRight />
          
             </div>

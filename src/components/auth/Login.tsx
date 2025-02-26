@@ -124,7 +124,7 @@ export const Login = ({
                         Запам'ятати мене
                     </button>
                     <button onClick={() => setRoute(ROUTEAUTH.FORGET_PASS)}>
-                        {" "}
+                
                         <span>Забули пароль?</span>
                     </button>
                 </div>

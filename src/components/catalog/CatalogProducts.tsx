@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     CATALOG_PRODUCT_TITLE,
     CATALOG_PRODUCT_CLIENT,
@@ -8,8 +9,46 @@ import {
     HeaderIconBasket,
     HeaderIconReload,
 } from "../svg/HeaderIcon"
+import { useLocation } from 'react-router-dom';
+import { useQuery } from "react-query";
+import { $api } from "../../api";
+
+
+const getCategoriesData = async (id:string) => {
+    try {
+         const {data} = await $api.get(`shop/products?categoriesId=${id}`)
+                return data
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 export const CatalogProducts = () => {
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const queryCategoryId = queryParams.get('categoriesId');
+    const [categoriesId,setCategoriesId] = useState('')
+
+    useEffect(() => {
+        if(queryCategoryId){
+            setCategoriesId(queryCategoryId)
+        }
+    }, [queryCategoryId])
+
+    const { data } = useQuery<any>(
+            ["shop/products", categoriesId],
+            () => getCategoriesData(categoriesId),
+            {
+                staleTime: Infinity,
+                cacheTime: 3600 * 24,
+            }
+        )
+    
+
+    https://dev.power-gifts.com.ua/api/shop/products?categoriesId=3
+
+
     return (
         <div className="catalog-product">
             <div className="catalog-product-header">

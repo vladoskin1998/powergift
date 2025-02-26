@@ -1,186 +1,86 @@
 import { useNavigate } from "react-router-dom"
 import { baseURL } from "../../utils/utils"
 import { HeaderIconSearch } from "../svg/HeaderIcon"
-import {
-    NavbarIconsElectronics,
-    NavbarIconsBags,
-    NavbarIconsCar,
-    NavbarIconsCloses,
-    NavbarIconsDishes,
-    NavbarIconsGifts,
-    NavbarIconsHome,
-    NavbarIconsOffice,
-    NavbarIconsSets,
-    NavbarIconsTools,
-} from "../svg/NavbarIcons"
+import { ReactSVG } from "react-svg"
 import "./navbar.scss"
+import { $api } from "../../api"
+import { useQuery } from "react-query"
+import { Category, NavbarCategoriesRes } from "../../type"
+import { useState } from "react"
+import { Link } from "react-router-dom"
+
+const getNavBarData = async () => {
+    try {
+        const {data} = await $api.get("shop/categories")
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 export const Navbar = () => {
     const navigate = useNavigate()
+    const [hoveredCategory, setHoveredCategory] = useState<Category | null>(
+        null
+    )
 
-    const toCard = () => {
-        navigate("/card")
+    const [isShowSubCategories, setIsShowSubCutegories] = useState(false)
+
+    const { data } = useQuery<NavbarCategoriesRes>(
+        "shop/categories",
+        getNavBarData,
+        {
+            cacheTime: 3600 * 24,
+        }
+    )
+
+    const navToCatelog = (e:React.MouseEvent, id:number | undefined) => {
+        if(!id){
+            console.error('id is undefinded')
+        }
+        e.preventDefault()
+       navigate(`/catalog/products?categoriesId=${id}`)
     }
+
     return (
-        <div className="navbar">
-            <button className="navbar-item">
-                <button className="navbar-item-ico">   <NavbarIconsElectronics /></button>
-             
-                <p>Електроніка</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico">  <NavbarIconsTools /></button>
-              
-                <p>Інструменти</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"> <NavbarIconsCloses /></button>
-               
-                <p>Одяг</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"> <NavbarIconsBags /></button>
-               
-                <p>Сумки</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico">   <NavbarIconsDishes /></button>
-             
-                <p>Посуд</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"> <NavbarIconsHome /></button>
-               
-                <p>Дім</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"> <NavbarIconsOffice /></button>
-               
-                <p>Офіс</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"><NavbarIconsCar /></button>
-                
-                <p>Авто</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico"> <NavbarIconsSets /></button>
-               
-                <p>Набори</p>
-            </button>
-            <button className="navbar-item">
-                <button className="navbar-item-ico">  <NavbarIconsGifts /></button>
-              
-                <p>Пакування</p>
-            </button>
-            <div className="navbar-titles">
-                <div>
-                    <button
-                        className="navbar-titles-item"
-                        style={{ borderTop: 0 }}
-                    >
-                        Електроніка
-                    </button>
-                    <button className="navbar-titles-item">Інструменти</button>
-                    <button className="navbar-titles-item">Одяг</button>
-                    <button className="navbar-titles-item">Сумки</button>
-                    <button className="navbar-titles-item">Посуд</button>
-                    <button className="navbar-titles-item">Дім</button>
-                    <button className="navbar-titles-item">Офіс</button>
-                    <button className="navbar-titles-item">Авто</button>
-                    <button className="navbar-titles-item">Набори</button>
-                    <button className="navbar-titles-item">Пакування</button>
+        <div className="navbar"  >
+            {data
+                ?.filter((item) => item.icon)
+                .map((item, index) => (
+                    <Link to={`/catalog/products?categoriesId=${item.categoryId}`} className="navbar-item" key={index} >
+                        <button className="navbar-item-ico">
+                            {/* <ReactSVG src={item?.icon || ''} beforeInjection={(svg) => svg.setAttribute("crossorigin", "anonymous")}
+                        /> */}
+                            <img src={item?.icon || ""} alt="" />
+                        </button>
+                        <p >{item.title}</p>
+                    </Link>
+                ))}
+
+            <div className="navbar-titles" >
+                <div >
+                    {data?.map((item, index) => (
+                        <button
+                            className="navbar-titles-item"
+                            style={!index ? { borderTop: 0 } : {}}
+                            onMouseEnter={() => setHoveredCategory(item)}
+                            
+                            onClick={e => navToCatelog(e, item?.categoryId)}
+                        >
+                            {item.title}
+                        </button>
+                    ))}
                 </div>
                 <div className="navbar_products">
-                    <div className="catalog-main-list" onClick={toCard}>
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={
-                                        baseURL +
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
-                                    }
-                                    alt=""
-                                />
+                    <div className="catalog-main-list" onMouseLeave={() => setHoveredCategory(null)} onClick={() => setHoveredCategory(null)}>
+                        {hoveredCategory?.subcategories.map((item) => (
+                            <div className="catalog-main-product" onClick={(e) => navToCatelog(e, item?.categoryId)}>
+                                <div className="catalog-main-product-img">
+                                    <img src={item?.icon || ""} alt="" />
+                                </div>
+                                <h5>{item.title}</h5>
                             </div>
-                            <h5>Power product $</h5>
-                        </div>
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={
-                                        baseURL +
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
-                                    }
-                                    alt=""
-                                />
-                            </div>
-
-                            <h5>Power product $</h5>
-                        </div>
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={
-                                        baseURL +
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
-                                    }
-                                    alt=""
-                                />
-                            </div>
-                            <h5>Power product $</h5>
-                        </div>
-
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={
-                                        baseURL +
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
-                                    }
-                                    alt=""
-                                />
-                            </div>
-                            <h5>Power product $</h5>
-                        </div>
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={
-                                        baseURL +
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
-                                    }
-                                    alt=""
-                                />
-                            </div>
-                            <h5>Power product $</h5>
-                        </div>
-                        <div className="catalog-main-product">
-                            <div className="catalog-main-product-lihgt">
-                                <img
-                                    src={baseURL + "/Images/lightning.png"}
-                                    alt=""
-                                />
-                            </div>
-                            <p>Cтвори свій унікальній Power gift!</p>
-                            <h4>Запросити прорахунок</h4>
-                        </div>
-                        <div className="catalog-main-product catalog-main-mob-product  catalog-main-product-mobitem">
-                            <div className="catalog-main-product-img">
-                                <img
-                                    src={baseURL + "/Images/ShopCat.png"}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="catalog-main-product catalog-main-product-mobitem"
-                            // onClick={handleOpenFilter}
-                        >
-                            <div className="catalog-main-product-img catalog-main-mob-product-search">
-                                <HeaderIconSearch />
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

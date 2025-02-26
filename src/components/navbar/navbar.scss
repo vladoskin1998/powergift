@@ -34,15 +34,18 @@
     }
 }
 
-.right-navbar {
-    min-height: 100%;
-    width: 81px;
-    background-color: $color_grey;
-    border-left: 1px solid $color_border;
-    border-right: 1px solid $color_border;
+
+.navbar-item{
+
+   &-link{
+    @include flex-all-center;
+   }
+}
+.navbar_products::-webkit-scrollbar {
+    width: 0px; 
 }
 
-.navbar_products::-webkit-scrollbar {
+.navbar_products:hover{
     width: 0px; 
 }
 

@@ -16,7 +16,7 @@ export const Catalog = () => {
             <Route path="filter-products" element={<CatalogFilterProducts />} />
             <Route path="products" element={<CatalogProducts />} />
             <Route path="filter-main" element={<CatalogFilterMain />} />
-            <Route path="*" element={<CatalogDesktop />} />
+            <Route path="*" element={<CatalogProducts />} />
         </Routes>
     )
 }
