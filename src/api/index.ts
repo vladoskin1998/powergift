@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const HREF = "http://dev.power-gifts.com.ua/api/"
+export const HREF = "https://dev.power-gifts.com.ua/api/"
 
 export const $api = axios.create({
 	baseURL: HREF,
