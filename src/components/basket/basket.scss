@@ -116,6 +116,9 @@
         display: grid;
         padding: 14px 11px;
         grid-template-columns: 100px 1fr;
+        &-product{
+            padding: 10px;
+        }
     }
     &-right {
         display: flex;
@@ -493,11 +496,6 @@
         line-height: 28px;
         letter-spacing: 0%;
     }
-    &-status-text {
-    }
-
-    &-status-type {
-    }
 
     &-manager {
         font-size: 20px;
@@ -537,8 +535,7 @@
         
     }
 
-    &-delivery-method {
-    }
+   
 
     &-address {
         text-align: end;

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { CustomerIconLeftChevron } from "../svg/CustomerIcon"
+import { CustomerIconLeftChevron } from "../../components/svg/CustomerIcon"
 
 const option = ["Тов “Павэр Гіфт”", "Тов “Павэр Гіфт1”", "Тов “Павэр Гіфт2”"]
 export const CustomerSelect = () => {

@@ -8,31 +8,31 @@
             <path
                 d="M14 14.5C14 13.9696 14.2107 13.4609 14.5858 13.0858C14.9609 12.7107 15.4696 12.5 16 12.5C16.5304 12.5 17.0391 12.7107 17.4142 13.0858C17.7893 13.4609 18 13.9696 18 14.5"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M28 12.5H29"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M4 12.5H3"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M4 12.5C4 18.5 5 20.5 9 20.5C13 20.5 14 18.5 14 12.5C14 12.5 13 11.5 9 11.5C5 11.5 4 12.5 4 12.5Z"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M28 12.5C28 18.5 27 20.5 23 20.5C19 20.5 18 18.5 18 12.5C18 12.5 19 11.5 23 11.5C27 11.5 28 12.5 28 12.5Z"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>

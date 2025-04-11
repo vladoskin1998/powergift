@@ -1,12 +1,10 @@
-import React, { useState } from "react"
-import { CatalogFilterCheckbox } from "../catalog/CatalogFilterCheckbox"
-import { HeaderIconClose } from "../svg/HeaderIcon"
+import { useState } from "react"
+import { HeaderIconClose } from "../../components/svg/HeaderIcon"
 import * as Yup from "yup"
 import { useFormik } from "formik"
 import { $api } from "../../api"
 import { useNavigate } from "react-router-dom"
-import { AuthIconTougch } from "../svg/AuthIcon"
-import { CatalogFilterRatio } from "../catalog/CatalogFilterRatio"
+import { AuthIconTougch } from "../../components/svg/AuthIcon"
 import { ROUTEAUTH } from "./AuthRouter"
 
 interface FormValues {

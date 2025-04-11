@@ -9,32 +9,38 @@ import {
     HeaderIconBasket,
 } from "../svg/HeaderIcon"
 import "./footer.scss"
-import { AuthRouter } from "../auth/AuthRouter"
+import { AuthRouter } from "../../page/auth/AuthRouter"
 import { useAppContext } from "../../context/AppContext"
+import { useBasketStore } from "../basket/basket.store"
 
 export const Footer = () => {
-    const [openBasket, setOpenBasket] = useState(false)
+    
+    const {isOpenBasket, setOpenBasket} = useBasketStore()
+
     const [openAuth, setOpenAuth] = useState(false)
     const { handlerHiddenScroll } = useAppContext()
-    const handlerOpenBasket = () => {
-        setOpenBasket((s) => !s)
+
+
+
+    const handlerOpenBasket = (b:boolean) => {
+        setOpenBasket(b)
         setOpenAuth(false)
-        window.scrollTo({ top: 0, behavior: "smooth" })
+       
     }
 
     const handlerOpenAuth = () => {
         setOpenAuth((s) => !s)
         setOpenBasket(false)
-        window.scrollTo({ top: 0, behavior: "smooth" })
+
     }
 
     useEffect(() => {
-        if (openAuth || openBasket) {
+        if (openAuth || isOpenBasket) {
             handlerHiddenScroll("hidden")
         } else {
             handlerHiddenScroll("auto")
         }
-    }, [openAuth, openBasket])
+    }, [openAuth, isOpenBasket])
 
     return (
         <div className="footer">
@@ -76,14 +82,14 @@ export const Footer = () => {
                 >
                     <HeaderIconUser />
                 </button>
-                <button className="footer-mob-item" onClick={handlerOpenBasket}>
+                <button className="footer-mob-item" onClick={() => handlerOpenBasket(true)}>
                     <HeaderIconBasket />
                 </button>
                 <button className="footer-mob-item">
                     <HeaderIconSearch />
                 </button>
             </div>
-            <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
+            <Basket  />
             <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth} />
         </div>
     )

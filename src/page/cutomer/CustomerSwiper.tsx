@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
-import { CustomerIconSee } from "../svg/CustomerIcon"
+import { CustomerIconSee } from "../../components/svg/CustomerIcon"
 
 export const CustomerSwiper = () => {
     const [isVertical, setIsVertical] = useState(false)

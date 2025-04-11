@@ -24,8 +24,9 @@ export const BasketSelect = () => {
                     isOpen && "busket--select-list-active"
                 }`}
             >
-                {option.map((item) => (
+                {option.map((item, index) => (
                     <button
+                    key={index}
                         className="busket--select-list-item"
                         onClick={() => {
                             setValue(item)

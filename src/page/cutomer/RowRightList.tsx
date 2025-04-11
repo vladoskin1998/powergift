@@ -6,7 +6,7 @@ import "swiper/css"
 
 
 import { baseURL } from "../../utils/utils"
-import { HeaderIconBasket } from "../svg/HeaderIcon"
+import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 
 interface CatalogListItemProps {
     imageSrc: string

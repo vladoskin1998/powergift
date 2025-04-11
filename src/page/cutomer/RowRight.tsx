@@ -1,11 +1,11 @@
 import { baseURL } from "../../utils/utils"
-import { CatalogIconFilter, CatalogIconSort } from "../svg/CatalogIcon"
+import { CatalogIconFilter, CatalogIconSort } from "../../components/svg/CatalogIcon"
 import {
     CustomerIconCube,
     CustomerIconLike,
     CustomerIconSee,
-} from "../svg/CustomerIcon"
-import { HeaderIconReload } from "../svg/HeaderIcon"
+} from "../../components/svg/CustomerIcon"
+import { HeaderIconReload } from "../../components/svg/HeaderIcon"
 
 import { CustomerSwiper } from "./CustomerSwiper"
 import { RowRightList } from "./RowRightList"

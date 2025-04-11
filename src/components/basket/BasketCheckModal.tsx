@@ -10,11 +10,13 @@ export const BasketCheckModal = ({
     setIsOpenModalCheck: () => void
 }) => {
     const { handlerHiddenScroll } = useAppContext()
-    useEffect(() => {
-        handlerHiddenScroll("hidden")
-        window.scrollTo({ top: 0, behavior: "smooth" })
-        return () => handlerHiddenScroll("scroll")
-    }, [])
+    // useEffect(() => {
+    //     handlerHiddenScroll("hidden")
+    //     window.scrollTo({ top: 0, behavior: "smooth" })
+    //     return () => handlerHiddenScroll("scroll")
+    // }, [])
+
+
     return (
         <div className="basket-modal">
             <div className="basket-modal-body custom--scroll custom--scroll-dark">
@@ -116,12 +118,12 @@ export const BasketCheckModal = ({
                     className=" basket-list basket-modal-list "
                     style={{ overflow: "hidden" }}
                 >
-                    {[1, 2].map((item) => (
+                    {[1, 2].map(() => (
                         <div className="basket-item basket-list-item">
                             <div className="basket-list-item-img">
                                 <img
                                     src={
-                                        baseURL +
+                                  
                                         "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
                                     }
                                     alt=""
@@ -188,7 +190,7 @@ export const BasketCheckModal = ({
                     </p>
                     <div className="basket-modal-footer-img">
                         <img
-                            src={baseURL + "/Images/hellocustomer.png"}
+                            src={"/Images/hellocustomer.png"}
                             alt=""
                         />
                     </div>

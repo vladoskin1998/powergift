@@ -2,7 +2,7 @@
 import {
     CatalogIconChevron,
     CatalogIconCircle,
-} from "../svg/CatalogIcon"
+} from "../../components/svg/CatalogIcon"
 import { useState } from "react"
 import { CatalogFilterSlider } from "./CatalogFilterSlider"
 import { CatalogFilterCheckbox } from "./CatalogFilterCheckbox"

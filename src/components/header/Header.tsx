@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {
     HeaderIconBasket,
     HeaderIconBurger,
@@ -13,46 +13,49 @@ import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
 import { useEffect, useRef, useState } from "react"
 import { Basket } from "../basket/Basket"
-import { AuthRouter } from "../auth/AuthRouter"
+import { AuthRouter } from "../../page/auth/AuthRouter"
+import { useBasketStore } from "../basket/basket.store"
 
 export const Header = () => {
-    const navigate = useNavigate()
-    const [open, setOpen] = useState(false)
-    const [openBasket, setOpenBasket] = useState(false)
-    const [openAuth, setOpenAuth] = useState(false)
 
+    const [open, setOpen] = useState(false)
+    const [openAuth, setOpenAuth] = useState(false)
 
     let videoRef = useRef<HTMLVideoElement | null>(null)
     const handerClose = () => {
         setOpen(false)
     }
-
+    const {isOpenBasket, setOpenBasket} = useBasketStore()
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.play().catch((error) => {
-                console.error("Auto-play was prevented:", error)
-            })
-        }
+        const handleVisibilityChange = () => {
+          if (!document.hidden) {
+            videoRef.current?.play();
+          }
+        };
+      
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+      
         return () => {
-            videoRef.current = null
-        }
-    }, [])
-
-    const handlerOpenBasket = () => {
-        setOpenBasket(s => !s)
+          document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+      }, []);
+    const handlerOpenBasket = (b:boolean) => {
+        setOpenBasket(b)
         setOpenAuth(false)
     }
   
     const handlerOpenAuth = () => {
         setOpenAuth(s => !s)
-        setOpenBasket(false)
+        // setOpenBasket(false)
     }
 
     const navToHome = () => {
   //      navigate('/')
     }
 
+    console.log("isOpenBasket", isOpenBasket);
+    
     return (
         <div className="header">
             <a className="header-logo" onClick={navToHome} href="/">
@@ -127,12 +130,12 @@ export const Header = () => {
                 <button className="header-item"  onClick={handlerOpenAuth}>
                     <HeaderIconUser />
                 </button>
-                <button className="header-item" onClick={handlerOpenBasket}>
+                <button className="header-item" onClick={() => handlerOpenBasket(!isOpenBasket )} id='basket-pc'>
                     <HeaderIconBasket />
                 </button>
             </div>
             <HeaderNavBar open={open} handerClose={handerClose} />
-            <Basket openBasket={openBasket} setOpenBasket={handlerOpenBasket} />
+            <Basket />
             <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
         </div>
     )

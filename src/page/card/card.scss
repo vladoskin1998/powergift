@@ -73,6 +73,9 @@
             border-right: 1px solid $color_border;
             border-bottom: 1px solid $color_border;
             background-color: $color_white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             @media screen and (max-width: 1200px) {
                 height: 90px;
                 min-width: 90px;
@@ -96,9 +99,7 @@
         letter-spacing: 0%;
         color: $color_white1;
         display: flex;
-        p{
-            opacity: 0.4;
-        }
+       
         span{
            @include gradient-text($bgr: $backgroundgradient1);
         }
@@ -110,12 +111,15 @@
         font-weight: 300;
         line-height: -1px;
         color: $color_white1;
+        @media screen and (max-width: 1600px) {
+            margin-bottom: 34px;
+        }
     }
 }
 
 .card-desc-info {
     display: grid;
-    grid-template-columns: 1fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     column-gap: 60px;
     @media screen and (max-width: 1600px) {
         grid-template-columns: 1fr ;
@@ -131,13 +135,17 @@
     }
     &-body1 {
         display: flex;
-        gap: 40px;
+        column-gap: 28px;
+
+        row-gap: 40px;
+        @media screen and (max-width: 1500px) {
+            column-gap: 18px;
+            row-gap: 30px;
+        }
         &-1 {
             margin-bottom: 40px;
         }
-        &-2 {
-            margin-bottom: 28px;
-        }
+     
     }
     &-undertitle {
         font-size: 12px;
@@ -185,6 +193,10 @@
         max-width: fit-content;
         display: flex;
         flex-direction: column;
+    }
+    &-bodywrap{
+        flex-wrap: wrap;
+        
     }
     &-body2 {
         display: flex;
@@ -236,11 +248,13 @@
 }
 
 .card-desc-info-order {
+    padding: 1px;
     margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     &-ord {
+        padding: 1px;
         width: 226px;
         height: 48px;
         display: flex;
@@ -253,7 +267,7 @@
             line-height: -1px;
             letter-spacing: 0%;
             color: $color_black;
-            border: 1px solid $color_grey;
+            
             border-right: 0;
             flex-grow: 1;
             height: 48px;
@@ -290,7 +304,11 @@
         height: 48px;
         width: 48px;
         position: relative;
+        @include flex-all-center;
         transition: all 1s;
+        &-like{
+            padding-top: 2px;
+        }
         & > div {
             position: absolute;
             top: 1px;
@@ -303,7 +321,11 @@
         &:hover {
             background: $backgroundgradient1;
             border: 0;
-     
+            svg{
+                path{
+                    fill: $color_white1;
+                }
+            }
         }
     }
 }
@@ -311,7 +333,7 @@
 .card-desc-info-desc {
     &-underline {
         font-size: 20px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: -1px;
         letter-spacing: 0%;
         text-align: left;
@@ -347,6 +369,14 @@
     .card-slider-dots-button{
         height: 50px;
         min-width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            
+        }
     }
     .card-slider-route{
         gap: 4px;
@@ -374,7 +404,7 @@
     }
     .card-desc-mob-r1{
         display: flex;
-        column-gap: 40px;
+        justify-content: space-between;
         row-gap: 30px;
         flex-wrap: wrap;
         align-items: flex-end;
@@ -391,4 +421,23 @@
     .card-desc-info-undertitle{
         padding-bottom: 4px;
     }
+}
+
+.card-desc-deliver{
+    &-img{
+        margin-top: 19px;
+        width: 30px;
+    }
+    &-img-fc{
+        margin-top: 0px;
+    }
+}
+
+.card-desc-info-body1-2{
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.card-desc-info-textcolor{
+    width: 50px;
 }

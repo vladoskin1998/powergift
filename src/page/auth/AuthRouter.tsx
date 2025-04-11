@@ -18,7 +18,7 @@ export const AuthRouter = ({
     openAuth: boolean
     setOpenAuth: () => void
 }) => {
-    console.log("openAuth------->", openAuth)
+
 
     const [route, setRoute] = useState(ROUTEAUTH.DEV_FORGET_PASS)
 
@@ -35,7 +35,7 @@ export const AuthRouter = ({
     }
 
     return (
-        <div className={`basket  ${openAuth && "basket-open"}  auth-route`}>
+        <div className={`modal-login auth-route basket  ${openAuth && "basket-open"}  `}>
             {route === ROUTEAUTH.REGISTRATION && (
                 <Registration
                     openAuth={openAuth}

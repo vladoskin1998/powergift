@@ -1,23 +1,32 @@
-import { useEffect, useState } from "react";
+
 import {
     CATALOG_PRODUCT_TITLE,
     CATALOG_PRODUCT_CLIENT,
 } from "../../utils/constant"
 import { baseURL } from "../../utils/utils"
-import { CatalogIconConception } from "../svg/CatalogIcon"
-import {
-    HeaderIconBasket,
-    HeaderIconReload,
-} from "../svg/HeaderIcon"
-import { useLocation } from 'react-router-dom';
-import { useQuery } from "react-query";
-import { $api } from "../../api";
+import { CatalogIconConception } from "../../components/svg/CatalogIcon"
+import { HeaderIconBasket, HeaderIconReload } from "../../components/svg/HeaderIcon"
+import {  useNavigate, useParams } from "react-router-dom"
+import { useQuery } from "react-query"
+import { $api } from "../../api"
+import { ProductType } from "../../type"
+import { IconsGifts } from "../../components/svg/IconGifts"
+import { Loader } from "../../components/loader/Loader"
+import { useBasketStore } from "../../components/basket/basket.store"
 
-
-const getCategoriesData = async (id:string) => {
+const getCategoriesData = async (id: string) => {
     try {
-         const {data} = await $api.get(`shop/products?categoriesId=${id}`)
-                return data
+        const { data } = await $api.get(`shop/products?categoriesId=${id}`)
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+const getAllProduct = async () => {
+    try {
+        const { data } = await $api.get(`shop/products`)
+        return data
     } catch (error) {
         console.error(error)
     }
@@ -25,28 +34,46 @@ const getCategoriesData = async (id:string) => {
 
 export const CatalogProducts = () => {
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const queryCategoryId = queryParams.get('categoriesId');
-    const [categoriesId,setCategoriesId] = useState('')
+    const {addProductBasketList} = useBasketStore()
+    const { categoriesId } = useParams()
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        if(queryCategoryId){
-            setCategoriesId(queryCategoryId)
+
+    const { data, isLoading } = useQuery<ProductType[]>(
+        ["shop/products&categoriesId", categoriesId],
+        () => {
+            return categoriesId
+                ? getCategoriesData(categoriesId)
+                : getAllProduct()
+        },
+        {
+            staleTime: Infinity,
+            cacheTime: 3600 * 24 * 10,
         }
-    }, [queryCategoryId])
+    )
 
-    const { data } = useQuery<any>(
-            ["shop/products", categoriesId],
-            () => getCategoriesData(categoriesId),
-            {
-                staleTime: Infinity,
-                cacheTime: 3600 * 24,
-            }
+    const navToCard = (
+        e: React.MouseEvent,
+        idprod: number | undefined,
+        catid?: number
+    ) => {
+        if (!idprod) {
+            console.error("idcat or idprod is undefinded")
+        }
+        e.preventDefault()
+        navigate(
+            `/catalog/${categoriesId ? categoriesId : catid}/card/${idprod}`
         )
-    
+    }
 
-    https://dev.power-gifts.com.ua/api/shop/products?categoriesId=3
+    const addToBasket = (e: React.MouseEvent, product: ProductType) => {
+        e.stopPropagation()
+        addProductBasketList(product, 1)
+    }
+
+    if(isLoading){
+        return <Loader/>
+    }
 
 
     return (
@@ -83,11 +110,11 @@ export const CatalogProducts = () => {
                     <div className="catalog-product-nav-mob-img">
                         <img src={baseURL + "/Images/helloworld.png"} alt="" />
                     </div>
-                    {CATALOG_PRODUCT_TITLE.map((item) => (
-                        <div className="catalog-product-nav-item">
+                    {CATALOG_PRODUCT_TITLE.map((item, key) => (
+                        <div className="catalog-product-nav-item" key={key}>
                             <img
                                 src={baseURL + `/Images/${item.label}`}
-                                alt=""
+                                alt={item.label}
                             />
                             <h5>{item.h5}</h5>
                             <p>{item.p1}</p>
@@ -100,76 +127,85 @@ export const CatalogProducts = () => {
                 </div>
                 <div className="catalog-filter-body catalog-product-body">
                     <div className="catalog-filter-list">
-                        {[
-                            "/ImagesTmp/botl1.png",
-                            "/ImagesTmp/botl2.png",
-                            "/ImagesTmp/botl3.png",
-                            "/ImagesTmp/botl4.png",
-                            "/ImagesTmp/botl1.png",
-                            "/ImagesTmp/botl1.png",
-                            "/ImagesTmp/botl2.png",
-                            "/ImagesTmp/botl3.png",
-                            "/ImagesTmp/botl4.png",
-                            "/ImagesTmp/botl1.png",
-                        ].map((item) => (
-                            <div className="catalog-filter-list-item">
-                                <div className="catalog-filter-list-item-img">
-                                    <img src={baseURL + item} alt="" />
+                        {data?.map((product) => (
+                            <div
+                                onClick={(e) =>
+                                    navToCard(
+                                        e,
+                                        product.id,
+                                        product?.category?.id
+                                    )
+                                }
+                                key={product.id}
+                                className="catalog-filter-list-item"
+                            >
+                                <div className="catalog-filter-list-item-img catalog-filter-list-item-gift-ico">
+                                    {product.files.images[0] ? (
+                                        <img
+                                            src={product.files.images[0]}
+                                            alt={product.title}
+                                        />
+                                    ) : (
+                                        <IconsGifts />
+                                    )}
                                 </div>
 
                                 <div className="catalog-filter-list-item-foot">
-                                    <div className="catalog-product-item-staff">
+                                    {/* <div className="catalog-product-colors">
+                                        {product.attributes?.[0]?.properties?.map(
+                                            (color) => (
+                                                <div className="catalog-product-colors-c" style={{background: color?.color || '#fff'}}/>
+                                            )
+                                        )}
+                                    </div> */}
+                                    {/* <div className="catalog-product-item-staff">
                                         <img
                                             src={
                                                 baseURL +
                                                 "/Images/New staff.png"
                                             }
-                                            alt=""
+                                            alt="New"
                                         />
-                                    </div>
-                                    <img
-                                        src={baseURL + "/Images/Colors.png"}
-                                        alt=""
-                                    />
+                                    </div> */}
                                     <div className="catalog-product-item-thr">
                                         <div>
                                             <span> Артикул:</span>{" "}
-                                            <b>PG-240143</b>{" "}
+                                            <b>{product.id}</b>
                                         </div>
                                         <div>
                                             <span>Бренд:</span>{" "}
-                                            <p>Fun Factory</p>{" "}
-                                        </div>
-                                        <div>
-                                            <span>Бренд:</span> <h6>Floyd</h6>
+                                            <p>{product.category.name}</p>
                                         </div>
                                     </div>
                                     <h6 className="catalog-filter-list-item-foot-price">
-                                        Пляшка для води “Yummy” 600 мл.
+                                        {product.title}
                                     </h6>
                                     <p className="catalog-filter-list-item-foot-order">
-                                        ТОВАР Під замовлення
+                                        {product.stock > 0
+                                            ? "В наявності"
+                                            : "Під замовлення"}
                                         <img
                                             src={baseURL + "/Images/Basket.png"}
-                                            alt=""
+                                            alt="Basket"
                                         />
                                     </p>
                                     <div className="catalog-filter-list-bot">
                                         <div className="catalog-product-item-bot">
                                             <div>
-                                                <h5>750</h5>
+                                                <h5>{product.price}</h5>
                                                 <span>грн</span>
                                             </div>
                                             <div className="catalog-product-item-bot-it">
-                                                1029
+                                                {product.stock}
                                                 <p>в наявності</p>
                                             </div>
-                                            <div className="catalog-product-item-bot-it">
-                                                1029
-                                                <p>доступно</p>
-                                            </div>
                                         </div>
-                                        <button className="catalog-filter-list-item-foot-but">
+                                        <button
+                                            className="catalog-filter-list-item-foot-but"
+                                            onClick={(e) =>
+                                                addToBasket(e, product)
+                                            }
+                                        >
                                             <div className="catalog-filter-list-item-foot-but-ico">
                                                 <HeaderIconBasket />
                                             </div>
@@ -198,8 +234,8 @@ export const CatalogProducts = () => {
                     </p>
                 </div>
                 <div className=" catalog-product-client-list">
-                    {CATALOG_PRODUCT_CLIENT.map((item) => (
-                        <div className="catalog-product-nav-item">
+                    {CATALOG_PRODUCT_CLIENT.map((item, key) => (
+                        <div className="catalog-product-nav-item" key={key}>
                             <img
                                 src={baseURL + `/Images/${item.label}`}
                                 alt=""
@@ -230,7 +266,7 @@ export const CatalogProducts = () => {
                         Pro
                         <span className="catalog-product-brand-list-first">
                             Stuff
-                        </span>{" "}
+                        </span>
                     </h4>
                     <h4>
                         Go

@@ -1,11 +1,11 @@
 import {
     CatalogIconFilter,
     CatalogIconSort,
-} from "../svg/CatalogIcon"
+} from "../../components/svg/CatalogIcon"
 import {
     HeaderIconArrow,
     HeaderIconReload,
-} from "../svg/HeaderIcon"
+} from "../../components/svg/HeaderIcon"
 import { baseURL } from "../../utils/utils"
 import { CatalogFilter } from "./CatalogFilter"
 

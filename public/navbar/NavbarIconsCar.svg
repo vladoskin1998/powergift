@@ -12,37 +12,37 @@
             <path
                 d="M16 4C8.26876 4 2.00001 10.2625 2.00001 17.9937C1.99527 21.4143 3.24754 24.7173 5.51876 27.275C5.58751 27.35 5.65001 27.425 5.71876 27.4937C5.86666 27.6539 6.0462 27.7815 6.24601 27.8687C6.44582 27.9558 6.66154 28.0005 6.87951 27.9999C7.09748 27.9993 7.31296 27.9534 7.5123 27.8652C7.71163 27.777 7.89048 27.6484 8.03751 27.4875C9.05095 26.3862 10.2818 25.507 11.6524 24.9057C13.0229 24.3043 14.5033 23.9938 16 23.9938C17.4967 23.9938 18.9771 24.3043 20.3476 24.9057C21.7182 25.507 22.9491 26.3862 23.9625 27.4875C24.1095 27.6484 24.2884 27.777 24.4877 27.8652C24.6871 27.9534 24.9025 27.9993 25.1205 27.9999C25.3385 28.0005 25.5542 27.9558 25.754 27.8687C25.9538 27.7815 26.1334 27.6539 26.2813 27.4937L26.4813 27.275C28.7525 24.7173 30.0048 21.4143 30 17.9937C30 10.2625 23.7313 4 16 4Z"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M16 8V10"
                 stroke="white"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
             />
             <path
                 d="M26 18H24"
                 stroke="white"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
             />
             <path
                 d="M8 18H6"
                 stroke="white"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
             />
             <path
                 d="M10.3431 12.3439L8.92871 10.9296"
                 stroke="white"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
             />
             <path
                 d="M21.657 12.3439L23.0714 10.9296"
                 stroke="white"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
             />
         </svg>

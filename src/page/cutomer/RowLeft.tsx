@@ -6,7 +6,7 @@ import {
     CustomerIconLeftChevron,
     CustomerIconPen,
     CustomerIconUser,
-} from "../svg/CustomerIcon"
+} from "../../components/svg/CustomerIcon"
 import { CustomerSelect } from "./CustomerSelect"
 
 const docs = [
