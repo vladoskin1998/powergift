@@ -9,6 +9,8 @@ import { useBasketStore } from './basket.store'
 import { BaskerProduct } from '../../type'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useQuery } from 'react-query'
+import { BasketApi } from './api.basket'
 export const Basket = () => {
     const {
         initProductBasketList,
@@ -26,43 +28,48 @@ export const Basket = () => {
     const [isOpenModalCheck, setIsOpenModalCheck] = useState(false)
     const location = useLocation()
 
+    const { data, isLoading, error } = useQuery( ['shopInfo'], () => BasketApi.getInfoShop(),
+    )
+    
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
-            phone: '',
-            country: '',
-            region: '',
-            city: '',
-            address: '',
+            delivery_method_id: 1,
+            delivery_warehouse: '',
+            delivery_name: '',
+            delivery_lastname: '',
+            delivery_phone: '',
+            delivery_address: '',
+            delivery_city: '',
+            delivery_country: '',
+            delivery_region: '',
+            comment: '',
+            order_type: '',
         },
         validationSchema: Yup.object({
-            firstName: Yup.string().required("Введіть ім'я"),
-            lastName: Yup.string().required('Введіть прізвище'),
-             phone: Yup.string()
-                  .required("Обов'язкове поле")
-                  .matches(
-                      /^(0[0-9]{9}|\+380[0-9]{9})$/,
-                      "Використовуйте формат +380XXXXXXXXX або 0XXXXXXXXX"
-                  ),
-            country: Yup.string().required('Введіть країну'),
-            region: Yup.string().required('Введіть область/район'),
-            city: Yup.string().required('Введіть місто'),
-            address: Yup.string().required(activeDeliver === 2 ? 'Введіть номер відділення' : 'Введіть адресу'),
+            delivery_method_id: Yup.number().nullable().required('Оберіть спосіб доставки'),
+            delivery_name: Yup.string().required("Введіть ім'я"),
+            delivery_lastname: Yup.string().required('Введіть прізвище'),
+            delivery_phone: Yup.string().required('Введіть телефон'),
+            delivery_address: Yup.string().required('Введіть адресу'),
+            delivery_city: Yup.string().required('Введіть місто'),
+            delivery_country: Yup.string().required('Введіть країну'),
+            delivery_region: Yup.string().required('Введіть область/район'),
+            order_type: Yup.string().required('Оберіть тип замовлення'),
+          
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             try {
                 handlerOpenModal()
                 closeBasket()
-                makeOrder() 
+               
+               await makeOrder(values)
             } catch (error) {
-                console.log(error);
+                console.log(error)
                 throw error
             }
-          
         },
     })
-
+    
     const closeBasket = () => setOpenBasket(false)
 
     useEffect(() => {
@@ -133,6 +140,9 @@ export const Basket = () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [isOpenBasket])
+
+    console.log(data, 'data')
+    
     return (
         <>
             <div className={`basket  ${isOpenBasket && 'basket-open'} `} style={{ height: pageHeight }}>
@@ -201,9 +211,9 @@ export const Basket = () => {
                                         </h5>
                                     </div>
                                     <div className="basket-paymant-select">
-                             <p>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
-                             <BasketSelect /> 
-                        </div> 
+                                        <p>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
+                                        <BasketSelect />
+                                    </div>
                                 </div>
                                 <div className="basket-form">
                                     <h6 className="basket-form-title">ОБЕРІТЬ СПОСІБ ДОСТАВКИ</h6>
@@ -227,99 +237,125 @@ export const Basket = () => {
                                             Самовивіз
                                         </button>
                                     </div>
+                                    {/* {deliveryMethods.map((method: any) => (
+                                        <button
+                                            key={method.method_id}
+                                            className={`basket-form-deliver ${
+                                                activeDeliver === method.method_id && 'basket-form-deliver-active'
+                                            }`}
+                                            onClick={() =>  formik.setFieldValue('delivery_method_id', activeDeliver)}
+                                        >
+                                            {method.method_name}
+                                        </button>
+                                    ))} */}
                                 </div>
                                 <div className="basket-form-input  ">
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Ім'я"
-                                            name="firstName"
-                                            value={formik.values.firstName}
+                                            name="delivery_name"
+                                            value={formik.values.delivery_name}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.firstName && formik.errors.firstName && (
-                                            <div className="basket-form-error">{formik.errors.firstName}</div>
+                                        {formik.touched.delivery_name && formik.errors.delivery_name && (
+                                            <div className="basket-form-error">{formik.errors.delivery_name}</div>
                                         )}
                                     </div>
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Прізвище"
-                                            name="lastName"
-                                            value={formik.values.lastName}
+                                            name="delivery_lastname"
+                                            value={formik.values.delivery_lastname}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.lastName && formik.errors.lastName && (
-                                            <div className="basket-form-error">{formik.errors.lastName}</div>
+                                        {formik.touched.delivery_lastname && formik.errors.delivery_lastname && (
+                                            <div className="basket-form-error">{formik.errors.delivery_lastname}</div>
                                         )}
                                     </div>
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Телефон"
-                                            name="phone"
-                                            value={formik.values.phone}
+                                            name="delivery_phone"
+                                            value={formik.values.delivery_phone}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.phone && formik.errors.phone && (
-                                            <div className="basket-form-error">{formik.errors.phone}</div>
+                                        {formik.touched.delivery_phone && formik.errors.delivery_phone && (
+                                            <div className="basket-form-error">{formik.errors.delivery_phone}</div>
                                         )}
                                     </div>
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Країна"
-                                            name="country"
-                                            value={formik.values.country}
+                                            name="delivery_country"
+                                            value={formik.values.delivery_country}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.country && formik.errors.country && (
-                                            <div className="basket-form-error">{formik.errors.country}</div>
+                                        {formik.touched.delivery_country && formik.errors.delivery_country && (
+                                            <div className="basket-form-error">{formik.errors.delivery_country}</div>
                                         )}
                                     </div>
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Область/район"
-                                            name="region"
-                                            value={formik.values.region}
+                                            name="delivery_region"
+                                            value={formik.values.delivery_region}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.region && formik.errors.region && (
-                                            <div className="basket-form-error">{formik.errors.region}</div>
+                                        {formik.touched.delivery_region && formik.errors.delivery_region && (
+                                            <div className="basket-form-error">{formik.errors.delivery_region}</div>
                                         )}
                                     </div>
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder="Місто"
-                                            name="city"
-                                            value={formik.values.city}
+                                            name="delivery_city"
+                                            value={formik.values.delivery_city}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.city && formik.errors.city && (
-                                            <div className="basket-form-error">{formik.errors.city}</div>
+                                        {formik.touched.delivery_city && formik.errors.delivery_city && (
+                                            <div className="basket-form-error">{formik.errors.delivery_city}</div>
                                         )}
                                     </div>
+
                                     <div className="auth-input-body">
                                         <input
                                             className="basket-form-input-item"
                                             placeholder={activeDeliver === 2 ? 'Номер відділення' : 'Адреса'}
-                                            name="address"
-                                            value={formik.values.address}
+                                            name="delivery_warehouse"
+                                            value={formik.values.delivery_warehouse}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
-                                        {formik.touched.address && formik.errors.address && (
-                                            <div className="basket-form-error">{formik.errors.address}</div>
+                                        {formik.touched.delivery_warehouse && formik.errors.delivery_warehouse && (
+                                            <div className="basket-form-error">{formik.errors.delivery_warehouse}</div>
                                         )}
                                     </div>
+                                    {/* <input
+                                        className="basket-form-input-item"
+                                        placeholder="Коментар"
+                                        value={form.comment || ''}
+                                        onChange={(e) => setForm({ ...form, comment: e.target.value })}
+                                    /> */}
+                                    {/* <div className="basket-paymant-select">
+                                        <p className="basket-paymant-select-title">ТИП ЗАМОВЛЕННЯ:</p>
+                                        <BasketSelect
+                                            option={data.order.types.map((item) => ({}
+                                            value={formic.value.delivery_type}
+                                            onChange={(value) => setForm({ ...form, order_type: value })}
+                                        />
+                                    </div> */}
                                 </div>
                             </>
                         }

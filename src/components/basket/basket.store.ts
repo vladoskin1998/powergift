@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { BaskerProduct, ProductType } from "../../type";
+import { BaskerProduct, OrderForm, ProductType } from "../../type";
 import { BasketApi } from "./api.basket";
 import { useAuthStore } from "../../page/auth/auth.store";
 import { useLoaderStore } from "../loader/loading.store";
 
 interface BasketState {
-  makeOrder: () => void;
+  makeOrder: (dto: OrderForm) => Promise<void>;
   initProductBasketList: () => void;
   productBasketList: BaskerProduct[];
   addProductBasketList: (product: BaskerProduct, count: number) => void;
@@ -100,9 +100,9 @@ export const useBasketStore = create<BasketState>()(
       set({ productBasketList: filteredBasket }, false, "deleteProductBasketList");
     },
 
-    makeOrder: async () => {
+     makeOrder: async (dto: OrderForm) => {
       try {
-        await BasketApi.makeOrder()
+        await BasketApi.makeOrder(dto)
         set({ productBasketList: [] });
         useLoaderStore.getState().setBasketLoader(true, "Ваше замовлення успішне!")
       } catch (error) {

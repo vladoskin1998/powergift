@@ -1,5 +1,5 @@
 import { $api } from "../../api"
-import { BaskerResponse } from "../../type"
+import { BaskerResponse, OrderForm, ShopInfoRes } from "../../type"
 
 export class BasketApi{
 
@@ -64,14 +64,30 @@ export class BasketApi{
         }
     }
 
-    static async makeOrder(){
+    static async makeOrder(dto: OrderForm): Promise<any> {
         try {
-         
-            const { data } = await $api.post('order/create', )
+            const formData = new FormData()
+            const formWithDeliver =  dto 
+
+            for (const key in formWithDeliver) {
+                if (Object.prototype.hasOwnProperty.call(formWithDeliver, key)) {
+                    formData.append(key, String(formWithDeliver[key as keyof OrderForm]) )
+                }
+            }
+            const { data } = await $api.post('order/create', formData)
             return data
         } catch (error) {
-            
+            throw error
         }
-        
+    }
+
+    static async getInfoShop(): Promise<ShopInfoRes> {
+        try {
+            const { data } = await $api.get('shop/info')
+            return data
+        } catch (error) {
+            console.error(error)
+            throw error
+        }
     }
 }
