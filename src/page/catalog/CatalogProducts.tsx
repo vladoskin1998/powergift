@@ -3,7 +3,7 @@ import {
     CATALOG_PRODUCT_TITLE,
     CATALOG_PRODUCT_CLIENT,
 } from "../../utils/constant"
-import { baseURL } from "../../utils/utils"
+import { baseURL, normalizeProductTypeToBasketType } from "../../utils/utils"
 import { CatalogIconConception } from "../../components/svg/CatalogIcon"
 import { HeaderIconBasket, HeaderIconReload } from "../../components/svg/HeaderIcon"
 import {  useNavigate, useParams } from "react-router-dom"
@@ -68,7 +68,10 @@ export const CatalogProducts = () => {
 
     const addToBasket = (e: React.MouseEvent, product: ProductType) => {
         e.stopPropagation()
-        addProductBasketList(product, 1)
+       const basketProduct =   normalizeProductTypeToBasketType(product)
+                   addProductBasketList(
+                       basketProduct, 1
+                   )
     }
 
     if(isLoading){
@@ -189,7 +192,7 @@ export const CatalogProducts = () => {
                                             alt="Basket"
                                         />
                                     </p>
-                                    <div className="catalog-filter-list-bot">
+                                    <div className="catalog-filter-list-bot basket-pc">
                                         <div className="catalog-product-item-bot">
                                             <div>
                                                 <h5>{product.price}</h5>
@@ -201,12 +204,12 @@ export const CatalogProducts = () => {
                                             </div>
                                         </div>
                                         <button
-                                            className="catalog-filter-list-item-foot-but"
+                                            className="catalog-filter-list-item-foot-but basket-pc"
                                             onClick={(e) =>
                                                 addToBasket(e, product)
                                             }
                                         >
-                                            <div className="catalog-filter-list-item-foot-but-ico">
+                                            <div className="catalog-filter-list-item-foot-but-ico basket-pc">
                                                 <HeaderIconBasket />
                                             </div>
                                         </button>

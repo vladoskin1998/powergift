@@ -6,17 +6,16 @@ import React, {
     useEffect,
 } from "react"
 import { CategoryType, ProductType } from "../type"
+import { useAuthStore } from "../page/auth/auth.store"
 
 export type TypeOverflow = "hidden" | "scroll" | "auto"
 
 interface AppContextType {
     handlerHiddenScroll: (s: TypeOverflow) => void
-    isAuth: boolean
+
     currentSubCategorie: CategoryType | null
     changeCurrentSubCategorie: (s: CategoryType | null) => void
 
-    isLoader:boolean, 
-    handlerLoader: (s:boolean) => void
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined)
@@ -25,16 +24,13 @@ interface AppProviderProps {
     children: ReactNode
 }
 
-const initBasket = JSON.parse(localStorage.getItem("basket") || "[]")
-
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-
-    const [isLoader, setLoader] = useState(false)
+   
     const [key, setKey] = useState(Date.now())
-    const [isAuth, setIsAuth] = useState(false)
+    const { setIsAuth } = useAuthStore()
+
     const [currentSubCategorie, setCurrentSubCategorie] =
         useState<CategoryType | null>(null)
-  
 
     const handlerHiddenScroll = (s: TypeOverflow) => {
         // if (document) {
@@ -47,10 +43,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem("token")
-        if (token) {
-            setIsAuth(true)
-        }
+        setIsAuth()
     }, [])
 
     useEffect(() => {
@@ -61,21 +54,15 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setCurrentSubCategorie(s)
     }
 
-
-
-    const handlerLoader = (s:boolean) => {
-        setLoader(s)
-    }
+  
     return (
         <AppContext.Provider
             value={{
-      
                 handlerHiddenScroll,
-                isAuth,
+
                 currentSubCategorie,
                 changeCurrentSubCategorie,
-                isLoader,
-                handlerLoader,
+           
             }}
         >
             <div key={key}>{children}</div>

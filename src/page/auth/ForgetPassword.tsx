@@ -6,6 +6,7 @@ import { $api } from "../../api"
 import { useNavigate } from "react-router-dom"
 import { AuthIconTougch } from "../../components/svg/AuthIcon"
 import { ROUTEAUTH } from "./AuthRouter"
+import { useAuthStore } from "./auth.store"
 
 interface FormValues {
     email: string
@@ -18,14 +19,13 @@ const validationSchema = Yup.object({
 })
 
 export const ForgetPassword = ({
-    openAuth,
-    setOpenAuth,
+
     setRoute,
 }: {
-    openAuth: boolean
-    setOpenAuth: () => void
+
     setRoute: (s: ROUTEAUTH) => void
 }) => {
+     const {setOpenAuth} = useAuthStore()
     const [check, setCheck] = useState<boolean>(true)
     const navigate = useNavigate()
 
@@ -45,7 +45,7 @@ export const ForgetPassword = ({
             }).then((r) => {
                 console.log(r)
             })
-            setOpenAuth()
+            setOpenAuth(false)
             navigate("/customer")
         },
     })
@@ -56,7 +56,7 @@ export const ForgetPassword = ({
                 className="auth-scroll basket--scroll custom--scroll"
                 style={{ maxHeight: "inherit" }}
             >
-               <div className="basket-close-button  auth-close" onClick={setOpenAuth}>
+               <div className="basket-close-button  auth-close" onClick={() => setOpenAuth(false)}>
                   <button>
                   <HeaderIconClose />
                   </button>

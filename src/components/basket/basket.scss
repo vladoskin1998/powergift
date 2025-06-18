@@ -242,6 +242,22 @@
         }
     }
 }
+.basket-form-input{
+    .auth-input-body{
+        width: 100%;
+        position: relative;
+        input{
+            width: 100%;
+        }
+    }
+}
+
+.basket-form-error{
+    position: absolute;
+            top: 47px;
+            left: 13px;
+            color: red;
+}
 
 .busket--select {
     width: 100%;
@@ -343,7 +359,7 @@
         padding: 0 40px 00px 40px;
         margin-bottom: 40px;
         gap: 20px;
-        height: 100%;
+        
      
        
         &-item {

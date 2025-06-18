@@ -9,6 +9,7 @@ import { ProductType } from "../../type"
 import { useAppContext } from "../../context/AppContext"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { useEffect, useState } from "react"
+import { normalizeProductTypeToBasketType } from "../../utils/utils"
 
 const getCategoriesData = async (id: string) => {
     try {
@@ -39,7 +40,10 @@ export default function Card() {
 
     const addToBasket = () => {
         if (product) {
-            addProductBasketList(product, count)
+            const basketProduct =   normalizeProductTypeToBasketType(product)
+            addProductBasketList(
+                basketProduct, 1
+            )
             setCount(1)
             setOpenBasket(true)
         }

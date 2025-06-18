@@ -2,16 +2,17 @@ import React from "react"
 import { ROUTEAUTH } from "./AuthRouter"
 import { HeaderIconClose } from "../../components/svg/HeaderIcon"
 import { baseURL } from "../../utils/utils"
+import { useAuthStore } from "./auth.store"
 
 export const DevForgetPass = ({
-    openAuth,
-    setOpenAuth,
+
     setRoute,
 }: {
-    openAuth: boolean
-    setOpenAuth: () => void
+
     setRoute: (s: ROUTEAUTH) => void
 }) => {
+
+    const {setOpenAuth} = useAuthStore()
     return (
         <div
             className={`login auth dev-fg-pass`}
@@ -23,7 +24,7 @@ export const DevForgetPass = ({
             >
                 <div
                     className="basket-close-button  auth-close"
-                    onClick={setOpenAuth}
+                    onClick={() => setOpenAuth(false)}
                 >
                     <button>
                         <HeaderIconClose />

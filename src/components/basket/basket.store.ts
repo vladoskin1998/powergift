@@ -1,37 +1,119 @@
 import { create } from "zustand";
-import { ProductType } from "../../type";
+import { devtools } from "zustand/middleware";
+import { BaskerProduct, ProductType } from "../../type";
+import { BasketApi } from "./api.basket";
+import { useAuthStore } from "../../page/auth/auth.store";
+import { useLoaderStore } from "../loader/loading.store";
 
 interface BasketState {
-    productBasketList: ProductType[],
-    addProductBasketList: (product: ProductType, count: number) => void,
-    deleteProductBasketList: (id: number) => void
-    isOpenBasket: boolean;
-    setOpenBasket: (loading: boolean, message?: string) => void;
+  makeOrder: () => void;
+  initProductBasketList: () => void;
+  productBasketList: BaskerProduct[];
+  addProductBasketList: (product: BaskerProduct, count: number) => void;
+  deleteProductBasketList: (s: { product_id: number }) => void;
+  isOpenBasket: boolean;
+  setOpenBasket: (loading: boolean, message?: string) => void;
 }
 
-export const useBasketStore = create<BasketState>((set, get) => ({
+export const useBasketStore = create<BasketState>()(
+  devtools((set, get) => ({
     isOpenBasket: false,
-    productBasketList: JSON.parse(localStorage.getItem("basket") || "[]"),
+    productBasketList: [],
+    total: 0,
+
     setOpenBasket: (state?: boolean) => {
-        const isOpen = state === undefined ? get().isOpenBasket : state
-        set({ isOpenBasket: isOpen })
+      const isOpen = state === undefined ? get().isOpenBasket : state;
+      set({ isOpenBasket: isOpen }, false, "setOpenBasket");
     },
-    addProductBasketList: (product: ProductType, count: number) => {
-        const basket = get().productBasketList
-        const findedProduct = basket?.find(item => item.id === product.id)
-        const filteredBasket = basket?.filter((item) => item.id !== product.id)
 
-        const findedCount = findedProduct?.count || 0
-        const newCount = findedCount + count < 1 ? 1 :  findedCount + count
-
-        const newProductList = [...filteredBasket, { ...product, count:newCount }]
-        localStorage.setItem("basket", JSON.stringify(newProductList))
-        set({ productBasketList: newProductList })
+    initProductBasketList: async () => {
+      try {
+        const data = await BasketApi.getBasket();
+        set({ productBasketList: data.cart.products }, false, "initProductBasketList");
+      } catch (e) {
+        console.error("Помилка завантаження корзини, зверніться до адміністратора!", e);
+      }
     },
-    deleteProductBasketList: (id: number) => {
-        const basket = get().productBasketList
-        const filteredBasket = basket?.filter((item) => item.id !== id)
-        localStorage.setItem("basket", JSON.stringify(filteredBasket))
-        set({ productBasketList: filteredBasket })
+
+    addProductBasketList: async (product: BaskerProduct, count: number) => {
+      try {
+        const basket = get().productBasketList;
+
+        const newProductList = basket.map((item) => {
+          if (item.product_id === product.product_id) {
+            const newCount = item.quantity + count < 1 ? 1 : item.quantity + count;
+            return { ...item, quantity: newCount };
+          }
+          return item;
+        });
+
+
+        const exists = basket.some((item) => item.product_id === product.product_id);
+        if (!exists) {
+          newProductList.push({ ...product, quantity: count < 1 ? 1 : count });
+        }
+
+
+        try {
+          await BasketApi.addManyToBasket(
+            newProductList.map((it) => ({
+              product_id: it.product_id,
+              quantity: it.quantity || 1,
+            }))
+          );
+          useLoaderStore.getState().setBasketLoader(true)
+        } catch (error) {
+          useLoaderStore.getState().setBasketLoader(true, "Помилка при додаванні товару, зверніться до адміністратора!")
+          throw error
+        }
+        finally {
+          setTimeout(() => {
+            useLoaderStore.getState().setBasketLoader(false)
+          }, 1000)
+        }
+
+
+        set({ productBasketList: newProductList }, false, "addProductBasketList");
+      } catch (error) {
+        useAuthStore.getState().setOpenAuth(true);
+        useLoaderStore.getState().setBasketLoader(true, "Ви ще не авторизовані!")
+        setTimeout(() => {
+          useLoaderStore.getState().setBasketLoader(false)
+        }, 1000)
+
+      }
+
+    },
+
+    deleteProductBasketList: ({ product_id }: { product_id: number }) => {
+      const basket = get().productBasketList;
+      const findedProduct = basket?.find((item) => item.product_id === product_id);
+      const filteredBasket = basket?.filter((item) => item.product_id !== product_id);
+
+      BasketApi.deleteOneBasket(
+        {
+          product_id: product_id,
+          quantity: findedProduct?.quantity || 1,
+        }
+      );
+
+      set({ productBasketList: filteredBasket }, false, "deleteProductBasketList");
+    },
+
+    makeOrder: async () => {
+      try {
+        await BasketApi.makeOrder()
+        set({ productBasketList: [] });
+        useLoaderStore.getState().setBasketLoader(true, "Ваше замовлення успішне!")
+      } catch (error) {
+        useLoaderStore.getState().setBasketLoader(true, "Помилка при замовленні, зверніться до адміністратора!")
+      }
+      finally {
+        setTimeout(() => {
+          useLoaderStore.getState().setBasketLoader(false)
+        }, 1000)
+      }
+
     }
-}));
+  }), { name: "BasketStore" })
+);

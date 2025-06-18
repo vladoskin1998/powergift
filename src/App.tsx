@@ -8,11 +8,13 @@ import { AppProvider, useAppContext } from "./context/AppContext"
 import { Loader } from "./components/loader/Loader"
 
 import { QueryClient, QueryClientProvider } from "react-query"
-import { useLocation } from "react-router-dom"
+import { useLoaderData, useLocation } from "react-router-dom"
+import { useLoaderStore } from "./components/loader/loading.store"
+import BasketLoader from "./components/loader/BasketLoader"
 const queryClient = new QueryClient()
 
 function App() {
-    const { isLoader } = useAppContext()
+    const { isLoader, isBasketLoader } = useLoaderStore()
     const location = useLocation()
 
     useEffect(() => {
@@ -23,6 +25,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <div className="App">
                 {isLoader && <Loader />}
+                {isBasketLoader && <BasketLoader />}
                 <Header />
                 <div className="Main">
                     <Navbar />
@@ -36,3 +39,5 @@ function App() {
 }
 
 export default App
+
+

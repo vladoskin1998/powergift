@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
     HeaderIconBasket,
     HeaderIconBurger,
@@ -15,65 +15,64 @@ import { useEffect, useRef, useState } from "react"
 import { Basket } from "../basket/Basket"
 import { AuthRouter } from "../../page/auth/AuthRouter"
 import { useBasketStore } from "../basket/basket.store"
+import { useAuthStore } from "../../page/auth/auth.store"
+import { Tooltip } from "@mui/material"
 
 export const Header = () => {
-
+    const { isAuth } = useAuthStore()
     const [open, setOpen] = useState(false)
-    const [openAuth, setOpenAuth] = useState(false)
-
+    const { openAuth, setOpenAuth } = useAuthStore()
+    const { isOpenBasket, setOpenBasket, productBasketList } = useBasketStore()
+    const navigate = useNavigate()
     let videoRef = useRef<HTMLVideoElement | null>(null)
     const handerClose = () => {
         setOpen(false)
     }
-    const {isOpenBasket, setOpenBasket} = useBasketStore()
 
     useEffect(() => {
         const handleVisibilityChange = () => {
-          if (!document.hidden) {
-            videoRef.current?.play();
-          }
-        };
-      
-        document.addEventListener("visibilitychange", handleVisibilityChange);
-      
+            if (!document.hidden) {
+                videoRef.current?.play()
+            }
+        }
+
+        document.addEventListener("visibilitychange", handleVisibilityChange)
+
         return () => {
-          document.removeEventListener("visibilitychange", handleVisibilityChange);
-        };
-      }, []);
-    const handlerOpenBasket = (b:boolean) => {
+            document.removeEventListener(
+                "visibilitychange",
+                handleVisibilityChange
+            )
+        }
+    }, [])
+    const handlerOpenBasket = (b: boolean) => {
+        if( !isAuth ){
+            return
+        }
+        
+        if( productBasketList?.length === 0){
+            navigate('/catalog/products')
+        }
         setOpenBasket(b)
         setOpenAuth(false)
     }
-  
-    const handlerOpenAuth = () => {
-        setOpenAuth(s => !s)
+
+    const handlerOpenAuth = (b: boolean) => {
+        setOpenAuth(b)
         // setOpenBasket(false)
     }
 
     const navToHome = () => {
-  //      navigate('/')
+        //      navigate('/')
     }
 
-    console.log("isOpenBasket", isOpenBasket);
-    
+    console.log("isOpenBasket", isOpenBasket)
+
     return (
         <div className="header">
             <a className="header-logo" onClick={navToHome} href="/">
-                <video
-                    className="header-logo-video"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    ref={videoRef}
-                    preload="metadata"
-                >
-                    <source
-                        src={
-                            baseURL + `/Images/Power Gifts logo animate.gif.mp4`
-                        }
-                        type="video/mp4"
-                    />
+                <video className="header-logo-video" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
+                    <source src={baseURL + `/Images/Power Gifts logo animate.gif.mp4`} type="video/mp4" />
                 </video>
             </a>
             <div className="header-links-name">
@@ -83,14 +82,12 @@ export const Header = () => {
                 </Link>
                 <div className="header-links-mob-flag">
                     <button>
-                        <img src={baseURL + "/Images/flagua.png"} alt="" />
+                        <img src={baseURL + '/Images/flagua.png'} alt="" />
                         <span>Мова</span>
                     </button>
 
                     <button onClick={() => setOpen((s) => !s)}>
-                        <div className="header-links-mob-flag-svg">
-                            {open ? <HeaderIconClose /> : <HeaderIconBurger />}
-                        </div>
+                        <div className="header-links-mob-flag-svg">{open ? <HeaderIconClose /> : <HeaderIconBurger />}</div>
 
                         <span>Меню</span>
                     </button>
@@ -102,22 +99,22 @@ export const Header = () => {
                 </div>
                 <div className="header-links-nav">
                     <div className="header-links-nav-item">
-                        <Link to="">Дилерам</Link>
+                        <Link to="/dev">Дилерам</Link>
                     </div>
                     <div className="header-links-nav-item">
-                        <Link to="">Акціїні товари</Link>
+                        <Link to="/dev">Акціїні товари</Link>
                     </div>
                     <div className="header-links-nav-item">
-                        <Link to="">Бренди</Link>
+                        <Link to="/dev">Бренди</Link>
                     </div>
                     <div className="header-links-nav-item">
-                        <Link to="">Каталог товарів PDF</Link>
+                        <Link to="/dev">Каталог товарів PDF</Link>
                     </div>
                     <div className="header-links-nav-item">
-                        <Link to="">Про компанію</Link>
+                        <Link to="/dev">Про компанію</Link>
                     </div>
                     <div className="header-links-nav-item">
-                        <Link to="">Контакти</Link>
+                        <Link to="/dev">Контакти</Link>
                     </div>
                 </div>
             </div>
@@ -127,16 +124,25 @@ export const Header = () => {
                 <button className="header-item">
                     <HeaderIconLike />
                 </button>
-                <button className="header-item"  onClick={handlerOpenAuth}>
-                    <HeaderIconUser />
-                </button>
-                <button className="header-item" onClick={() => handlerOpenBasket(!isOpenBasket )} id='basket-pc'>
-                    <HeaderIconBasket />
-                </button>
+                <Tooltip title={isAuth ? 'Ви вже увійшли до кабінету' : 'Увійдіть до свого кабінету'}>
+                    <button className="header-item" onClick={() => handlerOpenAuth(!openAuth)}>
+                        <HeaderIconUser />
+                    </button>
+                </Tooltip>
+                <Tooltip
+                    title={
+                        isAuth ? (productBasketList?.length ? 'Кошик' : 'Кошик порожній, додайте товари!') : 'Увійдіть до свого кабінету'
+                    }
+                >
+                    <button className="header-item header-basket-ico" onClick={() => handlerOpenBasket(!isOpenBasket)} id="basket-pc">
+                        <HeaderIconBasket />
+                        {productBasketList?.length && <div className="header-basket-num">{productBasketList?.length}</div>}
+                    </button>
+                </Tooltip>
             </div>
             <HeaderNavBar open={open} handerClose={handerClose} />
             <Basket />
-            <AuthRouter openAuth={openAuth} setOpenAuth={handlerOpenAuth}/>
+            <AuthRouter />
         </div>
     )
 }
@@ -149,43 +155,58 @@ export const HeaderNavBar = ({
     handerClose: () => void
 }) => {
     return (
-        <div className={`header-navbar ${open && "header-navbar-active"}`}>
+        <div className={`header-navbar ${open && 'header-navbar-active'}`}>
             <div>
                 <HeaderIconOpen />
             </div>
-            <div
-                className="header-navbar-item header-navbar-item-title"
-                onClick={handerClose}
-            >
+            <div className="header-navbar-item header-navbar-item-title" onClick={handerClose}>
                 <Link to="/catalog/products">Каталог товарів</Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Дилерам</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Дилерам
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Партнерство</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Партнерство
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Бренди</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Бренди
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Каталог товарів PDF</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Каталог товарів PDF
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Про компанію</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Про компанію
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Карьера</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Карьера
+                </Link>
             </div>
 
             <div className="header-navbar-item">
-                <Link to="">FAQ</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    FAQ
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Новини</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Новини
+                </Link>
             </div>
             <div className="header-navbar-item">
-                <Link to="">Контакти</Link>
+                <Link to="/dev" onClick={handerClose}>
+                    Контакти
+                </Link>
             </div>
 
             <div className="header-navbar-inv">
@@ -193,11 +214,10 @@ export const HeaderNavBar = ({
                 <div>Інвестування</div>
             </div>
             <div className="header-navbar-paymant">
-                <img src={baseURL + "/Images/Paymant.png"} alt="" />
+                <img src={baseURL + '/Images/Paymant.png'} alt="" />
             </div>
             <div className="header-navbar-text">
-                © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
-                Rights Reserved. Let’s create.
+                © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All Rights Reserved. Let’s create.
             </div>
         </div>
     )

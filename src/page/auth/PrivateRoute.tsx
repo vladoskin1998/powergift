@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react"
-import { useAppContext } from "../../context/AppContext"
 import { useNavigate } from "react-router-dom"
+import { useAuthStore } from "./auth.store"
 
 export const PrivateRoute = ({ children }: { children: ReactElement }) => {
-    const { isAuth } = useAppContext()
+    const { isAuth } = useAuthStore()
     const navigate = useNavigate()
 
     if (!isAuth) {

@@ -1,10 +1,10 @@
-import React from "react"
-import { Routes, Route } from "react-router-dom"
-import { CatalogCategoriesMobile } from "./CatalogCategoriesMobile"
-import "./catalog.scss"
-import { CatalogFilterMain } from "../___temp_catalog/CatalogFilterMain"
-import { CatalogProducts } from "./CatalogProducts"
-import { CatalogFilterProducts } from "../___temp_catalog/CatalogFilterProducts"
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { CatalogCategoriesMobile } from './CatalogCategoriesMobile'
+import './catalog.scss'
+import { CatalogFilterMain } from '../___tempcatalog/CatalogFilterMain'
+import { CatalogProducts } from './CatalogProducts'
+import { CatalogFilterProducts } from '../___tempcatalog/CatalogFilterProducts'
 
 export const Catalog = () => {
     return (

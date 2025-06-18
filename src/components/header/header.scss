@@ -7,6 +7,25 @@
     grid-template-columns: 79px 140px 1fr 320px;
     background-color: $color_grey;
     position: relative;
+    &-basket-num {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border: 0.5px solid $color_white1;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        background: $color_grey;
+        color: $color_white1;
+        @include flex-all-center;
+        font-size: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        
+        background: #4aff0b;
+    }
+    &-basket-ico{
+        position: relative;
+    }
     @media screen and (max-width: 700px) {
         .basket{
             display: none;
@@ -125,7 +144,7 @@
         @include flex-all-center;
     }
     &-active {
-        width: calc(100vw - 50px - 120px - 180px - 320px);
+        width: calc(100vw - 50px - 95px - 180px - 320px);
     }
     &-line {
         margin: 0 10px 0 20px;
@@ -249,4 +268,5 @@
         }
    
     }
+    
 }

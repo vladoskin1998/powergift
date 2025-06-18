@@ -78,7 +78,7 @@
         display: grid;
         height: 81px;
 
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         width: 100%;
         &-item {
             border-top: 1px solid $color_border;

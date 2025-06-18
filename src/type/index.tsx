@@ -53,3 +53,32 @@ export interface ProductType {
         properties: { id: number; name: string; color?: string }[]
     }>
 }
+
+
+
+export interface BaskerProduct {
+    id: number;
+    product_id: number;
+    name: string;
+    image: string;
+    images: string[];
+    thumbnails: {
+      small: string;
+      thumb: string;
+    };
+    quantity: number;
+    price: string;
+    total: string;
+  }
+  
+  export interface BaskerResponse {
+    success: boolean;
+    message: string;
+    cart: {
+      products: BaskerProduct[];
+    };
+    total: string;
+    meta: any;     
+    errors: any;  
+  }
+  
