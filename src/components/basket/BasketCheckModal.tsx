@@ -1,31 +1,84 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { baseURL } from "../../utils/utils"
 import { CardIconDelete } from "../svg/CardIcon"
 import { useAppContext } from "../../context/AppContext"
 import { HeaderIconClose } from "../svg/HeaderIcon"
 import { useBasketStore } from "./basket.store"
 
+interface BasketCheckModalProps {
+  setIsOpenModalCheck: (value: boolean) => void;
+  order: any; // заміни на точний тип, якщо маєш
+}
+
+type Product = {
+  id: number;
+  name: string;
+  quantity: number;
+  price: string;
+  total: string;
+  image: string;
+  thumbnails: {
+    small?: string;
+    thumb?: string;
+  };
+};
+
 export const BasketCheckModal = ({
-    setIsOpenModalCheck,
+  setIsOpenModalCheck,
+  order: response,
 }: {
-    setIsOpenModalCheck: () => void
+  setIsOpenModalCheck: () => void;
+  order?: any;
 }) => {
-    const { handlerHiddenScroll } = useAppContext()
-    // useEffect(() => {
-    //     handlerHiddenScroll("hidden")
-    //     window.scrollTo({ top: 0, behavior: "smooth" })
-    //     return () => handlerHiddenScroll("scroll")
-    // }, [])
+  const { handlerHiddenScroll } = useAppContext();
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  
+
+  useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+          if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+              setIsOpenModalCheck();
+          }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+      };
+  }, []);
+
+
+    const { order, delivery, products } = response;
+
+    const totalPrice = order.products.reduce(
+      (acc: any, product: any) => acc + parseFloat(product.total),
+      0
+    );
 
     const { productBasketList } = useBasketStore()
+
+    function formatUkrainianDate(dateString: string): string {
+      const date = new Date(dateString.replace(' ', 'T'));
+      const formatted = new Intl.DateTimeFormat('uk-UA', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).format(date);
+      return formatted.replace(', ', ' ').replace(' р.', '');
+    }
 
     return (
         <div className="basket-modal">
             <div
                 className="basket-modal-body custom--scroll custom--scroll-dark"
-                style={{ padding: "  20px" }}
+                // style={{ padding: "  20px" }}
+                ref={modalRef}
             >
-                <div
+                {/* <div
                     className="basket-modal-header"
                     style={{ gridTemplateColumns: "1fr  100px" }}
                 >
@@ -41,8 +94,8 @@ export const BasketCheckModal = ({
                     >
                         <HeaderIconClose />
                     </div>
-                </div>
-                <div style={{ textAlign: "center", padding: "20px 0 30px 0" }}>
+                </div> */}
+                {/* <div style={{ textAlign: "center", padding: "20px 0 30px 0" }}>
                     <svg
                         width="152"
                         height="152"
@@ -108,28 +161,28 @@ export const BasketCheckModal = ({
                             strokeLinejoin="round"
                         />
                     </svg>
-                </div>
-                <div className="basket-modal-status" style={{ textAlign: "center", fontSize: "24px",paddingBottom: "20px" }}>
+                </div> */}
+                {/* <div className="basket-modal-status" style={{ textAlign: "center", fontSize: "24px",paddingBottom: "20px" }}>
                     <b>
  Ваше замовлення оформлено успішно, найближчим часом з вами
                     зв'яжеться менеджер!
                     </b>
                    
-                </div>
-                {/* <div className="basket-modal-info">
+                </div> */}
+                <div className="basket-modal-info">
                     <div className="basket-modal-header">
                         <div>
                             <h6 className="basket-modal-header-num">
-                                Замовлення #12345
+                                Замовлення #{order.crm_id}
                             </h6>
                             <p className="basket-modal-header-date">
-                                08 тра 2024, 15:22
+                              {formatUkrainianDate(order.info.created_at)}
                             </p>
                         </div>
                         <div className="basket-modal-header-ord">
                             Рахунок:
                             <br />
-                            <b>№01052024</b>
+                            <b>№{order.id}</b>
                         </div>
 
                         <div
@@ -155,11 +208,11 @@ export const BasketCheckModal = ({
                             <p> Дмитро Дмитрович</p>
                         </p>
                         <p className="basket-modal-client-info">
-                            Імя Побатькові
+                          {order.delivery.name} {order.delivery.lastname} 
                             <br />
                             Email
                             <br />
-                            +38 (095) 115 10 00
+                            {order.delivery.phone}
                             <br />
                         </p>
                     </div>
@@ -172,12 +225,13 @@ export const BasketCheckModal = ({
                         <p className="basket-modal-payment-methods">
                             Метод доставки:
                             <br />
-                            Нова Пошта
+                            {order.delivery.method_name}
+                            {console.log(order.products, typeof order.products)}
                         </p>
                         <p className="basket-modal-payment-methods basket-modal-address">
-                            Київ
+                          {order.delivery.city}
                             <br />
-                            Україна
+                            {order.delivery.country}
                             <br />
                             MOW
                             <br />
@@ -185,24 +239,24 @@ export const BasketCheckModal = ({
                     </div>
                     <h6 className="basket-modal-notes-title">Примітки</h6>
                     <div className="basket-modal-notes">
-                        <p>Додаткові коментарі від Клієнта. Бронювання.</p>
-                        <p>Додаткові коментарі від Клієнта. Бронювання.</p>.
+                        <p>{order.comment}</p>
+                        {/* <p>Додаткові коментарі від Клієнта. Бронювання.</p>. */}
                     </div>
                     <div className="basket-modal-deliv-mob">
                         <h6 className="basket-modal-deliv-mob-title">Доставка</h6>
                         <div className="basket-modal-deliv-mob-body">
                             <p >
-                                Імя Побатькові
+                                {order.delivery.name} {order.delivery.lastname}
                                 <br />
                                 Email
                                 <br />
-                                +38 (095) 115 10 00
+                                {order.delivery.phone}
                                 <br />
                             </p>
                             <p >
-                                Київ
+                              {order.delivery.city}
                                 <br />
-                                Україна
+                                {order.delivery.country}
                                 <br />
                                 MOW
                                 <br />
@@ -214,13 +268,12 @@ export const BasketCheckModal = ({
                     className=" basket-list basket-modal-list "
                     style={{ overflow: "hidden" }}
                 >
-                    {[1, 2].map(() => (
-                        <div className="basket-item basket-list-item">
+                    {order.products.map((product: Product) => (
+                        <div key={product.id} className="basket-item basket-list-item">
                             <div className="basket-list-item-img">
                                 <img
                                     src={
-                                  
-                                        "/Images/Speaker_Cube_PowerGifts_130210-V1.png"
+                                      product.thumbnails.thumb
                                     }
                                     alt=""
                                 />
@@ -228,7 +281,7 @@ export const BasketCheckModal = ({
                             <div className="basket-list-right">
                                 <div className="basket-list-right-title">
                                     <div className="basket-list-text">
-                                        Bloototh BoomBox Mini. Black.
+                                      {product.name}
                                     </div>
                                     <div className="basket-list-art">
                                         Артикул: <div>PG-240143</div>
@@ -241,7 +294,7 @@ export const BasketCheckModal = ({
                                             ціна
                                         </p>
                                         <p className="basket-list-price">
-                                            999 <span>грн</span>
+                                          {product.price} <span>грн</span>
                                         </p>
                                     </div>
                                     <div className="basket-list-foot-item">
@@ -250,7 +303,7 @@ export const BasketCheckModal = ({
                                         </p>
                                         <div className="basket-list-num">
                                             <button>-</button>
-                                            <p>100</p>
+                                            <p className=" basket-list-num-p">{product.quantity}</p>
                                             <button>+</button>
                                         </div>
                                     </div>
@@ -259,7 +312,7 @@ export const BasketCheckModal = ({
                                             всього
                                         </p>
                                         <p className="basket-list-price">
-                                            100 999 <span>грн</span>
+                                          {product.total}<span>грн</span>
                                         </p>
                                     </div>
                                 </div>
@@ -270,27 +323,29 @@ export const BasketCheckModal = ({
                         </div>
                     ))}
                 </div>
-                <div className="basket-modal-footer">
-                    <p>
-                        Сума: <br />
-                        39150,16 грн
-                    </p>
-                    <p>
-                        Знижка: <br />
-                        3890,16 грн
-                    </p>
-                    <p>
-                        Разом:
-                        <br />
-                        40678,16 грн
-                    </p>
-                    <div className="basket-modal-footer-img">
-                        <img
-                            src={"/Images/hellocustomer.png"}
-                            alt=""
-                        />
-                    </div>
-                </div> */}
+                <div className="basket-modal-footer-wrapper">
+                  <div className="basket-modal-footer">
+                      <p>
+                          Сума: <br />
+                          {totalPrice} грн
+                      </p>
+                      <p>
+                          Знижка: <br />
+                          3890,16 грн
+                      </p>
+                      <p>
+                          Разом:
+                          <br />
+                          {totalPrice} грн
+                      </p>
+                      <div className="basket-modal-footer-img">
+                          <img
+                              src={"/Images/hellocustomer.png"}
+                              alt=""
+                          />
+                      </div>
+                  </div>
+                </div>
             </div>
             <div className="basket-modal-fon" />
         </div>

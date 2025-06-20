@@ -102,7 +102,7 @@ export const CardIconDownload = () => {
 export const CardIconDelete = () => {
   return (
     <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.25 2.75V10.25C9.25 10.9404 8.69036 11.5 8 11.5H3C2.30964 11.5 1.75 10.9404 1.75 10.25V2.75M7.375 2.75V2.125C7.375 1.43464 6.81536 0.875 6.125 0.875H4.875C4.18464 0.875 3.625 1.43464 3.625 2.125V2.75M0.5 2.75H10.5M4.25 5.25V9M6.75 5.25V9" stroke="#444444" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9.25 2.75V10.25C9.25 10.9404 8.69036 11.5 8 11.5H3C2.30964 11.5 1.75 10.9404 1.75 10.25V2.75M7.375 2.75V2.125C7.375 1.43464 6.81536 0.875 6.125 0.875H4.875C4.18464 0.875 3.625 1.43464 3.625 2.125V2.75M0.5 2.75H10.5M4.25 5.25V9M6.75 5.25V9" stroke="#444" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
     
   )

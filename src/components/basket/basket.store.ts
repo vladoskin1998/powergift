@@ -102,9 +102,10 @@ export const useBasketStore = create<BasketState>()(
 
      makeOrder: async (dto: OrderForm) => {
       try {
-        await BasketApi.makeOrder(dto)
+        const result = await BasketApi.makeOrder(dto)
         set({ productBasketList: [] });
         useLoaderStore.getState().setBasketLoader(true, "Ваше замовлення успішне!")
+        return result;
       } catch (error) {
         useLoaderStore.getState().setBasketLoader(true, "Помилка при замовленні, зверніться до адміністратора!")
       }

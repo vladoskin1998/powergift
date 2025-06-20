@@ -24,9 +24,18 @@ export const Basket = () => {
 
     const [pageHeight, setPageHeight] = useState(0)
     const [activeDeliver, setActiveDeliver] = useState(2)
+    const [tov, setTov] = useState("company2")
+    const [orderData, setOrderData] = useState<any>(null);
 
+    //change
     const [isOpenModalCheck, setIsOpenModalCheck] = useState(false)
     const location = useLocation()
+    const option = [
+        { type: "company1", name: "Тов “Павэр Гіфт”" },
+        { type: "company2", name: "Тов “Павэр Гіфт1”" },
+        { type: "company3", name: "Тов “Павэр Гіфт2”" }
+    ]
+
 
     const { data, isLoading, error } = useQuery( ['shopInfo'], () => BasketApi.getInfoShop(),
     )
@@ -50,26 +59,42 @@ export const Basket = () => {
             delivery_name: Yup.string().required("Введіть ім'я"),
             delivery_lastname: Yup.string().required('Введіть прізвище'),
             delivery_phone: Yup.string().required('Введіть телефон'),
-            delivery_address: Yup.string().required('Введіть адресу'),
+            // delivery_address: Yup.string().required('Введіть адресу'),
             delivery_city: Yup.string().required('Введіть місто'),
             delivery_country: Yup.string().required('Введіть країну'),
             delivery_region: Yup.string().required('Введіть область/район'),
             order_type: Yup.string().required('Оберіть тип замовлення'),
+
+            delivery_address: Yup.string().when('delivery_method_id', {
+              is: (method_id: number) => method_id === 2 || method_id === 3,
+              then: schema => schema.required('Введіть адресу'),
+              otherwise: schema => schema.notRequired(),
+            }),
+            delivery_warehouse: Yup.string().when('delivery_method_id', {
+              is: 1,
+              then: schema => schema.required('Введіть номер відділення'),
+              otherwise: schema => schema.notRequired(),
+            }),
           
         }),
         onSubmit: async (values) => {
-            try {
-                handlerOpenModal()
-                closeBasket()
-               
-               await makeOrder(values)
-            } catch (error) {
-                console.log(error)
-                throw error
-            }
-        },
+          try {
+              closeBasket();
+              const result = await makeOrder(values); // отримуємо відповідь від сервера
+            
+              setOrderData(result);                   // зберігаємо у стейт
+              setIsOpenModalCheck(true);              // відкриваємо модалку
+          } catch (error) {
+              console.log(error);
+              throw error;
+          }
+      },
     })
     
+    useEffect(() => {
+      setActiveDeliver(formik.values.delivery_method_id);
+    }, [formik.values.delivery_method_id]);
+
     const closeBasket = () => setOpenBasket(false)
 
     useEffect(() => {
@@ -141,7 +166,7 @@ export const Basket = () => {
         }
     }, [isOpenBasket])
 
-    console.log(data, 'data')
+    // console.log(data, 'data')
     
     return (
         <>
@@ -186,7 +211,7 @@ export const Basket = () => {
                                                         <p className="basket-list-undertitle">кількість шт</p>
                                                         <div className="basket-list-num">
                                                             <button onClick={() => changeCount(item, -1)}>-</button>
-                                                            <p>{item?.quantity || 1}</p>
+                                                            <p className='basket-list-num-p'>{item?.quantity || 1}</p>
                                                             <button onClick={() => changeCount(item, 1)}>+</button>
                                                         </div>
                                                     </div>
@@ -204,21 +229,38 @@ export const Basket = () => {
                                 </div>
                                 <div className="basket-paymant">
                                     <div>
-                                        <p>РАЗОМ ДО СПЛАТИ</p>
+                                        <p className='basket-paymant-select'>РАЗОМ ДО СПЛАТИ</p>
                                         <h5>
                                             {productBasketList.reduce((pr, st) => pr + Number(st.price) * (st?.quantity || 1), 0)}
                                             <span>грн</span>
                                         </h5>
                                     </div>
                                     <div className="basket-paymant-select">
-                                        <p>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
-                                        <BasketSelect />
+                                        <p className='select-title'>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
+                                          <BasketSelect
+                                            option={option}
+                                            value={tov}
+                                            onChange={setTov}
+                                          />
                                     </div>
                                 </div>
                                 <div className="basket-form">
                                     <h6 className="basket-form-title">ОБЕРІТЬ СПОСІБ ДОСТАВКИ</h6>
                                     <div className="basket-form-deliver">
-                                        <button
+                                      {data?.delivery.methods.map((method: any) => (
+                                          <button
+                                              key={method.method_id}
+                                              className={`basket-form-deliver ${
+                                                  activeDeliver === method.method_id && 'basket-form-deliver-active'
+                                              }`}
+                                              onClick={() => {
+                                                formik.setFieldValue('delivery_method_id', method.method_id);
+                                              }}
+                                          >
+                                              {method.method_name}
+                                          </button>
+                                      ))}
+                                        {/* <button
                                             className={`basket-form-deliver ${activeDeliver === 1 && 'basket-form-deliver-active'}`}
                                             onClick={() => setActiveDeliver(1)}
                                         >
@@ -235,19 +277,8 @@ export const Basket = () => {
                                             onClick={() => setActiveDeliver(3)}
                                         >
                                             Самовивіз
-                                        </button>
+                                        </button> */}
                                     </div>
-                                    {/* {deliveryMethods.map((method: any) => (
-                                        <button
-                                            key={method.method_id}
-                                            className={`basket-form-deliver ${
-                                                activeDeliver === method.method_id && 'basket-form-deliver-active'
-                                            }`}
-                                            onClick={() =>  formik.setFieldValue('delivery_method_id', activeDeliver)}
-                                        >
-                                            {method.method_name}
-                                        </button>
-                                    ))} */}
                                 </div>
                                 <div className="basket-form-input  ">
                                     <div className="auth-input-body">
@@ -330,45 +361,77 @@ export const Basket = () => {
                                     </div>
 
                                     <div className="auth-input-body">
+                                    {activeDeliver === 2 || activeDeliver === 3 ? (
+                                      <>
                                         <input
-                                            className="basket-form-input-item"
-                                            placeholder={activeDeliver === 2 ? 'Номер відділення' : 'Адреса'}
-                                            name="delivery_warehouse"
-                                            value={formik.values.delivery_warehouse}
-                                            onChange={formik.handleChange}
-                                            onBlur={formik.handleBlur}
+                                          className="basket-form-input-item"
+                                          placeholder="Адреса"
+                                          name="delivery_address"
+                                          value={formik.values.delivery_address}
+                                          onChange={formik.handleChange}
+                                          onBlur={formik.handleBlur}
+                                        />
+                                        {formik.touched.delivery_address && formik.errors.delivery_address && (
+                                          <div className="basket-form-error">{formik.errors.delivery_address}</div>
+                                        )}
+                                      </>
+                                    ) : (
+                                      <>
+                                        <input
+                                          className="basket-form-input-item"
+                                          placeholder="Номер відділення"
+                                          name="delivery_warehouse"
+                                          value={formik.values.delivery_warehouse}
+                                          onChange={formik.handleChange}
+                                          onBlur={formik.handleBlur}
                                         />
                                         {formik.touched.delivery_warehouse && formik.errors.delivery_warehouse && (
-                                            <div className="basket-form-error">{formik.errors.delivery_warehouse}</div>
+                                          <div className="basket-form-error">{formik.errors.delivery_warehouse}</div>
                                         )}
+                                      </>
+                                    )}
                                     </div>
-                                    {/* <input
-                                        className="basket-form-input-item"
-                                        placeholder="Коментар"
-                                        value={form.comment || ''}
-                                        onChange={(e) => setForm({ ...form, comment: e.target.value })}
-                                    /> */}
-                                    {/* <div className="basket-paymant-select">
-                                        <p className="basket-paymant-select-title">ТИП ЗАМОВЛЕННЯ:</p>
-                                        <BasketSelect
-                                            option={data.order.types.map((item) => ({}
-                                            value={formic.value.delivery_type}
-                                            onChange={(value) => setForm({ ...form, order_type: value })}
+
+                                    <div className="auth-input-body">
+                                        <textarea
+                                          className="basket-form-input-item"
+                                          placeholder="Коментар"
+                                          name="comment"
+                                          value={formik.values.comment}
+                                          onChange={formik.handleChange}
+                                          rows={3}
                                         />
-                                    </div> */}
+                                    </div>
+                                    <div className="auth-input-body">
+                                      <div className="basket-paymant-select">
+                                          <p>ТИП ЗАМОВЛЕННЯ:</p>
+                                          {data?.order?.types && (
+                                            <BasketSelect
+                                              option={data.order.types}
+                                              value={formik.values.order_type}
+                                              onChange={value => formik.setFieldValue('order_type', value)}
+                                            />
+                                          )}
+                                      </div>
+                                    </div>
                                 </div>
                             </>
                         }
                     </>
                 </div>
-                <button className="basket-button" onClick={() => formik.submitForm()} disabled={formik.isSubmitting}>
+                <button className="basket-button" 
+                  onClick={() => {
+                    formik.submitForm();
+                    console.log('Formik errors:', formik.errors)
+                  }}
+                  disabled={formik.isSubmitting}>
                     <div className="basket-button-text">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</div>
                     <div className="basket-button-icon">
                         <HeaderIconBasket />
                         <div className="basket-button-icon-num">{productBasketList?.length}</div>
                     </div>
                 </button>
-                {isOpenModalCheck && <BasketCheckModal setIsOpenModalCheck={handlerOpenModal} />}
+                {isOpenModalCheck && <BasketCheckModal setIsOpenModalCheck={handlerOpenModal} order={orderData} />}
             </div>
         </>
     )

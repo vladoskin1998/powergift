@@ -66,6 +66,7 @@ export class BasketApi{
 
     static async makeOrder(dto: OrderForm): Promise<any> {
         try {
+            console.log('API makeOrder called with:', dto)
             const formData = new FormData()
             const formWithDeliver =  dto 
 
@@ -74,9 +75,11 @@ export class BasketApi{
                     formData.append(key, String(formWithDeliver[key as keyof OrderForm]) )
                 }
             }
-            const { data } = await $api.post('order/create', formData)
-            return data
+            const response = await $api.post('order/create', formData)
+            // console.log('response from ', typeof response.data)
+            return response.data
         } catch (error) {
+            console.log('submit error', error)
             throw error
         }
     }
