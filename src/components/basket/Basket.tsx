@@ -58,7 +58,9 @@ export const Basket = () => {
             delivery_method_id: Yup.number().nullable().required('Оберіть спосіб доставки'),
             delivery_name: Yup.string().required("Введіть ім'я"),
             delivery_lastname: Yup.string().required('Введіть прізвище'),
-            delivery_phone: Yup.string().required('Введіть телефон'),
+            delivery_phone: Yup.string()
+              .required('Введіть телефон')
+              .matches(/^\+38\d{10}$/, 'Телефон має починатися з +38 і містити 13 символів'),
             // delivery_address: Yup.string().required('Введіть адресу'),
             delivery_city: Yup.string().required('Введіть місто'),
             delivery_country: Yup.string().required('Введіть країну'),
