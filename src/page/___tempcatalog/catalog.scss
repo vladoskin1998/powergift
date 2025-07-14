@@ -55,11 +55,11 @@
                 width: 100%;
                 object-fit: contain;
             }
-            &-shopcard {
+            // &-shopcard {
                 // @media screen and (max-width: 900px) {
                 //     max-width: 80px;
                 // }
-            }
+            // }
         }
         &-lihgt {
             height: 270px;
@@ -207,7 +207,7 @@
                 svg {
                     path {
                         fill: #4aff0b;
-                        fillopacity: 0.6;
+                        fill-opacity: 0.6;
                     }
                 }
             }
@@ -688,7 +688,7 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
-                text-fill-color: transparent;
+                color: transparent;
                 font-weight: 300;
             }
         }
@@ -846,7 +846,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-fill-color: transparent;
+            color: transparent;
             font-size: 44px;
             font-weight: 300;
             line-height: 109%;

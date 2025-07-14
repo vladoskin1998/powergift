@@ -34,43 +34,37 @@ export const CardSlick = ({ product }: { product: ProductType | undefined }) => 
             <div>
                 <div className="card-slider-route">
                     <CardHome />
-                    <span>{">"}</span>
+                    <span>{'>'}</span>
                     <div>{product.category.name}</div>
-                    <span>{">"}</span>
+                    <span>{'>'}</span>
                     <div>{product.title}</div>
                 </div>
             </div>
             <div className="card-slider-slick">
                 <Slider {...settings} ref={refSlick}>
-                    {files?.images?.map((image, index) => (
-                        <button key={index} className="card-slider-slick-item">
-                            <img src={image} alt={`Image ${index + 1}`} />
-                        </button>
-                    ))}
-
                     {files?.video && (
                         <button className="card-slider-slick-item">
-                            <video controls style={{ width: "100%" }}>
+                            <video controls style={{ width: '100%', height: '100%' }}>
                                 <source src={files.video} type="video/mp4" />
                                 Ваш браузер не поддерживает тег video.
                             </video>
                         </button>
                     )}
 
-                  
+                    {files?.images?.map((image, index) => (
+                        <button key={index} className="card-slider-slick-item">
+                            <img src={image} alt={`Image ${index + 1}`} />
+                        </button>
+                    ))}
                 </Slider>
             </div>
             <div className="card-slider-dots">
-                {[...files?.images, files?.video]
+                {[files?.video, ...files?.images, ]
                     .filter((item) => Boolean(item))
                     .map((item, index) => (
-                        <button
-                            key={index}
-                            className="card-slider-dots-button"
-                            onClick={() => toSlide(index)}
-                        >
-                            {item.includes(".mp4") ? (
-                                <video style={{ width: "40px" }}>
+                        <button key={index} className="card-slider-dots-button" onClick={() => toSlide(index)}>
+                            {item.includes('.mp4') ? (
+                                <video style={{ width: '40px' }}>
                                     <source src={item} type="video/mp4" />
                                 </video>
                             ) : (

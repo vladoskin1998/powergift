@@ -25,6 +25,7 @@ export interface ProductType {
     price: string
     partner_price: string
     stock: number
+    available: number
     title: string
     description: string
     feature: string

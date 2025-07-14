@@ -90,14 +90,8 @@ export const CatalogProducts = () => {
                     </h5>
                 </div>
 
-                <img
-                    src="/Images/glass_cube_by_gleb-2.png"
-                    alt=""
-                    className="catalog-product-header-img"
-                />
-                <h5 className="catalog-product-header-title">
-                    Каталог продукції
-                </h5>
+                <img src="/Images/glass_cube_by_gleb-2.png" alt="" className="catalog-product-header-img" />
+                <h5 className="catalog-product-header-title">Каталог продукції</h5>
 
                 <div className="catalog-product-header-mob">
                     <div className="catalog-product-header-mob-but">
@@ -111,14 +105,11 @@ export const CatalogProducts = () => {
             <div className="catalog-product-reverse">
                 <div className="catalog-product-nav">
                     <div className="catalog-product-nav-mob-img">
-                        <img src={baseURL + "/Images/helloworld.png"} alt="" />
+                        <img src={baseURL + '/Images/helloworld.png'} alt="" />
                     </div>
                     {CATALOG_PRODUCT_TITLE.map((item, key) => (
                         <div className="catalog-product-nav-item" key={key}>
-                            <img
-                                src={baseURL + `/Images/${item.label}`}
-                                alt={item.label}
-                            />
+                            <img src={baseURL + `/Images/${item.label}`} alt={item.label} />
                             <h5>{item.h5}</h5>
                             <p>{item.p1}</p>
                             <p>{item.p2}</p>
@@ -132,25 +123,12 @@ export const CatalogProducts = () => {
                     <div className="catalog-filter-list">
                         {data?.map((product) => (
                             <div
-                                onClick={(e) =>
-                                    navToCard(
-                                        e,
-                                        product.id,
-                                        product?.category?.id
-                                    )
-                                }
+                                onClick={(e) => navToCard(e, product.id, product?.category?.id)}
                                 key={product.id}
                                 className="catalog-filter-list-item"
                             >
                                 <div className="catalog-filter-list-item-img catalog-filter-list-item-gift-ico">
-                                    {product.files.images[0] ? (
-                                        <img
-                                            src={product.files.images[0]}
-                                            alt={product.title}
-                                        />
-                                    ) : (
-                                        <IconsGifts />
-                                    )}
+                                    {product.files.images[0] ? <img src={product.files.images[0]} alt={product.title} /> : <IconsGifts />}
                                 </div>
 
                                 <div className="catalog-filter-list-item-foot">
@@ -172,25 +150,16 @@ export const CatalogProducts = () => {
                                     </div> */}
                                     <div className="catalog-product-item-thr">
                                         <div>
-                                            <span> Артикул:</span>{" "}
-                                            <b>{product.id}</b>
+                                            <span> Артикул:</span> <b>{product.id}</b>
                                         </div>
                                         <div>
-                                            <span>Бренд:</span>{" "}
-                                            <p>{product.category.name}</p>
+                                            <span>Бренд:</span> <p>{product.category.name}</p>
                                         </div>
                                     </div>
-                                    <h6 className="catalog-filter-list-item-foot-price">
-                                        {product.title}
-                                    </h6>
+                                    <h6 className="catalog-filter-list-item-foot-price">{product.title}</h6>
                                     <p className="catalog-filter-list-item-foot-order">
-                                        {product.stock > 0
-                                            ? "В наявності"
-                                            : "Під замовлення"}
-                                        <img
-                                            src={baseURL + "/Images/Basket.png"}
-                                            alt="Basket"
-                                        />
+                                        {product.stock > 0 ? 'В наявності' : 'Під замовлення'}
+                                        <img src={baseURL + '/Images/Basket.png'} alt="Basket" />
                                     </p>
                                     <div className="catalog-filter-list-bot basket-pc">
                                         <div className="catalog-product-item-bot">
@@ -202,12 +171,15 @@ export const CatalogProducts = () => {
                                                 {product.stock}
                                                 <p>в наявності</p>
                                             </div>
+                                            <div className="catalog-product-item-bot-it">
+                                                {product?.available || product.stock}
+                                                <p>доступно</p>
+                                            </div>
                                         </div>
+
                                         <button
                                             className="catalog-filter-list-item-foot-but basket-pc"
-                                            onClick={(e) =>
-                                                addToBasket(e, product)
-                                            }
+                                            onClick={(e) => addToBasket(e, product)}
                                         >
                                             <div className="catalog-filter-list-item-foot-but-ico basket-pc">
                                                 <HeaderIconBasket />
@@ -230,19 +202,14 @@ export const CatalogProducts = () => {
                 <div className="catalog-product-client-head">
                     <h5>Наші клієнти</h5>
                     <p>
-                        – це дилери, рекламні агентства та сувенірні компанії та
-                        типографії. Проект створений для креативних команд та
-                        рекламних агенцій, які використовують брендовану
-                        продукцію. Що важливо нашому клієнту?
+                        – це дилери, рекламні агентства та сувенірні компанії та типографії. Проект створений для креативних команд та
+                        рекламних агенцій, які використовують брендовану продукцію. Що важливо нашому клієнту?
                     </p>
                 </div>
                 <div className=" catalog-product-client-list">
                     {CATALOG_PRODUCT_CLIENT.map((item, key) => (
                         <div className="catalog-product-nav-item" key={key}>
-                            <img
-                                src={baseURL + `/Images/${item.label}`}
-                                alt=""
-                            />
+                            <img src={baseURL + `/Images/${item.label}`} alt="" />
                             <h5>{item.h5}</h5>
                             <p>{item.p1}</p>
                             <p>{item.p2}</p>
@@ -262,49 +229,34 @@ export const CatalogProducts = () => {
                 </div>
 
                 <div className="catalog-product-brand-list">
-                    <h4 className="catalog-product-brand-list-first">
-                        Gradient
-                    </h4>
+                    <h4 className="catalog-product-brand-list-first">Gradient</h4>
                     <h4>
                         Pro
-                        <span className="catalog-product-brand-list-first">
-                            Stuff
-                        </span>
+                        <span className="catalog-product-brand-list-first">Stuff</span>
                     </h4>
                     <h4>
                         Go
-                        <span className="catalog-product-brand-list-first">
-                            UP!
-                        </span>
+                        <span className="catalog-product-brand-list-first">UP!</span>
                     </h4>
                     <h4>
                         Fun
-                        <span className="catalog-product-brand-list-first">
-                            Factory
-                        </span>
+                        <span className="catalog-product-brand-list-first">Factory</span>
                     </h4>
                 </div>
             </div>
 
             <div className="catalog-product-promo">
                 <div className="catalog-product-promo-img1">
-                    <img src={baseURL + "/Images/createyourself.png"} alt="" />
+                    <img src={baseURL + '/Images/createyourself.png'} alt="" />
                 </div>
                 <div className="catalog-product-promo-text">Promo Gifts</div>
                 <div className="catalog-product-promo-img2">
-                    <img
-                        src={baseURL + "/Images/glass_cube_by_gleb-2.png"}
-                        alt=""
-                    />
+                    <img src={baseURL + '/Images/glass_cube_by_gleb-2.png'} alt="" />
                 </div>
 
-                <img
-                    src={baseURL + "/Images/bus.png"}
-                    alt=""
-                    className="catalog-product-promo-img3"
-                />
+                <img src={baseURL + '/Images/bus.png'} alt="" className="catalog-product-promo-img3" />
                 <div className="catalog-product-promo-flag">
-                    <img src={baseURL + "/Images/flagua.png"} alt="" />
+                    <img src={baseURL + '/Images/flagua.png'} alt="" />
                     <div>
                         <span>УКРАЇНСЬКА</span> <br />
                         КОМПАНІЯ
@@ -312,59 +264,33 @@ export const CatalogProducts = () => {
                 </div>
                 <div className="catalog-product-promo-foot">
                     УКРАЇНСЬКА КОМПАНІЯ, b2b <br />
-                    <span>
-                        ПОСТАЧАЛЬНИК ПРОМО ПОДАРУкції ДЛЯ РЕКЛАМНИХ АГЕНТСТВ &
-                        дилерів
-                    </span>
+                    <span>ПОСТАЧАЛЬНИК ПРОМО ПОДАРУкції ДЛЯ РЕКЛАМНИХ АГЕНТСТВ & дилерів</span>
                 </div>
             </div>
 
             <div className="catalog-product-navigation">
-                <div className="catalog-product-navigation-title">
-                    Навігація проекту
-                </div>
+                <div className="catalog-product-navigation-title">Навігація проекту</div>
                 <div className="catalog-product-navigation-list">
                     <div className="catalog-product-navigation-row">
-                        <div className="catalog-product-navigation-item">
-                            Дилерам
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Партнерство
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Бренди
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Каталог товарів PDF
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Контакти
-                        </div>
+                        <div className="catalog-product-navigation-item">Дилерам</div>
+                        <div className="catalog-product-navigation-item">Партнерство</div>
+                        <div className="catalog-product-navigation-item">Бренди</div>
+                        <div className="catalog-product-navigation-item">Каталог товарів PDF</div>
+                        <div className="catalog-product-navigation-item">Контакти</div>
                     </div>
                     <div className="catalog-product-navigation-row">
-                        <div className="catalog-product-navigation-item">
-                            Про компанію
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Карьера
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            FAQ
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Контакти
-                        </div>
-                        <div className="catalog-product-navigation-item">
-                            Новини
-                        </div>
+                        <div className="catalog-product-navigation-item">Про компанію</div>
+                        <div className="catalog-product-navigation-item">Карьера</div>
+                        <div className="catalog-product-navigation-item">FAQ</div>
+                        <div className="catalog-product-navigation-item">Контакти</div>
+                        <div className="catalog-product-navigation-item">Новини</div>
                     </div>
                 </div>
                 <div className="catalog-product-navigation-paymant">
-                    <img src={baseURL + "/Images/Paymant.png"} alt="" />
+                    <img src={baseURL + '/Images/Paymant.png'} alt="" />
                 </div>
                 <div className="catalog-product-navigation-foot">
-                    © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All
-                    Rights Reserved. Let’s create.
+                    © <b>Power</b>Gifts. Ukrainian promo gifts b2b company. All Rights Reserved. Let’s create.
                 </div>
             </div>
         </div>

@@ -56,16 +56,12 @@ export const Navbar = () => {
                         onClick={() => {
                             changeCurrentSubCategorie(item)
                             navigate('/')
-                        } }
+                        }}
                     >
-                        <button className="navbar-item-ico" >
+                        <button className="navbar-item-ico">
                             {/* <ReactSVG src={item?.icon || ''} beforeInjection={(svg) => svg.setAttribute("crossorigin", "anonymous")}
                         /> */}
-                            {item?.icon ? (
-                                <img src={item.icon} alt="" />
-                            ) : (
-                                <IconsGifts />
-                            )}
+                            {item?.icon ? <img src={item.icon} alt="" /> : <IconsGifts />}
                         </button>
                         <p>{item.title}</p>
                     </button>
@@ -79,7 +75,6 @@ export const Navbar = () => {
                             className="navbar-titles-item"
                             style={!index ? { borderTop: 0 } : {}}
                             onMouseEnter={() => setHoveredCategory(item)}
-                        
                         >
                             {item.title}
                         </button>
@@ -88,21 +83,23 @@ export const Navbar = () => {
                 <div className="navbar_products">
                     <div
                         className="catalog-main-list"
-                        onMouseLeave={() => setHoveredCategory(null)}
+                        // onMouseLeave={() => setHoveredCategory(null)}
                         onClick={() => setHoveredCategory(null)}
                     >
                         {hoveredCategory?.subcategories.map((item) => (
                             <div
                                 className="catalog-main-product navbar_list-item"
-                                onClick={(e) =>
-                                    navToCategories(e, item?.categoryId)
-                                }
-                                style={{ backgroundImage: `url(${item.icon})`}}
+                                onClick={(e) => navToCategories(e, item?.categoryId)}
+                                // style={{ backgroundImage: `url(${item.icon})` }}
                             >
-                                <div className="catalog-main-product-img">
-                                {!item?.icon  &&  <IconsGifts />}
+                                <div className="catalog-main-product-img" style={{ backgroundImage: `url(${item.icon})`, width: '200px', backgroundSize: 'contain', height: '200px' }}>
+                                    {!item?.icon && <IconsGifts />}
                                 </div>
-                                <h5 style={item?.icon ? {paddingTop: '300px'} : {}}>{item.title}</h5>
+                                <h5
+                                //  style={item?.icon ? {paddingTop: '300px'} : {}}
+                                >
+                                    {item.title}
+                                </h5>
                             </div>
                         ))}
                     </div>

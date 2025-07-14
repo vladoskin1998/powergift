@@ -37,7 +37,11 @@ export const Basket = () => {
     ]
 
 
-    const { data, isLoading, error } = useQuery( ['shopInfo'], () => BasketApi.getInfoShop(),
+    const { data, isLoading, error } = useQuery( ['shopInfo'], async () => {
+      
+        const data = await BasketApi.getInfoShop()
+        return data
+    } 
     )
     
     const formik = useFormik({
@@ -52,15 +56,15 @@ export const Basket = () => {
             delivery_country: '',
             delivery_region: '',
             comment: '',
-            order_type: '',
+            order_type: 'ordered',
         },
         validationSchema: Yup.object({
             delivery_method_id: Yup.number().nullable().required('Оберіть спосіб доставки'),
             delivery_name: Yup.string().required("Введіть ім'я"),
             delivery_lastname: Yup.string().required('Введіть прізвище'),
             delivery_phone: Yup.string()
-              .required('Введіть телефон')
-              .matches(/^\+38\d{10}$/, 'Телефон має починатися з +38 і містити 13 символів'),
+                .required('Введіть телефон')
+                .matches(/^\+38\d{10}$/, 'Телефон має починатися з +38 і містити 13 символів'),
             // delivery_address: Yup.string().required('Введіть адресу'),
             delivery_city: Yup.string().required('Введіть місто'),
             delivery_country: Yup.string().required('Введіть країну'),
@@ -68,29 +72,28 @@ export const Basket = () => {
             order_type: Yup.string().required('Оберіть тип замовлення'),
 
             delivery_address: Yup.string().when('delivery_method_id', {
-              is: (method_id: number) => method_id === 2 || method_id === 3,
-              then: schema => schema.required('Введіть адресу'),
-              otherwise: schema => schema.notRequired(),
+                is: (method_id: number) => method_id === 2 || method_id === 3,
+                then: (schema) => schema.required('Введіть адресу'),
+                otherwise: (schema) => schema.notRequired(),
             }),
             delivery_warehouse: Yup.string().when('delivery_method_id', {
-              is: 1,
-              then: schema => schema.required('Введіть номер відділення'),
-              otherwise: schema => schema.notRequired(),
+                is: 1,
+                then: (schema) => schema.required('Введіть номер відділення'),
+                otherwise: (schema) => schema.notRequired(),
             }),
-          
         }),
         onSubmit: async (values) => {
-          try {
-              closeBasket();
-              const result = await makeOrder(values); // отримуємо відповідь від сервера
-            
-              setOrderData(result);                   // зберігаємо у стейт
-              setIsOpenModalCheck(true);              // відкриваємо модалку
-          } catch (error) {
-              console.log(error);
-              throw error;
-          }
-      },
+            try {
+                closeBasket()
+                const result = await makeOrder(values) // отримуємо відповідь від сервера
+
+                setOrderData(result) // зберігаємо у стейт
+                setIsOpenModalCheck(true) // відкриваємо модалку
+            } catch (error) {
+                console.log(error)
+                throw error
+            }
+        },
     })
     
     useEffect(() => {
@@ -168,6 +171,15 @@ export const Basket = () => {
         }
     }, [isOpenBasket])
 
+
+
+    
+    useEffect(() => {
+        if( productBasketList.length === 0 && isOpenBasket) {
+            closeBasket()
+        }
+    },[ productBasketList.length])
+
     // console.log(data, 'data')
     
     return (
@@ -237,14 +249,14 @@ export const Basket = () => {
                                             <span>грн</span>
                                         </h5>
                                     </div>
-                                    <div className="basket-paymant-select">
+                                    {/* <div className="basket-paymant-select">
                                         <p className='select-title'>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
                                           <BasketSelect
                                             option={option}
                                             value={tov}
                                             onChange={setTov}
                                           />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="basket-form">
                                     <h6 className="basket-form-title">ОБЕРІТЬ СПОСІБ ДОСТАВКИ</h6>
@@ -409,7 +421,7 @@ export const Basket = () => {
                                           <p>ТИП ЗАМОВЛЕННЯ:</p>
                                           {data?.order?.types && (
                                             <BasketSelect
-                                              option={data.order.types}
+                                              option={data.order.types.reverse()}
                                               value={formik.values.order_type}
                                               onChange={value => formik.setFieldValue('order_type', value)}
                                             />
@@ -426,7 +438,7 @@ export const Basket = () => {
                     formik.submitForm();
                     console.log('Formik errors:', formik.errors)
                   }}
-                  disabled={formik.isSubmitting}>
+                  disabled={formik.isSubmitting || productBasketList.length === 0}>
                     <div className="basket-button-text">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</div>
                     <div className="basket-button-icon">
                         <HeaderIconBasket />
