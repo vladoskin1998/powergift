@@ -6,7 +6,7 @@ import {
 import { baseURL, normalizeProductTypeToBasketType } from "../../utils/utils"
 import { CatalogIconConception } from "../../components/svg/CatalogIcon"
 import { HeaderIconBasket, HeaderIconReload } from "../../components/svg/HeaderIcon"
-import {  useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useQuery } from "react-query"
 import { $api } from "../../api"
 import { ProductType } from "../../type"
@@ -34,7 +34,7 @@ const getAllProduct = async () => {
 
 export const CatalogProducts = () => {
 
-    const {addProductBasketList} = useBasketStore()
+    const { addProductBasketList } = useBasketStore()
     const { categoriesId } = useParams()
     const navigate = useNavigate()
 
@@ -68,14 +68,14 @@ export const CatalogProducts = () => {
 
     const addToBasket = (e: React.MouseEvent, product: ProductType) => {
         e.stopPropagation()
-       const basketProduct =   normalizeProductTypeToBasketType(product)
-                   addProductBasketList(
-                       basketProduct, 1
-                   )
+        const basketProduct = normalizeProductTypeToBasketType(product)
+        addProductBasketList(
+            basketProduct, 1
+        )
     }
 
-    if(isLoading){
-        return <Loader/>
+    if (isLoading) {
+        return <Loader />
     }
 
 
@@ -103,22 +103,7 @@ export const CatalogProducts = () => {
                 </div>
             </div>
             <div className="catalog-product-reverse">
-                <div className="catalog-product-nav">
-                    <div className="catalog-product-nav-mob-img">
-                        <img src={baseURL + '/Images/helloworld.png'} alt="" />
-                    </div>
-                    {CATALOG_PRODUCT_TITLE.map((item, key) => (
-                        <div className="catalog-product-nav-item" key={key}>
-                            <img src={baseURL + `/Images/${item.label}`} alt={item.label} />
-                            <h5>{item.h5}</h5>
-                            <p>{item.p1}</p>
-                            <p>{item.p2}</p>
-                            <p>{item.p3}</p>
-                            <p>{item.p4}</p>
-                            <p>{item.p5}</p>
-                        </div>
-                    ))}
-                </div>
+            
                 <div className="catalog-filter-body catalog-product-body">
                     <div className="catalog-filter-list">
                         {data?.map((product) => (
@@ -132,13 +117,21 @@ export const CatalogProducts = () => {
                                 </div>
 
                                 <div className="catalog-filter-list-item-foot">
-                                    {/* <div className="catalog-product-colors">
-                                        {product.attributes?.[0]?.properties?.map(
-                                            (color) => (
-                                                <div className="catalog-product-colors-c" style={{background: color?.color || '#fff'}}/>
+                                    <div className="catalog-product-colors">
+                                       
+                                        <button className="catalog-product-colors-c" style={{ backgroundImage: `url(${product.files.image[0] && product.files.images[0]})`,
+                                        backgroundBlendMode: 'cover',
+                                    }}/>
+                                        
+                                        {product.relatedProductsByColor?.map(
+                                            (rproduct) => (
+                                                <button className="catalog-product-colors-c" style={{
+                                                    backgroundImage: `url(${rproduct.files.image[0] && rproduct.files.images[0]})`,
+                                                    backgroundBlendMode: 'cover',
+                                                }} />
                                             )
                                         )}
-                                    </div> */}
+                                    </div>
                                     {/* <div className="catalog-product-item-staff">
                                         <img
                                             src={
@@ -225,7 +218,7 @@ export const CatalogProducts = () => {
                     <img src="/Images/glass_cube_by_gleb-2.png" alt="" />
                 </div>
                 <div className="catalog-product-brand-title">
-                    <h5>Каталог продукції</h5>
+                    <h5></h5>
                 </div>
 
                 <div className="catalog-product-brand-list">
@@ -267,7 +260,22 @@ export const CatalogProducts = () => {
                     <span>ПОСТАЧАЛЬНИК ПРОМО ПОДАРУкції ДЛЯ РЕКЛАМНИХ АГЕНТСТВ & дилерів</span>
                 </div>
             </div>
-
+            <div className="catalog-product-nav">
+                <div className="catalog-product-nav-mob-img">
+                    <img src={baseURL + '/Images/helloworld.png'} alt="" />
+                </div>
+                {CATALOG_PRODUCT_TITLE.map((item, key) => (
+                    <div className="catalog-product-nav-item" key={key}>
+                        <img src={baseURL + `/Images/${item.label}`} alt={item.label} />
+                        <h5>{item.h5}</h5>
+                        <p>{item.p1}</p>
+                        <p>{item.p2}</p>
+                        <p>{item.p3}</p>
+                        <p>{item.p4}</p>
+                        <p>{item.p5}</p>
+                    </div>
+                ))}
+            </div>
             <div className="catalog-product-navigation">
                 <div className="catalog-product-navigation-title">Навігація проекту</div>
                 <div className="catalog-product-navigation-list">

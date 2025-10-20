@@ -1,7 +1,7 @@
 import Slider from "react-slick"
 import { CardHome } from "../../components/svg/CardIcon"
 import { baseURL } from "../../utils/utils"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { FilesType, ProductType } from "../../type"
 
 let settings = {
@@ -24,7 +24,12 @@ export const CardSlick = ({ product }: { product: ProductType | undefined }) => 
             refSlick?.current?.slickGoTo(num)
         }
     }
-
+    useEffect(() => {
+        if (refSlick.current && product) {
+            refSlick.current.slickGoTo(0)
+        }
+    }, [product?.id])
+    
     if (!files || !product) {
         return <></>
     }

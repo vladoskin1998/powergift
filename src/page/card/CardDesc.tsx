@@ -4,6 +4,8 @@ import { CardIconDownload, CardIconLike } from "../../components/svg/CardIcon"
 import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 import { useEffect, useState } from "react"
 import { useBasketStore } from "../../components/basket/basket.store"
+import { Card1Icon, Card2Icon, Card3Icon } from "../../components/svg/Card-Product"
+import { useNavigate } from "react-router-dom"
 
 export const CardDesc = ({
     product,
@@ -23,21 +25,21 @@ export const CardDesc = ({
     changeCount: (n: number) => void
 
     color:
-        | {
-              id: number
-              name: string
-              properties: {
-                  id: number
-                  name: string
-                  color?: string | undefined
-              }[]
-          }
-        | undefined
+    | {
+        id: number
+        name: string
+        properties: {
+            id: number
+            name: string
+            color?: string | undefined
+        }[]
+    }
+    | undefined
     currentColor: string
     setCurrentColor: (s: string) => void
 }) => {
     const { productBasketList } = useBasketStore()
-
+    const navigate = useNavigate()
     if (!product) {
         return <></>
     }
@@ -107,6 +109,16 @@ export const CardDesc = ({
                                             }
                                         />
                                     ))}
+                                    {product.relatedProductsByColor?.map((item) => (
+                                        <button
+                                            className="card-desc-info-circle card-desc-info-circle-1"
+                                            style={{ background: item?.attributes?.[0].properties?.[0].color }}
+                                            onClick={() => {
+                                                navigate(`/catalog/${item.category.id}/card/${item.id}`)
+                                                }
+                                            }
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         )}
@@ -168,35 +180,38 @@ export const CardDesc = ({
                     </div>
                 </div>
                 <div className="card-desc-deliver">
-                    <div>
-                        <img
+                    <div className="card-desc-deliver-item">
+                        <Card1Icon />
+                        {/* <img
                             className="card-desc-deliver-img card-desc-deliver-img-fc"
-                            src={baseURL + "/Images/Box.png"}
+                            src={baseURL + "/Images/card/icon-1.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Доставка</p>
                         <p className="card-desc-info-desc-text">
                             Самовивіз з нашого магазину — безкоштовно. «Новою
                             поштою» по Україні — по тарифам перевізника.
                         </p>
                     </div>
-                    <div>
-                        <img
+                    <div className="card-desc-deliver-item">
+                        <Card2Icon />
+                        {/* <img
                             className="card-desc-deliver-img"
-                            src={baseURL + "/Images/Box.png"}
+                            src={baseURL + "/Images/card/icon-2.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Оплата</p>
                         <p className="card-desc-info-desc-text">
                             Оплата по рахунку.
                         </p>
                     </div>
-                    <div>
-                        <img
+                    <div className="card-desc-deliver-item">
+                        <Card3Icon />
+                        {/* <img
                             className="card-desc-deliver-img"
-                            src={baseURL + "/Images/Box.png"}
+                               src={baseURL + "/Images/card/icon-3.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Гарантія</p>
                         <p className="card-desc-info-desc-text">
                             Гарантія від виробника до 3 місяців

@@ -50,9 +50,9 @@ export const CatalogCategoriesMobile = () => {
 
     return (
         <div className="catalog-main">
-            <video className="catalog-main-back" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
+            {/* <video className="catalog-main-back" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
                 <source src={baseURL + `/Images/Coub.mp4`} type="video/mp4" />
-            </video>
+            </video> */}
             <div className="catalog-main-list  catalog-main-list-none">
                 {currentSubCategorie?.subcategories.map((item) => (
                     <button

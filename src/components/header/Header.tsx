@@ -12,13 +12,15 @@ import { HeaderSearch } from "./HeaderSearch"
 import { baseURL } from "../../utils/utils"
 import { FooterIconBag } from "../svg/FooterIcon"
 import { useEffect, useRef, useState } from "react"
-import { Basket } from "../basket/Basket"
 import { AuthRouter } from "../../page/auth/AuthRouter"
 import { useBasketStore } from "../basket/basket.store"
 import { useAuthStore } from "../../page/auth/auth.store"
 import { Tooltip } from "@mui/material"
+import { useAppContext } from "../../context/AppContext"
 
 export const Header = () => {
+
+    const { isMobile } = useAppContext()
     const { isAuth } = useAuthStore()
     const [open, setOpen] = useState(false)
     const { openAuth, setOpenAuth } = useAuthStore()
@@ -46,11 +48,11 @@ export const Header = () => {
         }
     }, [])
     const handlerOpenBasket = (b: boolean) => {
-        if( !isAuth ){
+        if (!isAuth) {
             return
         }
-        
-        if( productBasketList?.length === 0){
+
+        if (productBasketList?.length === 0) {
             navigate('/catalog/products')
         }
         setOpenBasket(b)
@@ -141,8 +143,11 @@ export const Header = () => {
                 </Tooltip>
             </div>
             <HeaderNavBar open={open} handerClose={handerClose} />
-            <Basket />
-            <AuthRouter />
+            {
+                !isMobile && <>
+                    <AuthRouter />
+                </>
+            }
         </div>
     )
 }

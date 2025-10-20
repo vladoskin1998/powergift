@@ -7,7 +7,8 @@ import { useLoaderStore } from "../loader/loading.store";
 
 interface BasketState {
   makeOrder: (dto: OrderForm) => Promise<void>;
-  initProductBasketList: () => void;
+
+  setProductBasketList: (products: BaskerProduct[]) => void;
   productBasketList: BaskerProduct[];
   addProductBasketList: (product: BaskerProduct, count: number) => void;
   deleteProductBasketList: (s: { product_id: number }) => void;
@@ -26,13 +27,10 @@ export const useBasketStore = create<BasketState>()(
       set({ isOpenBasket: isOpen }, false, "setOpenBasket");
     },
 
-    initProductBasketList: async () => {
-      try {
-        const data = await BasketApi.getBasket();
-        set({ productBasketList: data.cart.products }, false, "initProductBasketList");
-      } catch (e) {
-        console.error("Помилка завантаження корзини, зверніться до адміністратора!", e);
-      }
+
+    setProductBasketList: (products: BaskerProduct[]) => {
+      console.log('🏪 Store: setProductBasketList called with', products.length, 'products');
+      set({ productBasketList: products }, false, "setProductBasketList");
     },
 
     addProductBasketList: async (product: BaskerProduct, count: number) => {
@@ -100,7 +98,7 @@ export const useBasketStore = create<BasketState>()(
       set({ productBasketList: filteredBasket }, false, "deleteProductBasketList");
     },
 
-     makeOrder: async (dto: OrderForm) => {
+    makeOrder: async (dto: OrderForm) => {
       try {
         const result = await BasketApi.makeOrder(dto)
         set({ productBasketList: [] });

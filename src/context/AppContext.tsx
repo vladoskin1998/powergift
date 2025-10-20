@@ -16,6 +16,7 @@ interface AppContextType {
     currentSubCategorie: CategoryType | null
     changeCurrentSubCategorie: (s: CategoryType | null) => void
 
+    isMobile: boolean
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined)
@@ -25,12 +26,24 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-   
+
     const [key, setKey] = useState(Date.now())
     const { setIsAuth } = useAuthStore()
 
     const [currentSubCategorie, setCurrentSubCategorie] =
         useState<CategoryType | null>(null)
+
+    const [isMobile, setIsMobile] = useState(false)
+
+    // Функция для определения мобильного устройства
+    const checkIsMobile = () => {
+        const userAgent = navigator.userAgent.toLowerCase()
+        const mobileKeywords = ['android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone']
+        const isMobileUserAgent = mobileKeywords.some(keyword => userAgent.includes(keyword))
+        const isMobileScreen = window.innerWidth <= 768
+
+        return isMobileUserAgent || isMobileScreen
+    }
 
     const handlerHiddenScroll = (s: TypeOverflow) => {
         // if (document) {
@@ -50,11 +63,27 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setKey(Date.now())
     }, [window.location])
 
+    useEffect(() => {
+        // Инициализация isMobile
+        setIsMobile(checkIsMobile())
+
+        // Обработчик изменения размера окна
+        const handleResize = () => {
+            setIsMobile(checkIsMobile())
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
     const changeCurrentSubCategorie = (s: CategoryType | null) => {
         setCurrentSubCategorie(s)
     }
 
-  
+
     return (
         <AppContext.Provider
             value={{
@@ -62,7 +91,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
                 currentSubCategorie,
                 changeCurrentSubCategorie,
-           
+
+                isMobile,
             }}
         >
             <div key={key}>{children}</div>

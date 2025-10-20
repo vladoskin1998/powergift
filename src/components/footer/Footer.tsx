@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { baseURL } from "../../utils/utils"
-import { Basket } from "../basket/Basket"
 import { FooterIconShare } from "../svg/FooterIcon"
 import {
     HeaderIconSearch,
@@ -17,17 +16,18 @@ import { Tooltip } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 
 export const Footer = () => {
+    const { isMobile } = useAppContext()
     const { isOpenBasket, setOpenBasket, productBasketList } = useBasketStore()
     const navigate = useNavigate()
     const { openAuth, setOpenAuth, isAuth } = useAuthStore()
     const { handlerHiddenScroll } = useAppContext()
 
     const handlerOpenBasket = (b: boolean) => {
-        if( !isAuth ){
+        if (!isAuth) {
             return
         }
-        
-        if( productBasketList?.length === 0){
+
+        if (productBasketList?.length === 0) {
             navigate('/catalog/products')
         }
         setOpenBasket(b)
@@ -93,11 +93,11 @@ export const Footer = () => {
                     </button>
                 </Tooltip>
                 <Tooltip
-                   title={
-                    isAuth
-                        ? productBasketList?.length ?  "Кошик" : "Кошик порожній, додайте товари!"
-                        : "Увійдіть до свого кабінету"
-                }
+                    title={
+                        isAuth
+                            ? productBasketList?.length ? "Кошик" : "Кошик порожній, додайте товари!"
+                            : "Увійдіть до свого кабінету"
+                    }
                 >
                     <button
                         className="header-item header-basket-ico"
@@ -116,8 +116,12 @@ export const Footer = () => {
                     <HeaderIconSearch />
                 </button>
             </div>
-            <Basket />
-            <AuthRouter />
+            {
+                isMobile && <>
+                    <AuthRouter />
+                </>
+            }
+
         </div>
     )
 }

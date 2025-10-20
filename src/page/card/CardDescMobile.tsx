@@ -5,6 +5,8 @@ import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 import { CardIconDownload } from "../../components/svg/CardIcon"
 import { ProductType } from "../../type"
 import { useBasketStore } from "../../components/basket/basket.store"
+import { Card1Icon, Card2Icon, Card3Icon } from "../../components/svg/Card-Product"
+import { useNavigate } from "react-router-dom"
 
 export const CardDescMobile = ({
     product,
@@ -37,6 +39,8 @@ export const CardDescMobile = ({
     currentColor: string
     setCurrentColor: (s: string) => void
 }) => {
+
+    const navigate = useNavigate()  
     const { productBasketList } = useBasketStore()
     if (!product) {
         return <></>
@@ -125,6 +129,16 @@ export const CardDescMobile = ({
                                     onClick={() => setCurrentColor(item.name)}
                                 />
                             ))}
+                            {product.relatedProductsByColor?.map((item) => (
+                                <button
+                                    className="card-desc-info-circle card-desc-info-circle-1"
+                                    style={{ background: item?.attributes?.[0].properties?.[0].color }}
+                                    onClick={() => {
+                                        navigate(`/catalog/${item.category.id}/card/${item.id}`)
+                                    }
+                                    }
+                                />
+                            ))}
                         </div>
                     </div>
                 )}
@@ -150,11 +164,12 @@ export const CardDescMobile = ({
                 <img src={baseURL + "/Images/KP.png"} alt="" />
                 <div>
                     <div>
-                        <img
+                              <Card1Icon/>
+                        {/* <img
                             className="card-desc-deliver-img card-desc-deliver-img-fc"
-                            src={baseURL + "/Images/Box.png"}
+                            src={baseURL + "/Images/card/icon-1.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Доставка</p>
                         <p className="card-desc-info-desc-text">
                             Самовивіз з нашого магазину — безкоштовно. «Новою
@@ -162,22 +177,24 @@ export const CardDescMobile = ({
                         </p>
                     </div>
                     <div>
-                        <img
+                        <Card2Icon />
+                        {/* <img
                             className="card-desc-deliver-img"
-                            src={baseURL + "/Images/Box.png"}
+                            src={baseURL + "/Images/card/icon-2.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Оплата</p>
                         <p className="card-desc-info-desc-text">
                             Оплата по рахунку.
                         </p>
                     </div>
                     <div>
-                        <img
+                        <Card3Icon />
+                        {/* <img
                             className="card-desc-deliver-img"
-                            src={baseURL + "/Images/Box.png"}
+                            src={baseURL + "/Images/card/icon-3.svg"}
                             alt=""
-                        />
+                        /> */}
                         <p className="card-desc-info-title">Гарантія</p>
                         <p className="card-desc-info-desc-text">
                             Гарантія від виробника до 3 місяців

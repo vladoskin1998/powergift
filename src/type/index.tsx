@@ -15,6 +15,7 @@ export enum LinkNavbarEnum {
 }
 
 export type FilesType = {
+    image: string[]
     images: string[]
     video: string
     documents: string[]
@@ -53,6 +54,7 @@ export interface ProductType {
         name: string
         properties: { id: number; name: string; color?: string }[]
     }>
+    relatedProductsByColor: ProductType[]
 }
 
 

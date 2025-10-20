@@ -1,16 +1,15 @@
-import React, { useEffect } from "react"
+import  { useEffect } from "react"
 import { Navbar } from "./components/navbar/Navbar"
-
 import { Footer } from "./components/footer/Footer"
 import { Router } from "./router/Router"
 import { Header } from "./components/header/Header"
-import { AppProvider, useAppContext } from "./context/AppContext"
 import { Loader } from "./components/loader/Loader"
-
 import { QueryClient, QueryClientProvider } from "react-query"
-import { useLoaderData, useLocation } from "react-router-dom"
+import {  useLocation } from "react-router-dom"
 import { useLoaderStore } from "./components/loader/loading.store"
 import BasketLoader from "./components/loader/BasketLoader"
+import { Basket } from "./components/basket/Basket"
+
 const queryClient = new QueryClient()
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
-    }, [window.location,location])
+    }, [window.location, location])
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -33,11 +32,13 @@ function App() {
                     <div className="right-navbar" />
                 </div>
                 <Footer />
+                <Basket/>
             </div>
         </QueryClientProvider>
     )
 }
 
 export default App
+
 
 

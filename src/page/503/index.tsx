@@ -35,9 +35,9 @@ const Page503 = () => {
                 </div>
             </div>
 
-            <video className="catalog-main-back" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
+            {/* <video className="catalog-main-back" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
                 <source src={baseURL + `/Images/Coub.mp4`} type="video/mp4" />
-            </video>
+            </video> */}
             <div className="page503-img">
                 <img src="/Images/503.png" alt="" />
             </div>

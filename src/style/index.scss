@@ -51,8 +51,14 @@ body {
     min-height: -webkit-fill-available;
     position: relative;
 
-    background: $color_grey;
+    background-color: #0d0d0d;
+    background-image: url('../../public/Images/pg.banner.png');
+    background-size: calc(100% - 80px) auto;
+    background-repeat: no-repeat;
+    background-position: center 80px;
+    background-origin: padding-box;
 }
+
 *::-webkit-scrollbar {
     height: 4px;
     width: 0px;
@@ -100,6 +106,7 @@ code {
         z-index: 101;
         overflow-x: hidden;
     }
+
     .Main {
         position: relative;
         grid-template-columns: 80px 1fr;

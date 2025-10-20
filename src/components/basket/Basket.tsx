@@ -13,7 +13,8 @@ import { useQuery } from 'react-query'
 import { BasketApi } from './api.basket'
 export const Basket = () => {
     const {
-        initProductBasketList,
+
+        setProductBasketList,
         isOpenBasket,
         setOpenBasket,
         productBasketList,
@@ -37,13 +38,29 @@ export const Basket = () => {
     ]
 
 
-    const { data, isLoading, error } = useQuery( ['shopInfo'], async () => {
-      
+    const { data: shopData, isLoading: isShopLoading, error: shopError } = useQuery(['shopInfo'], async () => {
         const data = await BasketApi.getInfoShop()
         return data
-    } 
-    )
-    
+    }, {
+        staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+    })
+
+    useQuery(['basketData'], async () => {
+
+        const data = await BasketApi.getBasket()
+        return data
+    }, {
+        staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => {
+            console.log('✅ useQuery: Basket data loaded, updating store');
+            setProductBasketList(data.cart.products)
+        }
+    })
+
     const formik = useFormik({
         initialValues: {
             delivery_method_id: 1,
@@ -95,16 +112,14 @@ export const Basket = () => {
             }
         },
     })
-    
+
     useEffect(() => {
-      setActiveDeliver(formik.values.delivery_method_id);
+        setActiveDeliver(formik.values.delivery_method_id);
     }, [formik.values.delivery_method_id]);
 
     const closeBasket = () => setOpenBasket(false)
 
-    useEffect(() => {
-        initProductBasketList()
-    }, [])
+    // Удален useEffect для initProductBasketList - теперь данные загружаются через useQuery выше
 
     useEffect(() => {
         const setHeight = () => {
@@ -173,15 +188,15 @@ export const Basket = () => {
 
 
 
-    
+
     useEffect(() => {
-        if( productBasketList.length === 0 && isOpenBasket) {
+        if (productBasketList.length === 0 && isOpenBasket) {
             closeBasket()
         }
-    },[ productBasketList.length])
+    }, [productBasketList.length])
 
     // console.log(data, 'data')
-    
+
     return (
         <>
             <div className={`basket  ${isOpenBasket && 'basket-open'} `} style={{ height: pageHeight }}>
@@ -201,7 +216,7 @@ export const Basket = () => {
                                             </div>
                                             <div className="basket-list-right">
                                                 <div className="basket-list-art">
-                                                    Артикул: <div>{}</div>
+                                                    Артикул: <div>{ }</div>
                                                     <button
                                                         className="basket-list-delete"
                                                         onClick={() =>
@@ -261,19 +276,18 @@ export const Basket = () => {
                                 <div className="basket-form">
                                     <h6 className="basket-form-title">ОБЕРІТЬ СПОСІБ ДОСТАВКИ</h6>
                                     <div className="basket-form-deliver">
-                                      {data?.delivery.methods.map((method: any) => (
-                                          <button
-                                              key={method.method_id}
-                                              className={`basket-form-deliver ${
-                                                  activeDeliver === method.method_id && 'basket-form-deliver-active'
-                                              }`}
-                                              onClick={() => {
-                                                formik.setFieldValue('delivery_method_id', method.method_id);
-                                              }}
-                                          >
-                                              {method.method_name}
-                                          </button>
-                                      ))}
+                                        {shopData?.delivery.methods.map((method: any) => (
+                                            <button
+                                                key={method.method_id}
+                                                className={`basket-form-deliver ${activeDeliver === method.method_id && 'basket-form-deliver-active'
+                                                    }`}
+                                                onClick={() => {
+                                                    formik.setFieldValue('delivery_method_id', method.method_id);
+                                                }}
+                                            >
+                                                {method.method_name}
+                                            </button>
+                                        ))}
                                         {/* <button
                                             className={`basket-form-deliver ${activeDeliver === 1 && 'basket-form-deliver-active'}`}
                                             onClick={() => setActiveDeliver(1)}
@@ -375,70 +389,70 @@ export const Basket = () => {
                                     </div>
 
                                     <div className="auth-input-body">
-                                    {activeDeliver === 2 || activeDeliver === 3 ? (
-                                      <>
-                                        <input
-                                          className="basket-form-input-item"
-                                          placeholder="Адреса"
-                                          name="delivery_address"
-                                          value={formik.values.delivery_address}
-                                          onChange={formik.handleChange}
-                                          onBlur={formik.handleBlur}
-                                        />
-                                        {formik.touched.delivery_address && formik.errors.delivery_address && (
-                                          <div className="basket-form-error">{formik.errors.delivery_address}</div>
+                                        {activeDeliver === 2 || activeDeliver === 3 ? (
+                                            <>
+                                                <input
+                                                    className="basket-form-input-item"
+                                                    placeholder="Адреса"
+                                                    name="delivery_address"
+                                                    value={formik.values.delivery_address}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                />
+                                                {formik.touched.delivery_address && formik.errors.delivery_address && (
+                                                    <div className="basket-form-error">{formik.errors.delivery_address}</div>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <>
+                                                <input
+                                                    className="basket-form-input-item"
+                                                    placeholder="Номер відділення"
+                                                    name="delivery_warehouse"
+                                                    value={formik.values.delivery_warehouse}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                />
+                                                {formik.touched.delivery_warehouse && formik.errors.delivery_warehouse && (
+                                                    <div className="basket-form-error">{formik.errors.delivery_warehouse}</div>
+                                                )}
+                                            </>
                                         )}
-                                      </>
-                                    ) : (
-                                      <>
-                                        <input
-                                          className="basket-form-input-item"
-                                          placeholder="Номер відділення"
-                                          name="delivery_warehouse"
-                                          value={formik.values.delivery_warehouse}
-                                          onChange={formik.handleChange}
-                                          onBlur={formik.handleBlur}
-                                        />
-                                        {formik.touched.delivery_warehouse && formik.errors.delivery_warehouse && (
-                                          <div className="basket-form-error">{formik.errors.delivery_warehouse}</div>
-                                        )}
-                                      </>
-                                    )}
                                     </div>
 
                                     <div className="auth-input-body">
                                         <textarea
-                                          className="basket-form-input-item"
-                                          placeholder="Коментар"
-                                          name="comment"
-                                          value={formik.values.comment}
-                                          onChange={formik.handleChange}
-                                          rows={3}
+                                            className="basket-form-input-item"
+                                            placeholder="Коментар"
+                                            name="comment"
+                                            value={formik.values.comment}
+                                            onChange={formik.handleChange}
+                                            rows={3}
                                         />
                                     </div>
                                     <div className="auth-input-body">
-                                      <div className="basket-paymant-select">
-                                          <p>ТИП ЗАМОВЛЕННЯ:</p>
-                                          {data?.order?.types && (
-                                            <BasketSelect
-                                              option={data.order.types.reverse()}
-                                              value={formik.values.order_type}
-                                              onChange={value => formik.setFieldValue('order_type', value)}
-                                            />
-                                          )}
-                                      </div>
+                                        <div className="basket-paymant-select">
+                                            <p>ТИП ЗАМОВЛЕННЯ:</p>
+                                            {shopData?.order?.types && (
+                                                <BasketSelect
+                                                    option={shopData.order.types.reverse()}
+                                                    value={formik.values.order_type}
+                                                    onChange={value => formik.setFieldValue('order_type', value)}
+                                                />
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </>
                         }
                     </>
                 </div>
-                <button className="basket-button" 
-                  onClick={() => {
-                    formik.submitForm();
-                    console.log('Formik errors:', formik.errors)
-                  }}
-                  disabled={formik.isSubmitting || productBasketList.length === 0}>
+                <button className="basket-button"
+                    onClick={() => {
+                        formik.submitForm();
+                        console.log('Formik errors:', formik.errors)
+                    }}
+                    disabled={formik.isSubmitting || productBasketList.length === 0}>
                     <div className="basket-button-text">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</div>
                     <div className="basket-button-icon">
                         <HeaderIconBasket />

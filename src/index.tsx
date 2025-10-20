@@ -12,10 +12,12 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
 
 root.render(
-    <BrowserRouter>
-        <AppProvider>
-            <App />
-        </AppProvider>
-    </BrowserRouter>
+
+        <BrowserRouter>
+            <AppProvider>
+                <App />
+            </AppProvider>
+        </BrowserRouter>
+
 )
 //

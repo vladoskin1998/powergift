@@ -22,7 +22,7 @@ export const Navbar = () => {
     const navigate = useNavigate()
     const { changeCurrentSubCategorie } = useAppContext()
 
-    const [hoveredCategory, setHoveredCategory] = useState<CategoryType | null>(
+    const [clickedCategory, setClickedCategory] = useState<CategoryType | null>(
         null
     )
 
@@ -43,10 +43,10 @@ export const Navbar = () => {
         navigate(`/catalog/${id}/products`)
     }
 
-    if(isLoading) return <Loader/>
+    if (isLoading) return <Loader />
 
     return (
-        <div className="navbar">
+        <div className="navbar" onMouseLeave={() => setClickedCategory(null)}>
             {data
                 ?.filter((item) => item.icon)
                 .map((item, index) => (
@@ -74,23 +74,21 @@ export const Navbar = () => {
                             key={index}
                             className="navbar-titles-item"
                             style={!index ? { borderTop: 0 } : {}}
-                            onMouseEnter={() => setHoveredCategory(item)}
+                            onClick={() => setClickedCategory(clickedCategory?.categoryId === item.categoryId ? null : item)}
                         >
                             {item.title}
                         </button>
                     ))}
                 </div>
-                <div className="navbar_products">
+                <div className={`navbar_products ${clickedCategory ? 'navbar_products-active' : ''}`}>
                     <div
                         className="catalog-main-list"
-                        // onMouseLeave={() => setHoveredCategory(null)}
-                        onClick={() => setHoveredCategory(null)}
                     >
-                        {hoveredCategory?.subcategories.map((item) => (
+                        {clickedCategory?.subcategories.map((item) => (
                             <div
                                 className="catalog-main-product navbar_list-item"
                                 onClick={(e) => navToCategories(e, item?.categoryId)}
-                                // style={{ backgroundImage: `url(${item.icon})` }}
+
                             >
                                 <div className="catalog-main-product-img" style={{ backgroundImage: `url(${item.icon})`, width: '200px', backgroundSize: 'contain', height: '200px' }}>
                                     {!item?.icon && <IconsGifts />}
