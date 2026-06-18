@@ -41,7 +41,7 @@
         height: 400px;
         max-width: 400px;
         width: 100%;
-        border: 1px solid $color_border;
+      
         @include flex-all-center;
         flex-direction: column;
         &-mobitem {
@@ -1070,6 +1070,6 @@
     &-c{
         width: 24px;
         height: 24px;
-        border: 1px solid $color_grey3;
+
     }
 }

@@ -15,7 +15,7 @@ export const Router = () => {
         <div className="Router">
             <Routes>
                 <Route path="/dev" element={<Page503 />} />
-                <Route path="/catalog/:categoriesId/card/:cardId" element={<Card />} />
+             
 
                 <Route
                     path="/customer/*"
@@ -25,6 +25,8 @@ export const Router = () => {
                         </PrivateRoute>
                     }
                 />
+                
+                <Route path="/catalog/:categoriesId/card/:cardId" element={<Card />} />
                 <Route path="/catalog/products" element={<CatalogProducts />} />
                 <Route path="/catalog/:categoriesId?/*" element={<Catalog />} />
                 <Route path="*" element={<Catalog />} />

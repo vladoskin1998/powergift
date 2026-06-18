@@ -10,6 +10,7 @@ import { CatalogFilterRatio } from '../___tempcatalog/CatalogFilterRatio'
 import { ROUTEAUTH } from './AuthRouter'
 import { useAuthStore } from './auth.store'
 import { useLoaderStore } from '../../components/loader/loading.store'
+import { AuthEndpointApi } from './auth.endpoint'
 
 interface FormValues {
     email: string
@@ -134,16 +135,21 @@ export const Login = ({ setRoute }: { setRoute: (s: ROUTEAUTH) => void }) => {
             <button
                 className="basket-button auth-submit"
                 // type="submit"
-                onClick={() => {
+                onClick={async () => {
                     if (isAuth) {
-                        localStorage.removeItem('token')
-
-                        setOpenAuth(false)
-                        setBasketLoader(true, 'Ви успішно вийшли з кабінету!')
-                        setTimeout(() => {
-                            setBasketLoader(false)
-                            setIsAuth()
-                        }, 1000)
+                        try {
+                            await AuthEndpointApi.logout()
+                            localStorage.removeItem('token')
+                            setOpenAuth(false)
+                            setBasketLoader(true, 'Ви успішно вийшли з кабінету!')
+                            setTimeout(() => {
+                                setBasketLoader(false)
+                                setIsAuth()
+                            }, 1000)
+                            return
+                        } catch (error) {
+                            console.error(error)
+                        }
                         return
                     }
                     formik.handleSubmit()

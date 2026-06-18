@@ -2,23 +2,16 @@ import { useParams } from "react-router-dom"
 import { CardDesc } from "./CardDesc"
 import { CardDescMobile } from "./CardDescMobile"
 import { CardSlick } from "./CardSlick"
-import "./card.scss"
+import './card.scss'
 import { useQuery } from "react-query"
 import { $api } from "../../api"
 import { ProductType } from "../../type"
-import { useAppContext } from "../../context/AppContext"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { useEffect, useState } from "react"
 import { normalizeProductTypeToBasketType } from "../../utils/utils"
+import { CardEndpointApi } from "./card.endpoint"
 
-const getCategoriesData = async (id: string) => {
-    try {
-        const { data } = await $api.get(`shop/products?categoriesId=${id}`)
-        return data
-    } catch (error) {
-        console.error(error)
-    }
-}
+
 
 export default function Card() {
     const [count, setCount] = useState(1)
@@ -26,23 +19,23 @@ export default function Card() {
     const { categoriesId, cardId } = useParams()
     const { addProductBasketList, setOpenBasket } = useBasketStore()
 
-    const { data } = useQuery<ProductType[]>(
+    const { data: product } = useQuery<ProductType>(
         ["shop/products?categoriesId", categoriesId],
-        () => getCategoriesData(categoriesId || ""),
+        () => CardEndpointApi.getProduct(cardId!),
         {
-            enabled: !!categoriesId,
+            enabled: !!cardId,
             staleTime: Infinity,
             cacheTime: 3600 * 24 * 10,
         }
     )
 
-    const product = data?.find((item) => item.id === Number(cardId))
+
 
     const addToBasket = () => {
         if (product) {
             const basketProduct =   normalizeProductTypeToBasketType(product)
             addProductBasketList(
-                basketProduct, 1
+                basketProduct, count
             )
             setCount(1)
             setOpenBasket(true)
@@ -51,6 +44,10 @@ export default function Card() {
 
     const changeCount = (n: number) => {
         setCount((s) => (s + n < 1 ? s : s + n))
+    }
+
+    const changeInput = (value: number) => {
+        setCount(value < 1 ? 1 : value)
     }
 
     const color = product?.attributes.find((item) =>
@@ -79,8 +76,10 @@ export default function Card() {
                 color={color}
                 currentColor={currentColor}
                 setCurrentColor={setCurrentColor}
+                changeInput={changeInput}
             />
             <CardDescMobile
+                changeInput={changeInput}
                 product={product}
                 addToBasket={addToBasket}
                 count={count}

@@ -1,5 +1,3 @@
-import React, { useState } from "react"
-
 import { baseURL } from "../../utils/utils"
 import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 import { CardIconDownload } from "../../components/svg/CardIcon"
@@ -11,36 +9,35 @@ import { useNavigate } from "react-router-dom"
 export const CardDescMobile = ({
     product,
     addToBasket,
-
     count,
     changeCount,
-
     color,
     currentColor,
     setCurrentColor,
+    changeInput
 }: {
     product: ProductType | undefined
     addToBasket: () => void
-
     count: number
     changeCount: (n: number) => void
-
     color:
-        | {
-              id: number
-              name: string
-              properties: {
-                  id: number
-                  name: string
-                  color?: string | undefined
-              }[]
-          }
-        | undefined
+    | {
+        id: number
+        name: string
+        properties: {
+            id: number
+            name: string
+            color?: string | undefined
+        }[]
+    }
+    | undefined
     currentColor: string
     setCurrentColor: (s: string) => void
+
+    changeInput: (value: number) => void
 }) => {
 
-    const navigate = useNavigate()  
+    const navigate = useNavigate()
     const { productBasketList } = useBasketStore()
     if (!product) {
         return <></>
@@ -49,7 +46,7 @@ export const CardDescMobile = ({
     return (
         <div className="card-desc-mob">
             <div className="card-desc-art">
-                <p>АРТИКУЛ:</p> <span>{product?.id}</span>
+                <p>АРТИКУЛ:</p> <span style={{ marginLeft: '5px' }}><b>{product?.id}</b></span>
             </div>
             <h5 className="card-desc-name">{product.title}</h5>
             <div className="card-desc-mob-r1">
@@ -70,7 +67,21 @@ export const CardDescMobile = ({
                         >
                             -
                         </button>
-                        <span className="">{count}</span>
+                        <input
+                            className='textinput-product-count'
+                            type='number'
+                            style={{
+                                padding: '0',
+                                fontSize: '20px',
+                                width: `${Math.max(String(count).length, 1) + 0.5}ch`
+                            }}
+                            max={99999}
+                            value={count}
+                            onChange={e => {
+                                changeInput(Number(e.target.value))
+                            }
+                            }
+                        />
                         <button
                             onClick={() => changeCount(1)}
                             className="card-desc-info-price-button"
@@ -161,10 +172,10 @@ export const CardDescMobile = ({
                         }}
                     ></p>
                 </div>
-                <img src={baseURL + "/Images/KP.png"} alt="" />
+                {/* <img src={baseURL + "/Images/KP.png"} alt="" /> */}
                 <div>
                     <div>
-                              <Card1Icon/>
+                        <Card1Icon />
                         {/* <img
                             className="card-desc-deliver-img card-desc-deliver-img-fc"
                             src={baseURL + "/Images/card/icon-1.svg"}

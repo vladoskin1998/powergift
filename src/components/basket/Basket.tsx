@@ -11,6 +11,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useQuery } from 'react-query'
 import { BasketApi } from './api.basket'
+import { BaskerProductItem } from './BasketProductItem'
 export const Basket = () => {
     const {
 
@@ -210,50 +211,63 @@ export const Basket = () => {
                             <>
                                 <div className="basket-list ">
                                     {productBasketList.map((item) => (
-                                        <div className="basket-item basket-list-item" key={item.product_id}>
-                                            <div className="basket-list-item-product">
-                                                <img src={item.images?.[0]} alt="" />
-                                            </div>
-                                            <div className="basket-list-right">
-                                                <div className="basket-list-art">
-                                                    Артикул: <div>{ }</div>
-                                                    <button
-                                                        className="basket-list-delete"
-                                                        onClick={() =>
-                                                            deleteProduct({
-                                                                product_id: item.product_id,
-                                                            })
-                                                        }
-                                                    >
-                                                        <CardIconDelete />
-                                                    </button>
-                                                </div>
-                                                <div className="basket-list-text">{item.name}</div>
-                                                <div className="basket-list-foot">
-                                                    <div className="basket-list-foot-item">
-                                                        <p className="basket-list-undertitle">ціна</p>
-                                                        <p className="basket-list-price">
-                                                            {item.price} <span>грн</span>
-                                                        </p>
-                                                    </div>
-                                                    <div className="basket-list-foot-item">
-                                                        <p className="basket-list-undertitle">кількість шт</p>
-                                                        <div className="basket-list-num">
-                                                            <button onClick={() => changeCount(item, -1)}>-</button>
-                                                            <p className='basket-list-num-p'>{item?.quantity || 1}</p>
-                                                            <button onClick={() => changeCount(item, 1)}>+</button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="basket-list-foot-item">
-                                                        <p className="basket-list-undertitle">Всього</p>
-                                                        <p className="basket-list-price">
-                                                            {item?.quantity * (Number(item?.price) || 1)}
-                                                            <span>грн</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <BaskerProductItem key={item.product_id} item={item} />
+                                        // <div className="basket-item basket-list-item" key={item.product_id}>
+                                        //     <div className="basket-list-item-product">
+                                        //         <img src={item.images?.[0]} alt="" />
+                                        //     </div>
+                                        //     <div className="basket-list-right">
+                                        //         <div className="basket-list-art">
+                                        //             Артикул: <div>{ }</div>
+                                        //             <button
+                                        //                 className="basket-list-delete"
+                                        //                 onClick={() =>
+                                        //                     deleteProduct({
+                                        //                         product_id: item.product_id,
+                                        //                     })
+                                        //                 }
+                                        //             >
+                                        //                 <CardIconDelete />
+                                        //             </button>
+                                        //         </div>
+                                        //         <div className="basket-list-text">{item.name}</div>
+                                        //         <div className="basket-list-foot">
+                                        //             <div className="basket-list-foot-item">
+                                        //                 <p className="basket-list-undertitle">ціна</p>
+                                        //                 <p className="basket-list-price">
+                                        //                     {item.price} <span>грн</span>
+                                        //                 </p>
+                                        //             </div>
+                                        //             <div className="basket-list-foot-item">
+                                        //                 <p className="basket-list-undertitle">кількість шт</p>
+                                        //                 <div className="basket-list-num">
+                                        //                     <button onClick={() => changeCount(item, -1)}>-</button>
+
+                                        //                     <input
+                                        //                         className='basket-list-num-p'
+                                        //                         type='number'
+                                                             
+                                        //                         value={item?.quantity || 1}
+                                        //                         onChange={e => {
+                                        //                             const value = e.target.value;
+                                        //                             if (value === "") return;
+                                        //                             const num = Math.max(1, Number(value));
+                                        //                             changeCount(item, num - (item?.quantity || 1));
+                                        //                         }}
+                                        //                     />
+                                        //                     <button onClick={() => changeCount(item, 1)}>+</button>
+                                        //                 </div>
+                                        //             </div>
+                                        //             <div className="basket-list-foot-item">
+                                        //                 <p className="basket-list-undertitle">Всього</p>
+                                        //                 <p className="basket-list-price">
+                                        //                     {item?.quantity * (Number(item?.price) || 1)}
+                                        //                     <span>грн</span>
+                                        //                 </p>
+                                        //             </div>
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                     ))}
                                 </div>
                                 <div className="basket-paymant">
@@ -407,7 +421,7 @@ export const Basket = () => {
                                             <>
                                                 <input
                                                     className="basket-form-input-item"
-                                                    placeholder="Номер відділення"
+                                                        placeholder="Номер відділення Нова Пошта"
                                                     name="delivery_warehouse"
                                                     value={formik.values.delivery_warehouse}
                                                     onChange={formik.handleChange}

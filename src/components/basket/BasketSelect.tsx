@@ -32,6 +32,7 @@ export const BasketSelect = ({ option, value, onChange }: BasketSelectProps) => 
     return (
         <div className="busket--select" style={{ cursor: 'pointer' }}>
             <button
+                className="busket--select-isSelect"
                 type="button"
                 onClick={() => setIsOpen((s) => !s)}
             >

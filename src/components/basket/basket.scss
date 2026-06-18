@@ -277,11 +277,11 @@
 
 .busket--select {
     width: 100%;
-    max-width: 200px;
+    max-width: 250px;
     border: 1px solid $color_grey6;
     position: relative;
     height: 48px;
-    padding: 12px 14px;
+
     color: $color_white1;
 
     font-size: 20px;
@@ -335,6 +335,11 @@
     }
 }
 
+.busket--select-isSelect{
+    padding: 12px 14px;
+    width: 100%;
+    text-align: start;
+}
 .basket-form {
     padding: 40px;
     @media screen and (max-width: 900px) {
@@ -689,3 +694,4 @@
         }
     }
 }
+

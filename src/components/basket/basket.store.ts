@@ -59,7 +59,7 @@ export const useBasketStore = create<BasketState>()(
               quantity: it.quantity || 1,
             }))
           );
-          useLoaderStore.getState().setBasketLoader(true)
+        useLoaderStore.getState().setBasketLoader(true)
         } catch (error) {
           useLoaderStore.getState().setBasketLoader(true, "Помилка при додаванні товару, зверніться до адміністратора!")
           throw error

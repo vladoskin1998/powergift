@@ -1,8 +1,6 @@
 import { ProductType } from "../../type"
-import { baseURL } from "../../utils/utils"
 import { CardIconDownload, CardIconLike } from "../../components/svg/CardIcon"
 import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
-import { useEffect, useState } from "react"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { Card1Icon, Card2Icon, Card3Icon } from "../../components/svg/Card-Product"
 import { useNavigate } from "react-router-dom"
@@ -17,13 +15,16 @@ export const CardDesc = ({
     color,
     currentColor,
     setCurrentColor,
+
+    changeInput,
+    
 }: {
     product: ProductType | undefined
     addToBasket: () => void
 
     count: number
     changeCount: (n: number) => void
-
+    changeInput: (value: number) => void
     color:
     | {
         id: number
@@ -40,14 +41,20 @@ export const CardDesc = ({
 }) => {
     const { productBasketList } = useBasketStore()
     const navigate = useNavigate()
+
+
+
+    
+
     if (!product) {
         return <></>
     }
 
+
     return (
         <div className="card-desc">
             <div className="card-desc-art">
-                <p>АРТИКУЛ:</p> <span>{product.id}</span>
+                <p>АРТИКУЛ:</p> <span style={{ marginLeft: '5px' }}><b>{product.id}</b></span>
             </div>
             <h5 className="card-desc-name">{product.title}</h5>
             <div className="card-desc-info">
@@ -137,13 +144,29 @@ export const CardDesc = ({
                                 кількість:
                             </p>
                             <div className="card-desc-info-price-body2">
+                                
                                 <button
                                     className="card-desc-info-price-button"
                                     onClick={() => changeCount(-1)}
                                 >
                                     -
                                 </button>
-                                <span className="">{count}</span>
+                                <input
+                        
+                                    className='textinput-product-count'
+                                    type='number'
+                                    style={{
+                                        padding: '0',
+                                        fontSize: '20px',
+                                        width: `${Math.max(String(count).length, 1) + 0.5}ch`
+                                    }}
+                                    max={99999}
+                                    value={count}
+                                    onChange={e => {
+                                        changeInput(Number(e.target.value))
+                                    }
+                                    }
+                                />
                                 <button
                                     className="card-desc-info-price-button"
                                     onClick={() => changeCount(1)}
@@ -217,9 +240,9 @@ export const CardDesc = ({
                             Гарантія від виробника до 3 місяців
                         </p>
                     </div>
-                    <button className="card-desc-info-kp">
+                    {/* <button className="card-desc-info-kp">
                         <img src={baseURL + "/Images/KP.png"} alt="" />
-                    </button>
+                    </button> */}
                 </div>
                 <div>
                     <p className="card-desc-info-desc-underline">Опис</p>
@@ -234,3 +257,7 @@ export const CardDesc = ({
         </div>
     )
 }
+function useRef<T>(arg0: null) {
+    throw new Error("Function not implemented.")
+}
+

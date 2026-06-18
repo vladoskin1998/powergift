@@ -1,7 +1,7 @@
 import axios, { AxiosResponse	 } from 'axios';
 import { useAuthStore } from '../page/auth/auth.store';
 
-export const HREF = "https://dev.power-gifts.com.ua/api/"
+export const HREF = "https://stage.dev.power-gifts.com.ua/api/"
 
 export const $api = axios.create({
 	baseURL: HREF,
@@ -22,12 +22,9 @@ $api.interceptors.response.use(
     async (error) => {
          console.log("AXIOS ERROR:", error, error?.config?.url);
       
-        if (
-            error.response &&
-            error.response.status === 401 
-        ) {
-			
-		
+        if (error.response?.status === 401) {
+            localStorage.removeItem('token')
+            window.location.href = '/'
         }
         console.log(error)
      

@@ -52,7 +52,7 @@ body {
     position: relative;
 
     background-color: #0d0d0d;
-    background-image: url('../../public/Images/pg.banner.png');
+    // background-image: url('../../public/Images/pg.banner.png');
     background-size: calc(100% - 80px) auto;
     background-repeat: no-repeat;
     background-position: center 80px;
@@ -146,4 +146,21 @@ code {
     .right-navbar {
         display: none;
     }
+}
+
+.textinput-product-count::-webkit-outer-spin-button,
+.textinput-product-count::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.textinput-product-count {
+    appearance: textfield;
+    /* Firefox */
+}
+
+.textinput-product-count {
+    padding-top: 5px;
+    min-width: 5px;
+    max-width: 50px;
 }

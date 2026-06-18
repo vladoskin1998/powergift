@@ -3,16 +3,15 @@ import {
     CATALOG_PRODUCT_TITLE,
     CATALOG_PRODUCT_CLIENT,
 } from "../../utils/constant"
-import { baseURL, normalizeProductTypeToBasketType } from "../../utils/utils"
+import { baseURL } from "../../utils/utils"
 import { CatalogIconConception } from "../../components/svg/CatalogIcon"
-import { HeaderIconBasket, HeaderIconReload } from "../../components/svg/HeaderIcon"
+import { HeaderIconReload } from "../../components/svg/HeaderIcon"
 import { useNavigate, useParams } from "react-router-dom"
 import { useQuery } from "react-query"
 import { $api } from "../../api"
 import { ProductType } from "../../type"
-import { IconsGifts } from "../../components/svg/IconGifts"
 import { Loader } from "../../components/loader/Loader"
-import { useBasketStore } from "../../components/basket/basket.store"
+import { CatalogProductItem } from "./CatalogProductItem"
 
 const getCategoriesData = async (id: string) => {
     try {
@@ -34,7 +33,6 @@ const getAllProduct = async () => {
 
 export const CatalogProducts = () => {
 
-    const { addProductBasketList } = useBasketStore()
     const { categoriesId } = useParams()
     const navigate = useNavigate()
 
@@ -66,13 +64,7 @@ export const CatalogProducts = () => {
         )
     }
 
-    const addToBasket = (e: React.MouseEvent, product: ProductType) => {
-        e.stopPropagation()
-        const basketProduct = normalizeProductTypeToBasketType(product)
-        addProductBasketList(
-            basketProduct, 1
-        )
-    }
+
 
     if (isLoading) {
         return <Loader />
@@ -103,84 +95,15 @@ export const CatalogProducts = () => {
                 </div>
             </div>
             <div className="catalog-product-reverse">
-            
+
                 <div className="catalog-filter-body catalog-product-body">
                     <div className="catalog-filter-list">
                         {data?.map((product) => (
-                            <div
-                                onClick={(e) => navToCard(e, product.id, product?.category?.id)}
+                            <CatalogProductItem
                                 key={product.id}
-                                className="catalog-filter-list-item"
-                            >
-                                <div className="catalog-filter-list-item-img catalog-filter-list-item-gift-ico">
-                                    {product.files.images[0] ? <img src={product.files.images[0]} alt={product.title} /> : <IconsGifts />}
-                                </div>
-
-                                <div className="catalog-filter-list-item-foot">
-                                    <div className="catalog-product-colors">
-                                       
-                                        <button className="catalog-product-colors-c" style={{ backgroundImage: `url(${product.files.image[0] && product.files.images[0]})`,
-                                        backgroundBlendMode: 'cover',
-                                    }}/>
-                                        
-                                        {product.relatedProductsByColor?.map(
-                                            (rproduct) => (
-                                                <button className="catalog-product-colors-c" style={{
-                                                    backgroundImage: `url(${rproduct.files.image[0] && rproduct.files.images[0]})`,
-                                                    backgroundBlendMode: 'cover',
-                                                }} />
-                                            )
-                                        )}
-                                    </div>
-                                    {/* <div className="catalog-product-item-staff">
-                                        <img
-                                            src={
-                                                baseURL +
-                                                "/Images/New staff.png"
-                                            }
-                                            alt="New"
-                                        />
-                                    </div> */}
-                                    <div className="catalog-product-item-thr">
-                                        <div>
-                                            <span> Артикул:</span> <b>{product.id}</b>
-                                        </div>
-                                        <div>
-                                            <span>Бренд:</span> <p>{product.category.name}</p>
-                                        </div>
-                                    </div>
-                                    <h6 className="catalog-filter-list-item-foot-price">{product.title}</h6>
-                                    <p className="catalog-filter-list-item-foot-order">
-                                        {product.stock > 0 ? 'В наявності' : 'Під замовлення'}
-                                        <img src={baseURL + '/Images/Basket.png'} alt="Basket" />
-                                    </p>
-                                    <div className="catalog-filter-list-bot basket-pc">
-                                        <div className="catalog-product-item-bot">
-                                            <div>
-                                                <h5>{product.price}</h5>
-                                                <span>грн</span>
-                                            </div>
-                                            <div className="catalog-product-item-bot-it">
-                                                {product.stock}
-                                                <p>в наявності</p>
-                                            </div>
-                                            <div className="catalog-product-item-bot-it">
-                                                {product?.available || product.stock}
-                                                <p>доступно</p>
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            className="catalog-filter-list-item-foot-but basket-pc"
-                                            onClick={(e) => addToBasket(e, product)}
-                                        >
-                                            <div className="catalog-filter-list-item-foot-but-ico basket-pc">
-                                                <HeaderIconBasket />
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                                product={product}
+                                onNavToCard={navToCard}
+                            />
                         ))}
 
                         <div className="catalog-filter-body-black catalog-filter-body-black-mob" />
