@@ -5,10 +5,10 @@
     display: flex;
     width: 100%;
     height: 100%;
-    
+
 }
 
-.card-desc-mob{
+.card-desc-mob {
     display: none;
 }
 
@@ -19,10 +19,12 @@
     display: flex;
     flex-direction: column;
     background-color: $color_white;
+
     @media screen and (max-width: 1200px) {
         max-width: 600px;
         max-height: 720px;
     }
+
     &-route {
         padding-top: 32px;
         padding-left: 29px;
@@ -34,37 +36,44 @@
         line-height: -1px;
         letter-spacing: 0%;
     }
+
     &-slick {
         flex-grow: 1;
+
         .slick-list,
         .slick-track {
             height: 100% !important;
         }
+
         .slick-slide {
-            & > div {
+            &>div {
                 height: 100% !important;
             }
         }
+
         &-lib {
             height: 100%;
         }
+
         &-item {
-         
+
             width: 100%;
             height: 100%;
             display: flex !important;
             @include flex-all-center;
+
             img {
                 width: 80%;
                 height: auto;
             }
         }
     }
+
     &-dots {
         display: flex;
-    
-       
-      
+
+
+
         &-button {
             height: 130px;
             min-width: 130px;
@@ -76,10 +85,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
             @media screen and (max-width: 1200px) {
                 height: 90px;
                 min-width: 90px;
             }
+
             img {
                 height: 100%;
                 width: auto;
@@ -92,25 +103,28 @@
     flex-grow: 1;
     background-color: $color_grey;
     padding: 40px 40px 40px 70px;
-    &-art{
+
+    &-art {
         font-size: 12px;
         font-weight: 400;
         line-height: -1px;
         letter-spacing: 0%;
         color: $color_white1;
         display: flex;
-       
-        span{
-           @include gradient-text($bgr: $backgroundgradient1);
+
+        span {
+            @include gradient-text($bgr: $backgroundgradient1);
         }
     }
-    &-name{
+
+    &-name {
         margin-top: 15px;
         margin-bottom: 54px;
         font-size: 32px;
         font-weight: 300;
         line-height: -1px;
         color: $color_white1;
+
         @media screen and (max-width: 1600px) {
             margin-bottom: 34px;
         }
@@ -121,10 +135,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
+
     @media screen and (max-width: 1600px) {
-        grid-template-columns: 1fr ;
+        grid-template-columns: 1fr;
     }
-    &-title{
+
+    &-title {
         font-size: 20px;
         font-weight: 500;
         line-height: -1px;
@@ -133,20 +149,24 @@
         text-transform: uppercase;
         padding-bottom: 13px;
     }
+
     &-body1 {
         display: flex;
         column-gap: 28px;
 
         row-gap: 40px;
+
         @media screen and (max-width: 1500px) {
             column-gap: 18px;
             row-gap: 30px;
         }
+
         &-1 {
             margin-bottom: 40px;
         }
-     
+
     }
+
     &-undertitle {
         font-size: 12px;
         font-weight: 300;
@@ -157,6 +177,7 @@
         color: $color_grey2;
         padding-bottom: 8px;
     }
+
     &-text {
         font-size: 20px;
         font-weight: 500;
@@ -164,22 +185,27 @@
         letter-spacing: 0%;
         color: $color_white1;
     }
+
     &-circles {
         display: flex;
         gap: 8px;
     }
+
     &-circle {
         box-sizing: border-box;
         width: 32px;
         height: 32px;
         border: 1px solid $color_white1;
         border-radius: 50%;
+
         &-1 {
             background: $color_black4;
         }
+
         &-2 {
             background: $color_grey5;
         }
+
         &-3 {
             background: $color_white1;
         }
@@ -189,20 +215,24 @@
 .card-desc-info-price {
     display: flex;
     gap: 43px;
+
     &-body1 {
         max-width: fit-content;
         display: flex;
         flex-direction: column;
     }
-    &-bodywrap{
+
+    &-bodywrap {
         flex-wrap: wrap;
-        
+
     }
+
     &-body2 {
         display: flex;
         gap: 10px;
         padding-top: 5px;
     }
+
     &-val {
         b {
             font-size: 40px;
@@ -211,6 +241,7 @@
             letter-spacing: 0%;
             color: $color_white1;
         }
+
         span {
             font-size: 14px;
             font-weight: 300;
@@ -219,6 +250,7 @@
             color: $color_white1;
         }
     }
+
     &-undertitle {
         font-size: 12px;
         font-weight: 400;
@@ -228,6 +260,7 @@
         text-align: center;
         padding-bottom: 8px;
     }
+
     &-num {
         font-size: 24px;
         font-weight: 400;
@@ -236,6 +269,7 @@
         display: flex;
         gap: 10px;
     }
+
     &-button {
         width: 24px;
         height: 24px;
@@ -253,6 +287,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+
     &-ord {
         padding: 1px;
         width: 226px;
@@ -260,6 +295,7 @@
         display: flex;
         align-items: center;
         background: $backgroundgradient1;
+
         &-b1 {
             @include flex-all-center;
             font-size: 21.6px;
@@ -267,11 +303,12 @@
             line-height: -1px;
             letter-spacing: 0%;
             color: $color_black;
-            
+
             border-right: 0;
             flex-grow: 1;
             height: 48px;
         }
+
         &-b2 {
             width: 46px;
             height: 46px;
@@ -280,6 +317,7 @@
             margin-right: 1px;
             position: relative;
         }
+
         &-circle {
             position: absolute;
             top: 10px;
@@ -299,6 +337,7 @@
             @include flex-all-center;
         }
     }
+
     &-but {
         outline: 1px solid rgb(68, 68, 68);
         height: 48px;
@@ -306,10 +345,12 @@
         position: relative;
         @include flex-all-center;
         transition: all 1s;
-        &-like{
+
+        &-like {
             padding-top: 2px;
         }
-        & > div {
+
+        &>div {
             position: absolute;
             top: 1px;
             left: 1px;
@@ -318,11 +359,13 @@
             background-color: $color_grey;
             @include flex-all-center;
         }
+
         &:hover {
             background: $backgroundgradient1;
             border: 0;
-            svg{
-                path{
+
+            svg {
+                path {
                     fill: $color_white1;
                 }
             }
@@ -340,7 +383,8 @@
         color: $color_grey5;
         padding-bottom: 12px;
     }
-    &-text{
+
+    &-text {
         font-size: 20px;
         font-weight: 400;
         line-height: -1px;
@@ -349,99 +393,120 @@
     }
 }
 
-.card-desc-info-kp{
+.card-desc-info-kp {
     margin: 70px 0;
 }
 
 
 
 @media screen and (max-width: 900px) {
-    .card-desc{
+    .card-desc {
         display: none;
     }
+
     .card {
         flex-direction: column;
-        
+
     }
+
     .card-slider {
         min-width: 300px;
     }
-    .card-slider-dots-button{
+
+    .card-slider-dots-button {
         height: 50px;
         min-width: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
-        img{
+
+        img {
             max-width: 100%;
             max-height: 100%;
-            
+
         }
     }
-    .card-slider-route{
+
+    .card-slider-route {
         gap: 4px;
-        span{
+
+        span {
             display: none;
         }
     }
-    .card-desc-mob{
+
+    .card-desc-mob {
         display: flex;
         flex-direction: column;
         padding: 22px;
     }
-    .card-desc-mob-newtitle{
+
+    .card-desc-mob-newtitle {
         display: flex;
         flex-direction: column;
         height: 61px;
         justify-content: space-between;
     }
-    .card-desc-name{
+
+    .card-desc-name {
         font-size: 36px;
         font-weight: 300;
         line-height: -1px;
         margin-bottom: 33px;
         margin-bottom: 16px;
     }
-    .card-desc-mob-r1{
+
+    .card-desc-mob-r1 {
         display: flex;
         justify-content: space-between;
         row-gap: 30px;
         flex-wrap: wrap;
         align-items: flex-end;
     }
-    .card-desc-info-order{
+
+    .card-desc-info-order {
         margin: 0;
     }
-    .card-desc-info-body1-1{
+
+    .card-desc-info-body1-1 {
         margin: 0;
     }
-    .card-desc-info-body1-2{
+
+    .card-desc-info-body1-2 {
         margin: 0;
     }
-    .card-desc-info-undertitle{
+
+    .card-desc-info-undertitle {
         padding-bottom: 4px;
     }
 }
 
-.card-desc-deliver{
-    &-img{
+.card-desc-deliver {
+    &-img {
         margin-top: 19px;
         width: 30px;
         margin-bottom: 4px;
     }
-    &-img-fc{
+
+    &-img-fc {
         margin-top: 0px;
     }
 }
+
 // .card-desc-deliver-item {
 
 // }
 
-.card-desc-info-body1-2{
+.card-desc-info-body1-2 {
     width: 100%;
     justify-content: flex-start;
 }
 
-.card-desc-info-textcolor{
+.card-desc-info-textcolor {
     width: 50px;
+}
+
+.card-product-count {
+    padding: 0;
+    font-size: 20px;
 }

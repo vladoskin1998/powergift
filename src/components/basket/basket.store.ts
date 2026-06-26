@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { BaskerProduct, OrderForm, ProductType } from "../../type";
-import { BasketApi } from "./api.basket";
+
 import { useAuthStore } from "../../page/auth/auth.store";
 import { useLoaderStore } from "../loader/loading.store";
+import { BasketEndpointApi } from "./basket.endpoint";
 
 interface BasketState {
   makeOrder: (dto: OrderForm) => Promise<void>;
@@ -29,14 +30,15 @@ export const useBasketStore = create<BasketState>()(
 
 
     setProductBasketList: (products: BaskerProduct[]) => {
-      console.log('🏪 Store: setProductBasketList called with', products.length, 'products');
       set({ productBasketList: products }, false, "setProductBasketList");
     },
 
     addProductBasketList: async (product: BaskerProduct, count: number) => {
       try {
+        debugger
         const basket = get().productBasketList;
-
+        const isAuth = useAuthStore.getState().isAuth;
+        const productPrice = isAuth ? product.partner_price : product.price;
         const newProductList = basket.map((item) => {
           if (item.product_id === product.product_id) {
             const newCount = item.quantity + count < 1 ? 1 : item.quantity + count;
@@ -45,41 +47,37 @@ export const useBasketStore = create<BasketState>()(
           return item;
         });
 
-
         const exists = basket.some((item) => item.product_id === product.product_id);
         if (!exists) {
-          newProductList.push({ ...product, quantity: count < 1 ? 1 : count });
+          newProductList.push({ ...product, price: productPrice, quantity: count < 1 ? 1 : count });
         }
 
+        const itemsToSend = newProductList.map((it) => ({
+          product_id: it.product_id,
+          quantity: it.quantity || 1,
+          price: isAuth ? it.partner_price : it.price,
+        }));
 
-        try {
-          await BasketApi.addManyToBasket(
-            newProductList.map((it) => ({
-              product_id: it.product_id,
-              quantity: it.quantity || 1,
-            }))
-          );
-        useLoaderStore.getState().setBasketLoader(true)
-        } catch (error) {
-          useLoaderStore.getState().setBasketLoader(true, "Помилка при додаванні товару, зверніться до адміністратора!")
-          throw error
-        }
-        finally {
-          setTimeout(() => {
-            useLoaderStore.getState().setBasketLoader(false)
-          }, 1000)
-        }
-
-
+        const response = await BasketEndpointApi.addManyToBasket(itemsToSend);
+        useLoaderStore.getState().setBasketLoader(true, response.message);
         set({ productBasketList: newProductList }, false, "addProductBasketList");
-      } catch (error) {
-        useAuthStore.getState().setOpenAuth(true);
-        useLoaderStore.getState().setBasketLoader(true, "Ви ще не авторизовані!")
+      } catch (error: unknown) {
+        console.error(error);
+        const errorMessage =
+          error && typeof error === 'object' && 'response' in error
+            ? (error as { response: { data: { message: string } } }).response?.data?.message
+            : "Помилка при додаванні товару, зверніться до адміністратора!";
+        useLoaderStore.getState().setBasketLoader(true, errorMessage)
+      }
+      finally {
         setTimeout(() => {
           useLoaderStore.getState().setBasketLoader(false)
-        }, 1000)
-
+        }, 1500)
       }
+
+
+
+
 
     },
 
@@ -88,7 +86,7 @@ export const useBasketStore = create<BasketState>()(
       const findedProduct = basket?.find((item) => item.product_id === product_id);
       const filteredBasket = basket?.filter((item) => item.product_id !== product_id);
 
-      BasketApi.deleteOneBasket(
+      BasketEndpointApi.deleteOneBasket(
         {
           product_id: product_id,
           quantity: findedProduct?.quantity || 1,
@@ -100,7 +98,7 @@ export const useBasketStore = create<BasketState>()(
 
     makeOrder: async (dto: OrderForm) => {
       try {
-        const result = await BasketApi.makeOrder(dto)
+        const result = await BasketEndpointApi.makeOrder(dto)
         set({ productBasketList: [] });
         useLoaderStore.getState().setBasketLoader(true, "Ваше замовлення успішне!")
         return result;

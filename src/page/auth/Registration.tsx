@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import '../../components/basket/basket.scss'
 import './auth.scss'
 import { AuthIconTougch } from '../../components/svg/AuthIcon'
-import { CatalogFilterRatio } from '../___tempcatalog/CatalogFilterRatio'
-import { CatalogFilterCheckbox } from '../___tempcatalog/CatalogFilterCheckbox'
+
 import { HeaderIconClose } from '../../components/svg/HeaderIcon'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -13,6 +12,8 @@ import { ROUTEAUTH } from './AuthRouter'
 import { useAuthStore } from './auth.store'
 import { useLoaderStore } from '../../components/loader/loading.store'
 import { Modal, Box, Typography, Button } from '@mui/material'
+import { CatalogFilterCheckbox } from '../../components/buttons/chekbox'
+import { CatalogFilterRatio } from '../../components/buttons/ratio'
 interface FormValues {
     name: string
     lastname: string
@@ -107,13 +108,12 @@ export const Registration = ({ setRoute }: { setRoute: (s: ROUTEAUTH) => void })
         onSubmit: async (values: FormValues) => {
             setAfterfirstFetch(true)
             try {
-                const response = await $api.post('register', {
+                await $api.post('register', {
                     ...values,
                     legal_form: valueRadio ? 'fop' : 'tov',
                     vat: pdv ? 1 : 0,
                 })
-                console.log(response)
-                // localStorage.setItem("token", response?.data.token)
+            
 
                 setIsRegistration(true)
             } catch (error) {

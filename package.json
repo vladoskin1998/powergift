@@ -2,7 +2,7 @@
   "name": "powergifts",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://stage.dev.power-gifts.com.ua",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -40,6 +40,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-stage": "cross-env PUBLIC_URL=https://stage.dev.power-gifts.com.ua/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -65,6 +66,7 @@
   },
   "devDependencies": {
     "ajv": "^7.2.4",
+    "cross-env": "^10.1.0",
     "gh-pages": "^6.1.1"
   }
 }

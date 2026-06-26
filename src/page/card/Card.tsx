@@ -10,6 +10,7 @@ import { useBasketStore } from "../../components/basket/basket.store"
 import { useEffect, useState } from "react"
 import { normalizeProductTypeToBasketType } from "../../utils/utils"
 import { CardEndpointApi } from "./card.endpoint"
+import { CatalogEndpointApi } from "../catalog/catalog.endpoint"
 
 
 
@@ -17,11 +18,11 @@ export default function Card() {
     const [count, setCount] = useState(1)
 
     const { categoriesId, cardId } = useParams()
-    const { addProductBasketList, setOpenBasket } = useBasketStore()
+    const { addProductBasketList, setOpenBasket, productBasketList } = useBasketStore()
 
     const { data: product } = useQuery<ProductType>(
         ["shop/products?categoriesId", categoriesId],
-        () => CardEndpointApi.getProduct(cardId!),
+        () => CatalogEndpointApi.getProduct(cardId!),
         {
             enabled: !!cardId,
             staleTime: Infinity,
@@ -29,11 +30,9 @@ export default function Card() {
         }
     )
 
-
-
     const addToBasket = () => {
         if (product) {
-            const basketProduct =   normalizeProductTypeToBasketType(product)
+            const basketProduct = normalizeProductTypeToBasketType(product)
             addProductBasketList(
                 basketProduct, count
             )
@@ -42,12 +41,26 @@ export default function Card() {
         }
     }
 
+    const countBasket = productBasketList.find((item) => item.product_id === product?.id)?.quantity || 0
+    const availableCount = product?.available! - countBasket
     const changeCount = (n: number) => {
+     debugger
+      
+        if (count + n > availableCount) {
+            return
+        }
         setCount((s) => (s + n < 1 ? s : s + n))
     }
 
     const changeInput = (value: number) => {
-        setCount(value < 1 ? 1 : value)
+      
+        if (value > availableCount) {
+            setCount(availableCount)
+        }
+        else{
+            setCount(value < 1 ? 1 : value)
+        }
+        
     }
 
     const color = product?.attributes.find((item) =>

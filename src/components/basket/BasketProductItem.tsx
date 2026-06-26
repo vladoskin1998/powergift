@@ -4,10 +4,7 @@ import { useBasketStore } from "./basket.store";
 import { CardIconDelete } from '../svg/CardIcon'
 
 export const BaskerProductItem = ({ item }: { item: BaskerProduct }) => {
-    const {
-        addProductBasketList,
-        deleteProductBasketList,
-    } = useBasketStore()
+    const {   addProductBasketList,  deleteProductBasketList,} = useBasketStore()
 
     const [localQuantity, setLocalQuantity] = useState(item?.quantity || 1);
 
@@ -36,9 +33,9 @@ export const BaskerProductItem = ({ item }: { item: BaskerProduct }) => {
         addProductBasketList(product, count)
     }
 
-    const handleInputChange = (value: string) => {
+    const handleInputChange = (value: string, available: number) => {
         let num = Math.max(1, Number(value) || 1);
-        num = Math.min(num, 99999);
+        num = Math.min(num, available);
         setLocalQuantity(num);
     };
 
@@ -76,14 +73,15 @@ export const BaskerProductItem = ({ item }: { item: BaskerProduct }) => {
                     <div className="basket-list-num">
                         <button onClick={() => changeCount(item, -1)}>-</button>
                         <input
+                            onFocus={(e) => e.target.select()}
                             className='textinput-product-count'
                             type='number'
                             style={{
                                 width: `${Math.max(String(localQuantity).length, 1) + 0.5}ch`
                             }}
-                            max={99999}
+                
                             value={localQuantity}
-                            onChange={e => handleInputChange(e.target.value)}
+                            onChange={e => handleInputChange(e.target.value, 999)}
                         />
                         <button onClick={() => changeCount(item, 1)}>+</button>
                     </div>

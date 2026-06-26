@@ -8,41 +8,22 @@ import { CatalogIconConception } from "../../components/svg/CatalogIcon"
 import { HeaderIconReload } from "../../components/svg/HeaderIcon"
 import { useNavigate, useParams } from "react-router-dom"
 import { useQuery } from "react-query"
-import { $api } from "../../api"
 import { ProductType } from "../../type"
 import { Loader } from "../../components/loader/Loader"
 import { CatalogProductItem } from "./CatalogProductItem"
-
-const getCategoriesData = async (id: string) => {
-    try {
-        const { data } = await $api.get(`shop/products?categoriesId=${id}`)
-        return data
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-const getAllProduct = async () => {
-    try {
-        const { data } = await $api.get(`shop/products`)
-        return data
-    } catch (error) {
-        console.error(error)
-    }
-}
+import { CatalogEndpointApi } from "./catalog.endpoint"
 
 export const CatalogProducts = () => {
 
     const { categoriesId } = useParams()
     const navigate = useNavigate()
 
-
     const { data, isLoading } = useQuery<ProductType[]>(
         ["shop/products&categoriesId", categoriesId],
         () => {
             return categoriesId
-                ? getCategoriesData(categoriesId)
-                : getAllProduct()
+                ? CatalogEndpointApi.getCategoriesData(categoriesId)
+                : CatalogEndpointApi.getAllProduct()
         },
         {
             staleTime: Infinity,
@@ -63,8 +44,6 @@ export const CatalogProducts = () => {
             `/catalog/${categoriesId ? categoriesId : catid}/card/${idprod}`
         )
     }
-
-
 
     if (isLoading) {
         return <Loader />

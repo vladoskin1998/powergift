@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { CatalogFilterCheckbox } from '../___tempcatalog/CatalogFilterCheckbox'
+
 import { HeaderIconClose } from '../../components/svg/HeaderIcon'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { $api } from '../../api'
 import { useNavigate } from 'react-router-dom'
 import { AuthIconTougch } from '../../components/svg/AuthIcon'
-import { CatalogFilterRatio } from '../___tempcatalog/CatalogFilterRatio'
+
 import { ROUTEAUTH } from './AuthRouter'
 import { useAuthStore } from './auth.store'
 import { useLoaderStore } from '../../components/loader/loading.store'
 import { AuthEndpointApi } from './auth.endpoint'
+import { CatalogFilterRatio } from '../../components/buttons/ratio'
 
 interface FormValues {
     email: string
@@ -40,9 +41,9 @@ export const Login = ({ setRoute }: { setRoute: (s: ROUTEAUTH) => void }) => {
         validationSchema,
         onSubmit: async (values: FormValues, { resetForm }) => {
             try {
-                const response = await $api.post('login', values)
-                console.log(response)
-                localStorage.setItem('token', response?.data.token)
+                const data = await AuthEndpointApi.login(values)
+           
+                localStorage.setItem('token', data.token)
                 setTimeout(() => {
                     setIsAuth()
                 }, 1000)

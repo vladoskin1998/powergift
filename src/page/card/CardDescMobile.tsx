@@ -5,6 +5,7 @@ import { ProductType } from "../../type"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { Card1Icon, Card2Icon, Card3Icon } from "../../components/svg/Card-Product"
 import { useNavigate } from "react-router-dom"
+import { useAuthStore } from "../auth/auth.store"
 
 export const CardDescMobile = ({
     product,
@@ -36,7 +37,7 @@ export const CardDescMobile = ({
 
     changeInput: (value: number) => void
 }) => {
-
+    const isAuth = useAuthStore(s => s.isAuth)
     const navigate = useNavigate()
     const { productBasketList } = useBasketStore()
     if (!product) {
@@ -54,7 +55,7 @@ export const CardDescMobile = ({
                     {/* <p className="card-desc-info-price-undertitle">:</p> */}
                     <p className="card-desc-info-undertitle">ціна:</p>
                     <p className="card-desc-info-price-val">
-                        <b>{product.price}</b> <span>грн.</span>
+                        <b>{isAuth ? product.partner_price : product.price}</b> <span>грн.</span>
                     </p>
                 </div>
                 <div className="card-desc-info-price-body1 card-desc-info-price-num">

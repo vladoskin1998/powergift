@@ -12,6 +12,7 @@ export const normalizeProductTypeToBasketType = (product: ProductType):BaskerPro
         name: product.title,
         image: product.files.images[0],
         images: product.files.images,
+        partner_price: product.partner_price,
         thumbnails: {
           small: '',
           thumb: '',

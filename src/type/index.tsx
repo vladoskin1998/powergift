@@ -66,66 +66,67 @@ export interface BaskerProduct {
     image: string;
     images: string[];
     thumbnails: {
-      small: string;
-      thumb: string;
+        small: string;
+        thumb: string;
     };
     quantity: number;
     price: string;
+    partner_price: string;
     total: string;
-  }
-  
-  export interface BaskerResponse {
+}
+
+export interface BaskerResponse {
     success: boolean;
     message: string;
     cart: {
-      products: BaskerProduct[];
+        products: BaskerProduct[];
     };
     total: string;
-    meta: any;     
-    errors: any;  
-  }
-  
-
-export  type OrderForm = {
-      delivery_method_id: number | null
-      delivery_warehouse: string
-      delivery_name: string
-      delivery_lastname: string
-      delivery_phone: string
-      delivery_address: string
-      delivery_city: string
-      delivery_country: string
-      delivery_region: string
-      comment: string
-      order_type: string
-  }
+    meta: any;
+    errors: any;
+}
 
 
-export  type ShopInfoRes = {
-      company: {
-          name: string
-          description: string
-      }
-      contacts: {
-          phone: string
-          email: string
-          address: string
-      }
-      delivery: {
-          methods: {
-              method_id: number
-              method_name: string
-          }[]
-          rules: string
-      }
-      order: {
-          types: {
-              type: string
-              name: string
-          }[]
-          statuses: {
-              type: string
-              name: string
-          }[]
-      }
-  }
+export type OrderForm = {
+    delivery_method_id: number | null
+    delivery_warehouse: string
+    delivery_name: string
+    delivery_lastname: string
+    delivery_phone: string
+    delivery_address: string
+    delivery_city: string
+    delivery_country: string
+    delivery_region: string
+    comment: string
+    order_type: string
+}
+
+
+export type ShopInfoRes = {
+    company: {
+        name: string
+        description: string
+    }
+    contacts: {
+        phone: string
+        email: string
+        address: string
+    }
+    delivery: {
+        methods: {
+            method_id: number
+            method_name: string
+        }[]
+        rules: string
+    }
+    order: {
+        types: {
+            type: string
+            name: string
+        }[]
+        statuses: {
+            type: string
+            name: string
+        }[]
+    }
+}

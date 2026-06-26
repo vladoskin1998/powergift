@@ -4,6 +4,7 @@ import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { Card1Icon, Card2Icon, Card3Icon } from "../../components/svg/Card-Product"
 import { useNavigate } from "react-router-dom"
+import { useAuthStore } from "../auth/auth.store"
 
 export const CardDesc = ({
     product,
@@ -41,7 +42,7 @@ export const CardDesc = ({
 }) => {
     const { productBasketList } = useBasketStore()
     const navigate = useNavigate()
-
+    const isAuth = useAuthStore(s => s.isAuth)
 
 
     
@@ -135,9 +136,10 @@ export const CardDesc = ({
                                     Ціна:
                                 </p>
                                 <p className="card-desc-info-price-val">
-                                    <b>{product.price}</b> <span>грн.</span>
+                                    <b>{isAuth ? product.partner_price : product.price}</b> <span>грн.</span>
                                 </p>
                             </div>
+                          
                         </div>
                         <div className="card-desc-info-price-body1 card-desc-info-price-num">
                             <p className="card-desc-info-undertitle">
@@ -152,12 +154,10 @@ export const CardDesc = ({
                                     -
                                 </button>
                                 <input
-                        
-                                    className='textinput-product-count'
+                                    onFocus={(e) => e.target.select()}
+                                    className='textinput-product-count card-product-count'
                                     type='number'
                                     style={{
-                                        padding: '0',
-                                        fontSize: '20px',
                                         width: `${Math.max(String(count).length, 1) + 0.5}ch`
                                     }}
                                     max={99999}
@@ -205,11 +205,7 @@ export const CardDesc = ({
                 <div className="card-desc-deliver">
                     <div className="card-desc-deliver-item">
                         <Card1Icon />
-                        {/* <img
-                            className="card-desc-deliver-img card-desc-deliver-img-fc"
-                            src={baseURL + "/Images/card/icon-1.svg"}
-                            alt=""
-                        /> */}
+                        
                         <p className="card-desc-info-title">Доставка</p>
                         <p className="card-desc-info-desc-text">
                             Самовивіз з нашого магазину — безкоштовно. «Новою
@@ -218,11 +214,7 @@ export const CardDesc = ({
                     </div>
                     <div className="card-desc-deliver-item">
                         <Card2Icon />
-                        {/* <img
-                            className="card-desc-deliver-img"
-                            src={baseURL + "/Images/card/icon-2.svg"}
-                            alt=""
-                        /> */}
+                     
                         <p className="card-desc-info-title">Оплата</p>
                         <p className="card-desc-info-desc-text">
                             Оплата по рахунку.
@@ -230,19 +222,13 @@ export const CardDesc = ({
                     </div>
                     <div className="card-desc-deliver-item">
                         <Card3Icon />
-                        {/* <img
-                            className="card-desc-deliver-img"
-                               src={baseURL + "/Images/card/icon-3.svg"}
-                            alt=""
-                        /> */}
+                      
                         <p className="card-desc-info-title">Гарантія</p>
                         <p className="card-desc-info-desc-text">
                             Гарантія від виробника до 3 місяців
                         </p>
                     </div>
-                    {/* <button className="card-desc-info-kp">
-                        <img src={baseURL + "/Images/KP.png"} alt="" />
-                    </button> */}
+                 
                 </div>
                 <div>
                     <p className="card-desc-info-desc-underline">Опис</p>

@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { baseURL } from '../../utils/utils'
 import { HeaderIconClose, HeaderIconSearch } from '../../components/svg/HeaderIcon'
-import { CatalogFilter } from '../___tempcatalog/CatalogFilter'
 import { useNavigate } from 'react-router-dom'
-import { useQuery } from 'react-query'
-import { NavbarCategoriesRes } from '../../type'
 import { $api } from '../../api'
 import { useAppContext } from '../../context/AppContext'
-import { Link } from 'react-router-dom'
 import { IconsGifts } from '../../components/svg/IconGifts'
+import { CatalogFilter } from './filter'
 
 const getNavBarData = async () => {
     try {
@@ -50,22 +46,18 @@ export const CatalogCategoriesMobile = () => {
 
     return (
         <div className="catalog-main">
-            {/* <video className="catalog-main-back" autoPlay loop muted playsInline ref={videoRef} preload="metadata">
-                <source src={baseURL + `/Images/Coub.mp4`} type="video/mp4" />
-            </video> */}
-            <div className="catalog-main-list  catalog-main-list-none">
+     
+            <div className="catalog-main-list catalog-main-list-none">
                 {currentSubCategorie?.subcategories.map((item) => (
                     <button
                         key={item.categoryId}
                         onClick={(e) => navToCategories(e, item.categoryId)}
                         className="catalog-main-product navbar_list-item"
-                        // style={{ backgroundImage: `url(${item.icon})` }}
                     >
                         <div className="catalog-main-product-img" style={{ backgroundImage: `url(${item.icon})`,        backgroundSize: 'contain' }}>
                             {!item?.icon && <IconsGifts />}
                         </div>
                         <h5
-                        // style={item?.icon ? { paddingTop: '130px' } : {}}
                         >
                             {item.title}
                         </h5>

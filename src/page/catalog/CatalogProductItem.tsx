@@ -4,6 +4,7 @@ import { HeaderIconBasket } from "../../components/svg/HeaderIcon"
 import { IconsGifts } from "../../components/svg/IconGifts"
 import { useBasketStore } from "../../components/basket/basket.store"
 import { useNavigate } from "react-router-dom"
+import { useAuthStore } from "../auth/auth.store"
 
 interface CatalogProductItemProps {
     product: ProductType
@@ -12,7 +13,7 @@ interface CatalogProductItemProps {
 
 export const CatalogProductItem = ({ product, onNavToCard }: CatalogProductItemProps) => {
     const { addProductBasketList } = useBasketStore()
-
+    const isAuth = useAuthStore(s => s.isAuth)
     const addToBasket = (e: React.MouseEvent, product: ProductType) => {
         e.stopPropagation()
         const basketProduct = normalizeProductTypeToBasketType(product)
@@ -58,15 +59,7 @@ export const CatalogProductItem = ({ product, onNavToCard }: CatalogProductItemP
                         )
                     )}
                 </div>
-                {/* <div className="catalog-product-item-staff">
-                    <img
-                        src={
-                            baseURL +
-                            "/Images/New staff.png"
-                        }
-                        alt="New"
-                    />
-                </div> */}
+           
                 <div className="catalog-product-item-thr">
                     <div>
                         <span> Артикул:</span >  <span style={{ marginLeft: '5px' }}><b>{product.id}</b></span>
@@ -83,7 +76,7 @@ export const CatalogProductItem = ({ product, onNavToCard }: CatalogProductItemP
                 <div className="catalog-filter-list-bot basket-pc">
                     <div className="catalog-product-item-bot">
                         <div>
-                            <h5>{product.price}</h5>
+                            <h5>{isAuth ? product.partner_price : product.price}</h5>
                             <span>грн</span>
                         </div>
                         <div className="catalog-product-item-bot-it">

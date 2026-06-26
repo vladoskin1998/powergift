@@ -6,41 +6,36 @@ import { BasketSelect } from './BasketSelect'
 import { BasketCheckModal } from './BasketCheckModal'
 import { useLocation } from 'react-router-dom'
 import { useBasketStore } from './basket.store'
-import { BaskerProduct } from '../../type'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useQuery } from 'react-query'
-import { BasketApi } from './api.basket'
 import { BaskerProductItem } from './BasketProductItem'
+import { BasketEndpointApi } from './basket.endpoint'
+import { CatalogEndpointApi } from '../../page/catalog/catalog.endpoint'
+import { useAuthStore } from '../../page/auth/auth.store'
+
 export const Basket = () => {
     const {
-
         setProductBasketList,
         isOpenBasket,
         setOpenBasket,
         productBasketList,
-        addProductBasketList,
-        deleteProductBasketList,
         makeOrder,
     } = useBasketStore()
 
+        const isAuth = useAuthStore(s => s.isAuth)
     const [pageHeight, setPageHeight] = useState(0)
     const [activeDeliver, setActiveDeliver] = useState(2)
-    const [tov, setTov] = useState("company2")
+
     const [orderData, setOrderData] = useState<any>(null);
 
     //change
     const [isOpenModalCheck, setIsOpenModalCheck] = useState(false)
     const location = useLocation()
-    const option = [
-        { type: "company1", name: "Тов “Павэр Гіфт”" },
-        { type: "company2", name: "Тов “Павэр Гіфт1”" },
-        { type: "company3", name: "Тов “Павэр Гіфт2”" }
-    ]
-
+ 
 
     const { data: shopData, isLoading: isShopLoading, error: shopError } = useQuery(['shopInfo'], async () => {
-        const data = await BasketApi.getInfoShop()
+        const data = await CatalogEndpointApi.getInfoShop()
         return data
     }, {
         staleTime: Infinity,
@@ -50,7 +45,7 @@ export const Basket = () => {
 
     useQuery(['basketData'], async () => {
 
-        const data = await BasketApi.getBasket()
+        const data = await BasketEndpointApi.getBasket()
         return data
     }, {
         staleTime: Infinity,
@@ -155,13 +150,7 @@ export const Basket = () => {
         }
     }, [window.location, location])
 
-    const changeCount = (product: BaskerProduct, count: number) => {
-        addProductBasketList(product, count)
-    }
 
-    const deleteProduct = ({ product_id }: { product_id: number }) => {
-        deleteProductBasketList({ product_id })
-    }
 
     useEffect(() => {
         const basketButton = document.getElementById('basket-pc')
@@ -212,62 +201,7 @@ export const Basket = () => {
                                 <div className="basket-list ">
                                     {productBasketList.map((item) => (
                                         <BaskerProductItem key={item.product_id} item={item} />
-                                        // <div className="basket-item basket-list-item" key={item.product_id}>
-                                        //     <div className="basket-list-item-product">
-                                        //         <img src={item.images?.[0]} alt="" />
-                                        //     </div>
-                                        //     <div className="basket-list-right">
-                                        //         <div className="basket-list-art">
-                                        //             Артикул: <div>{ }</div>
-                                        //             <button
-                                        //                 className="basket-list-delete"
-                                        //                 onClick={() =>
-                                        //                     deleteProduct({
-                                        //                         product_id: item.product_id,
-                                        //                     })
-                                        //                 }
-                                        //             >
-                                        //                 <CardIconDelete />
-                                        //             </button>
-                                        //         </div>
-                                        //         <div className="basket-list-text">{item.name}</div>
-                                        //         <div className="basket-list-foot">
-                                        //             <div className="basket-list-foot-item">
-                                        //                 <p className="basket-list-undertitle">ціна</p>
-                                        //                 <p className="basket-list-price">
-                                        //                     {item.price} <span>грн</span>
-                                        //                 </p>
-                                        //             </div>
-                                        //             <div className="basket-list-foot-item">
-                                        //                 <p className="basket-list-undertitle">кількість шт</p>
-                                        //                 <div className="basket-list-num">
-                                        //                     <button onClick={() => changeCount(item, -1)}>-</button>
-
-                                        //                     <input
-                                        //                         className='basket-list-num-p'
-                                        //                         type='number'
-                                                             
-                                        //                         value={item?.quantity || 1}
-                                        //                         onChange={e => {
-                                        //                             const value = e.target.value;
-                                        //                             if (value === "") return;
-                                        //                             const num = Math.max(1, Number(value));
-                                        //                             changeCount(item, num - (item?.quantity || 1));
-                                        //                         }}
-                                        //                     />
-                                        //                     <button onClick={() => changeCount(item, 1)}>+</button>
-                                        //                 </div>
-                                        //             </div>
-                                        //             <div className="basket-list-foot-item">
-                                        //                 <p className="basket-list-undertitle">Всього</p>
-                                        //                 <p className="basket-list-price">
-                                        //                     {item?.quantity * (Number(item?.price) || 1)}
-                                        //                     <span>грн</span>
-                                        //                 </p>
-                                        //             </div>
-                                        //         </div>
-                                        //     </div>
-                                        // </div>
+                                   
                                     ))}
                                 </div>
                                 <div className="basket-paymant">
@@ -278,14 +212,7 @@ export const Basket = () => {
                                             <span>грн</span>
                                         </h5>
                                     </div>
-                                    {/* <div className="basket-paymant-select">
-                                        <p className='select-title'>ПІДГОТУВАТИ РАХУНОК ДО СПЛАТИ:</p>
-                                          <BasketSelect
-                                            option={option}
-                                            value={tov}
-                                            onChange={setTov}
-                                          />
-                                    </div> */}
+                                  
                                 </div>
                                 <div className="basket-form">
                                     <h6 className="basket-form-title">ОБЕРІТЬ СПОСІБ ДОСТАВКИ</h6>
@@ -421,7 +348,7 @@ export const Basket = () => {
                                             <>
                                                 <input
                                                     className="basket-form-input-item"
-                                                        placeholder="Номер відділення Нова Пошта"
+                                                    placeholder="Номер відділення Нова Пошта"
                                                     name="delivery_warehouse"
                                                     value={formik.values.delivery_warehouse}
                                                     onChange={formik.handleChange}
